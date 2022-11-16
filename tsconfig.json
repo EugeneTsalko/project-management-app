@@ -13,7 +13,9 @@
     "strict": true,
     "skipLibCheck": true,
     "baseUrl": "./src",
-    "resolveJsonModule": true
+    "resolveJsonModule": true,
+    "typeRoots": ["./node_modules/@types"]
   },
+  "exclude": ["./node_modules"],
   "include": ["./src/**/*", "styled.d.ts"]
 }
