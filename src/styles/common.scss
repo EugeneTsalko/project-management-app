@@ -1,0 +1,36 @@
+@charset 'utf-8';
+
+@import './variables.scss';
+@import './fonts.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body,
+h3,
+h4,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  color: $black;
+  font-weight: 500;
+
+  background-color: $white;
+
+  overflow: hidden;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
