@@ -25,6 +25,7 @@
     "@typescript-eslint", "react", "prettier", "react-hooks"
   ],
   "rules": {
+    "no-console": "warn",
     "react-hooks/rules-of-hooks": "error",
     "react-hooks/exhaustive-deps": "warn",
     "comma-dangle": ["error", "only-multiline"],
