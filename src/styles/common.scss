@@ -7,6 +7,13 @@
 *::before,
 *::after {
   box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
 }
 
 body,
@@ -16,6 +23,13 @@ p,
 ul {
   margin: 0;
   padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
 }
 
 body {

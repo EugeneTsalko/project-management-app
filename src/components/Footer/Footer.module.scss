@@ -1,0 +1,18 @@
+@import '../../styles/variables.scss';
+
+.footer {
+  background-color: $lime-green;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+
+  &Github {
+    display: flex;
+    gap: 20px;
+  }
+
+  &link {
+    color: $black;
+  }
+}
