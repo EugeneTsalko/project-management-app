@@ -1,0 +1,30 @@
+@import '../../../../styles/variables.scss';
+
+.hero {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  
+  &Person {
+    width: 20%;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 20px;
+
+    &Contacts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    img {
+      width: 25px;
+    }
+  }
+
+  &Image {
+    width: 40%;
+  }
+}
