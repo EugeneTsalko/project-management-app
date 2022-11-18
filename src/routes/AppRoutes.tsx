@@ -8,6 +8,8 @@ export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
+      <Route path="/signin" element={<p>Sign in</p>} />
+      <Route path="/signup" element={<p>Sign up</p>} />
       <Route path="/Boards" element={<p>Main page</p>} />
       <Route path="/Boards/:id" element={<p>Board page</p>} />
       <Route path="*" element={<NotFound />} />

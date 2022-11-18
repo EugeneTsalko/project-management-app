@@ -2,6 +2,7 @@ import React from 'react';
 import { NavLink } from 'react-router-dom';
 import styles from './Header.module.scss';
 import logo from '../../assets/logo.svg';
+import { Navigation } from 'components/Navigation/Navigation';
 
 export const Header = () => {
   return (
@@ -9,7 +10,7 @@ export const Header = () => {
       <NavLink to="/">
         <img src={logo} alt="logo" />
       </NavLink>
-      <nav>NAV</nav>
+      <Navigation></Navigation>
     </header>
   );
 };
