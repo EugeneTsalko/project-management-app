@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 
-import BoardPage from 'pages/Board/BoardPage';
+import { BoardPage } from 'pages/Board/BoardPage';
 
 export default function AppRoutes() {
   return (
