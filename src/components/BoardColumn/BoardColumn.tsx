@@ -2,22 +2,16 @@ import React from 'react';
 
 import { BoardTask } from './BoardTask/BoardTask';
 import styles from './BoardColumn.module.scss';
+import { Column } from 'api/boardsApi.models';
 
-const BoardColumn = () => {
+const BoardColumn = ({ data }: { data: Column }) => {
   return (
     <div className={styles.column}>
-      <h3 className={styles.columnTitle}>Column title</h3>
+      <h3 className={styles.columnTitle}>{data.title}</h3>
       <div className={styles.taskContainer}>
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
-        <BoardTask />
+        {data.tasks.map((item) => (
+          <BoardTask key={item.id} data={item} />
+        ))}
       </div>
       <div className={styles.columnControl}>
         <button
