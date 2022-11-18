@@ -1,0 +1,47 @@
+.column {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  min-width: 300px;
+  height: max-content;
+  max-height: calc(90vh);
+  margin: 0 0.5em;
+  padding: 0.5em;
+
+  background-color: gray;
+  border-radius: 5px;
+}
+.columnTitle {
+  color: white;
+}
+
+.taskContainer {
+  margin: 0.2em 0;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+.columnControl {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.deleteColumnButton {
+}
+
+.createTaskButton {
+}
+
+.task {
+  margin: 0.25em 0;
+  padding: 0.25em;
+
+  text-overflow: ellipsis;
+
+  background-color: white;
+  border-radius: 5px;
+
+  overflow: hidden;
+}

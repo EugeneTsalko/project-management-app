@@ -2,6 +2,7 @@ import React from 'react';
 
 import { useParams, useNavigate } from 'react-router-dom';
 
+import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import styles from './BoardPage.module.scss';
 
 const BoardPage = () => {
@@ -12,7 +13,7 @@ const BoardPage = () => {
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <p className={styles.boardTitle}>Board name - {id}</p>
+        <h2 className={styles.boardTitle}>Board title - {id}</h2>
         <button
           className={styles.closeBoardButton}
           type="button"
@@ -31,9 +32,14 @@ const BoardPage = () => {
         </button>
       </header>
       <div className={styles.boardColumns}>
-        <p className={styles.column}>Main Content - Columns and Tasks</p>
-        <p className={styles.column}>Main Content - Columns and Tasks</p>
-        <p className={styles.column}>Main Content - Columns and Tasks</p>
+        <BoardColumn />
+        <BoardColumn />
+        <BoardColumn />
+        <BoardColumn />
+        <BoardColumn />
+        <BoardColumn />
+        <BoardColumn />
+        <BoardColumn />
       </div>
     </main>
   );
