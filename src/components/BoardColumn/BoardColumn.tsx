@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { BoardTask } from './BoardTask/BoardTask';
 import styles from './BoardColumn.module.scss';
 
 const BoardColumn = () => {
@@ -7,10 +8,16 @@ const BoardColumn = () => {
     <div className={styles.column}>
       <h3 className={styles.columnTitle}>Column title</h3>
       <div className={styles.taskContainer}>
-        <p className={styles.task}>Task Task Task Task Task Task Task Task Task Task Task Task</p>
-        <p className={styles.task}>Task Task Task Task Task Task Task Task Task Task Task Task</p>
-        <p className={styles.task}>Task Task Task Task Task Task Task Task Task Task Task Task</p>
-        <p className={styles.task}>Task Task Task Task Task Task Task Task Task Task Task Task</p>
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
+        <BoardTask />
       </div>
       <div className={styles.columnControl}>
         <button
