@@ -33,7 +33,7 @@ export const Hero = () => {
         </div>
         <div className={styles.heroPersonContacts}>
           <img src={mailImg} alt="mail" />
-          <span>....@mail</span>
+          <span>hauzinski@gmail.com</span>
         </div>
       </div>
     </section>

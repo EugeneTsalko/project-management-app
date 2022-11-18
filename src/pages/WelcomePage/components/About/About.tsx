@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './About.module.scss';
 import aboutImg from '../../../../assets/about.svg';
-import { Link } from 'react-router-dom';
+import { LinkButton } from 'components/LinkButton/LinkButton';
 
 export const About = () => {
   return (
@@ -13,9 +13,7 @@ export const About = () => {
           management methods are both user-friendly and efficient at the same time. Also, it`s been proven, that
           implementing Agile methods - such as Kanban - improves projects success rates.
         </div>
-        <Link to="/" className={styles.aboutBtn}>
-          TRY NOW
-        </Link>
+        <LinkButton path="/" text="TRY NOW"></LinkButton>
       </div>
       <div className={styles.aboutImageWrapper}>
         <img src={aboutImg} alt="about image" className={styles.aboutImage}></img>
