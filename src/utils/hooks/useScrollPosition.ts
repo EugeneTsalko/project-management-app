@@ -15,5 +15,5 @@ export const useScrollPosition = () => {
     return () => window.removeEventListener('scroll', updatePosition);
   }, []);
 
-  return scrollPosition;
+  return { scrollPosition };
 };
