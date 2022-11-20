@@ -3,7 +3,7 @@ import styles from './NotFound.module.scss';
 
 export const NotFound = () => {
   return (
-    <div className={styles.wrapper}>
+    <main className={styles.wrapper}>
       <section className={styles.page404}>
         <div className={styles.page404Container}>
           <div className={styles.page404ContainerScene}>
@@ -17,6 +17,6 @@ export const NotFound = () => {
           </div>
         </div>
       </section>
-    </div>
+    </main>
   );
 };
