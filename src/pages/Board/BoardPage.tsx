@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 
 import { useParams, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
+import { setCurrentBoard } from 'store/dataSlice';
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import { getBoard } from 'api/boardsApi';
-import { Board } from 'api/boardsApi.types';
+import { State } from 'store/store.types';
 import styles from './BoardPage.module.scss';
 
 const token =
@@ -12,30 +14,32 @@ const token =
 
 const BoardPage = () => {
   const navigate = useNavigate();
-  const [loading, setLoading] = useState(true);
-  const [state, setState] = useState({} as Board);
+  const dispatch = useDispatch();
+  const currentBoard = useSelector((state: State) => state.data.currentBoard);
+
+  const [isLoading, setLoading] = useState(true);
 
   const { id } = useParams();
 
   const loadBoard = async () => {
     setLoading(true);
     const data = await getBoard(id as string, token);
+    dispatch(setCurrentBoard(data));
     setLoading(false);
-    setState(data);
   };
 
   useEffect(() => {
     loadBoard();
   }, []);
 
-  if (loading) {
+  if (isLoading) {
     return <p>Loading...</p>;
   }
 
   return (
     <main className={styles.main}>
       <header className={styles.header}>
-        <h2 className={styles.boardTitle}>{state.title}</h2>
+        <h2 className={styles.boardTitle}>{currentBoard.title}</h2>
         <button
           className={styles.closeBoardButton}
           type="button"
@@ -54,7 +58,7 @@ const BoardPage = () => {
         </button>
       </header>
       <div className={styles.boardColumns}>
-        {state.columns.map((item) => (
+        {currentBoard.columns.map((item) => (
           <BoardColumn key={item.id} data={item} />
         ))}
       </div>
