@@ -4,7 +4,7 @@ import { BoardTask } from './BoardTask/BoardTask';
 import styles from './BoardColumn.module.scss';
 import { Column } from 'api/boardsApi.types';
 
-const BoardColumn = ({ data }: { data: Column }) => {
+const BoardColumn = ({ data, id }: { data: Column; id: string }) => {
   return (
     <div className={styles.column}>
       <h3 className={styles.columnTitle}>{data.title}</h3>
@@ -18,7 +18,7 @@ const BoardColumn = ({ data }: { data: Column }) => {
           className={styles.deleteColumnButton}
           type="button"
           aria-label="Delete column"
-          onClick={() => console.log('Column was deleted')}
+          onClick={() => console.log('Column was deleted', id)}
         >
           X
         </button>
@@ -26,7 +26,7 @@ const BoardColumn = ({ data }: { data: Column }) => {
           className={styles.createTaskButton}
           type="button"
           aria-label="Create task"
-          onClick={() => console.log('Task was created')}
+          onClick={() => console.log('Task was created', id)}
         >
           Create task
         </button>

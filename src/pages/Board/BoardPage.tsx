@@ -52,14 +52,14 @@ const BoardPage = () => {
           className={styles.createColumnButton}
           type="button"
           aria-label="Create column"
-          onClick={() => console.log('Column was created')}
+          onClick={() => console.log('Column was created', id)}
         >
           Create column
         </button>
       </header>
       <div className={styles.boardColumns}>
         {currentBoard.columns.map((item) => (
-          <BoardColumn key={item.id} data={item} />
+          <BoardColumn key={item.id} data={item} id={item.id} />
         ))}
       </div>
     </main>
