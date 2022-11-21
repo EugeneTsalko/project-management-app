@@ -1,0 +1,72 @@
+@use '../../../styles/variables.scss' as var;
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: var.$btn-border-radius;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  transition: all 0.5s;
+  overflow: hidden;
+
+  &:hover {
+    box-shadow: 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075), 0 4px 4px hsl(0deg 0% 0% / 0.075),
+      0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);
+    transform: translate(0, -5px);
+    border-color: var.$blue;
+
+    & .buttons {
+      transform: translate(0, 0);
+    }
+  }
+}
+
+.title {
+  color: var.$blue;
+  text-decoration: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+}
+
+.description {
+  cursor: pointer;
+}
+
+.buttons {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  gap: 0.5rem;
+
+  transform: translate(0, 50px);
+  transition: all 0.5s;
+
+  & button {
+    border-radius: var.$btn-border-radius;
+    border: none;
+    padding: 0.3rem 0.8rem;
+    cursor: pointer;
+    border: 1px solid transparent;
+    transition: all 0.3s;
+
+    &:first-child {
+      background-color: rgb(255, 177, 177);
+      color: rgb(99, 0, 0);
+
+      &:hover {
+        border: 1px solid rgb(99, 0, 0);
+      }
+    }
+
+    &:last-child {
+      background-color: rgb(177, 208, 255);
+      color: var.$blue;
+
+      &:hover {
+        border: 1px solid var.$blue;
+      }
+    }
+  }
+}
