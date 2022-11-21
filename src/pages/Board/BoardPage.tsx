@@ -4,8 +4,11 @@ import { useParams, useNavigate } from 'react-router-dom';
 
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import { getBoard } from 'api/boardsApi';
-import { Board } from 'api/boardsApi.models';
+import { Board } from 'api/boardsApi.types';
 import styles from './BoardPage.module.scss';
+
+const token =
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYjViYzdkOC0wYjVlLTQ1NDQtOTU5My1iYTcyZmJhYmY1NDAiLCJsb2dpbiI6InZpdGFsaSIsImlhdCI6MTY2OTAxODc0OX0.3Uv1kUYAmEOwOquH_zl-G7nC1Gz_JcHtbwCXtYj98Hw';
 
 const BoardPage = () => {
   const navigate = useNavigate();
@@ -14,15 +17,15 @@ const BoardPage = () => {
 
   const { id } = useParams();
 
-  const getState = async () => {
+  const loadBoard = async () => {
     setLoading(true);
-    const data = await getBoard(id as string);
+    const data = await getBoard(id as string, token);
     setLoading(false);
     setState(data);
   };
 
   useEffect(() => {
-    getState();
+    loadBoard();
   }, []);
 
   if (loading) {

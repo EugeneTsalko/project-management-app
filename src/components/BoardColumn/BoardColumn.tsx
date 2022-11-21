@@ -2,7 +2,7 @@ import React from 'react';
 
 import { BoardTask } from './BoardTask/BoardTask';
 import styles from './BoardColumn.module.scss';
-import { Column } from 'api/boardsApi.models';
+import { Column } from 'api/boardsApi.types';
 
 const BoardColumn = ({ data }: { data: Column }) => {
   return (
