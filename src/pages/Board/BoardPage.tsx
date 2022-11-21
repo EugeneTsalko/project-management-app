@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { setCurrentBoard } from 'store/dataSlice';
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
-import { getBoard } from 'api/boardsApi';
+import { getBoard } from 'api/boards';
 import { State } from 'store/store.types';
 import styles from './BoardPage.module.scss';
 
@@ -59,7 +59,7 @@ const BoardPage = () => {
       </header>
       <div className={styles.boardColumns}>
         {currentBoard.columns.map((item) => (
-          <BoardColumn key={item.id} data={item} id={item.id} />
+          <BoardColumn key={item.id} data={item} />
         ))}
       </div>
     </main>

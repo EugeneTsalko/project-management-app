@@ -1,4 +1,4 @@
-import { Board } from 'api/boardsApi.types';
+import { Board } from 'api/boards/boardsApi.types';
 
 export interface State {
   data: Data;
