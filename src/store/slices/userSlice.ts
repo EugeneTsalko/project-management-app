@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { signIn, signUp } from 'api';
+import { decodeJWT } from 'utils/decodeJWT';
 import { signOut } from 'utils/signOut';
 import { User, UserState, UserToken } from './userSlice.types';
 
@@ -25,7 +26,8 @@ export const signInUser = createAsyncThunk(
   'user/signIn',
   async ({ login, password }: { login: string; password: string }) => {
     const data = await signIn({ login, password });
-    return data;
+    const userData = decodeJWT(data);
+    return { token: data, ...userData };
   }
 );
 
