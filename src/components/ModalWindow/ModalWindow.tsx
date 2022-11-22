@@ -3,7 +3,6 @@ import React from 'react';
 import styles from './ModalWindow.module.scss';
 import { ModalWindowProps } from './ModalWindow.types';
 
-// const ModalWindow = ({ confirmAction, denyAction, children }: ModalWindowProps) => {
 const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
   const handleClickCloseWindow = (event: React.SyntheticEvent) => {
     event.stopPropagation();
