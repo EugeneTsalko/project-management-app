@@ -1,5 +1,5 @@
 export type AuthorizationValues = {
-  name?: string;
+  name: string;
   login: string;
   password: string;
 };

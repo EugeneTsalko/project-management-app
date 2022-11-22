@@ -1,13 +1,23 @@
 import React from 'react';
 import { Authorization } from 'components/Authorization/Authorization';
-import { AuthorizationType } from 'components/Authorization/Authorization.types';
-import { signUp } from 'api';
+import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
 import styles from './SignUp.module.scss';
+import { useDispatch } from 'react-redux';
+import { signInUser, signUpUser } from 'store/slices/userSlice';
+import { AppDispatch } from 'store/store';
 
 export const SignUp = () => {
+  const dispatch = useDispatch<AppDispatch>();
+
+  const handleChange = async (data: AuthorizationValues) => {
+    const response = await dispatch(signUpUser(data));
+    if (response) {
+      dispatch(signInUser(data));
+    }
+  };
   return (
     <main className={styles.main}>
-      <Authorization type={AuthorizationType.signup} onChange={(data) => signUp(data)}></Authorization>
+      <Authorization type={AuthorizationType.signup} onChange={(data) => handleChange(data)}></Authorization>
     </main>
   );
 };

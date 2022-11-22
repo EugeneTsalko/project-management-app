@@ -5,6 +5,7 @@ import styles from './SignIn.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch, RootState } from 'store/store';
 import { signInUser } from 'store/slices/userSlice';
+import { redirect } from 'react-router-dom';
 
 export const SignIn = () => {
   // const { isAuth, user } = useSelector((state: RootState) => state.user);

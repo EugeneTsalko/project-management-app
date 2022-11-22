@@ -5,14 +5,16 @@ import { WelcomePage } from 'pages/WelcomePage/WelcomePage';
 import React from 'react';
 
 import { Routes, Route } from 'react-router-dom';
+import PrivateRoute from './components/PrivateRoute';
+import PublicRoute from './components/PublicRoute';
 
 export default function AppRoutes() {
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/Boards" element={<p>Main page</p>} />
+      <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
+      <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
+      <Route path="/Boards" element={<PrivateRoute component={<p>Main Page</p>} />} />
       <Route path="/Boards/:id" element={<p>Board page</p>} />
       <Route path="*" element={<NotFound />} />
     </Routes>
