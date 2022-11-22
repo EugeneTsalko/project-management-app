@@ -1,12 +1,18 @@
 import { LinkButton } from 'components/LinkButton/LinkButton';
-import React from 'react';
+import React, { useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import { useAppSelector } from 'store/hooks';
+import { AuthNavigation } from './components/AuthNavigation';
+import { UnAuthNavigation } from './components/UnAuthNavigation';
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
-  return (
-    <div className={styles.nav}>
-      <LinkButton path="/signin" text="Sign in"></LinkButton>
-      <LinkButton path="/signup" text="Sign up"></LinkButton>
-    </div>
-  );
+  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const location = useLocation();
+
+  useEffect(() => {
+    console.log('location: ', location.pathname);
+  }, [location.pathname]);
+
+  return <div className={styles.nav}>{isAuth ? <AuthNavigation /> : <UnAuthNavigation />}</div>;
 };

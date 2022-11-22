@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { signIn, signUp } from 'api';
+import { getUserById, signIn, signUp } from 'api';
 import { decodeJWT } from 'utils/decodeJWT';
 import { signOut } from 'utils/signOut';
 import { User, UserState, UserToken } from './userSlice.types';
@@ -31,6 +31,17 @@ export const signInUser = createAsyncThunk(
   }
 );
 
+export const isUserAuth = createAsyncThunk('user/isUserAuth', async () => {
+  const token = localStorage.getItem('token');
+  if (token) {
+    const userData = decodeJWT(token);
+    const user = await getUserById(userData.id);
+    return user;
+  } else {
+    throw new Error();
+  }
+});
+
 const userSlice = createSlice({
   name: 'user',
   initialState,
@@ -60,6 +71,16 @@ const userSlice = createSlice({
         const { token, ...userData } = action.payload;
         state.user = { ...userData };
         localStorage.setItem('token', token);
+      });
+
+    builder
+      .addCase(isUserAuth.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(isUserAuth.fulfilled, (state, action: PayloadAction<User>) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isAuth = true;
       });
   },
 });

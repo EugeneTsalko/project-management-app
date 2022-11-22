@@ -2,12 +2,11 @@ import React from 'react';
 import { Authorization } from 'components/Authorization/Authorization';
 import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
 import styles from './SignUp.module.scss';
-import { useDispatch } from 'react-redux';
 import { signInUser, signUpUser } from 'store/slices/userSlice';
-import { AppDispatch } from 'store/store';
+import { useAppDispatch } from 'store/hooks';
 
 export const SignUp = () => {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useAppDispatch();
 
   const handleChange = async (data: AuthorizationValues) => {
     const response = await dispatch(signUpUser(data));
