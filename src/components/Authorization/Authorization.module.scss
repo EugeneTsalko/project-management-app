@@ -22,24 +22,6 @@
   font-size: 14px;
 }
 
-.button {
-  text-transform: uppercase;
-  outline: 0;
-  background: $lime-green;
-  width: 100%;
-  border: 0;
-  border-radius: $btn-border-radius;
-  padding: 15px;
-  color: #FFFFFF;
-  font-size: 14px;
-  transition: ease-in-out 0.3s;
-  cursor: pointer;
-}
-
-.button:hover {
-  background-color: $deep-sky-blue;
-}
-
 .error {
   padding: 5px;
   height: 28px;

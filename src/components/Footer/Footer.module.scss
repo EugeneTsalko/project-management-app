@@ -11,8 +11,9 @@
     display: flex;
     gap: 20px;
   }
+}
 
-  &link {
-    color: $black;
-  }
+.footerLogo {
+  height: 18px;
+  cursor: pointer;
 }

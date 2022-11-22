@@ -14,9 +14,3 @@ export const signIn = async (user: AuthorizationParams) => {
 
   return data;
 };
-
-export const getUserById = async (id: string) => {
-  const { data } = await API.get(`/users/${id}`);
-
-  return data;
-};
