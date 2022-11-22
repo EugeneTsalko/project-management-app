@@ -20,6 +20,9 @@ export const Footer = () => {
         <a href="https://github.com/hauzinski" target="_blank" rel="nofollow noreferrer" className={styles.footerLink}>
           hauzinski
         </a>
+        <a href="https://github.com/yuksak" target="_blank" rel="nofollow noreferrer" className={styles.footerLink}>
+          yuksak
+        </a>
       </div>
     </footer>
   );
