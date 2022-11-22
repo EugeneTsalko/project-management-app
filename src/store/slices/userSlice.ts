@@ -41,23 +41,26 @@ const userSlice = createSlice({
       state.user = { id: '', name: '', login: '' };
     },
   },
-  extraReducers: {
-    [signUpUser.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [signUpUser.fulfilled.type]: (state) => {
-      state.isLoading = false;
-    },
-    [signInUser.pending.type]: (state) => {
-      state.isLoading = true;
-    },
-    [signInUser.fulfilled.type]: (state, action: PayloadAction<User & UserToken>) => {
-      state.isLoading = false;
-      state.isAuth = true;
-      const { token, ...userData } = action.payload;
-      state.user = { ...userData };
-      localStorage.setItem('token', token);
-    },
+  extraReducers: (builder) => {
+    builder
+      .addCase(signUpUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(signUpUser.fulfilled, (state) => {
+        state.isLoading = false;
+      });
+
+    builder
+      .addCase(signInUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(signInUser.fulfilled, (state, action: PayloadAction<User & UserToken>) => {
+        state.isLoading = false;
+        state.isAuth = true;
+        const { token, ...userData } = action.payload;
+        state.user = { ...userData };
+        localStorage.setItem('token', token);
+      });
   },
 });
 
