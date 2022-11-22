@@ -1,3 +1,5 @@
+import { Button } from 'components/Button/Button';
+import { ButtonStyle } from 'components/Button/Button.types';
 import React, { useEffect } from 'react';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import styles from './Authorization.module.scss';
@@ -63,9 +65,11 @@ export const Authorization = ({ type, onChange }: Props) => {
       />
       <div className={styles.error}>{errors.password && errors.password.message}</div>
 
-      <button type="submit" className={styles.button}>
-        {type === AuthorizationType.signup ? 'Sign Up' : 'Sign In'}
-      </button>
+      <Button
+        type="submit"
+        style={ButtonStyle.form}
+        text={type === AuthorizationType.signup ? 'Sign Up' : 'Sign In'}
+      ></Button>
     </form>
   );
 };

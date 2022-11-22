@@ -16,6 +16,13 @@
 }
 
 .form {
+  color:#FFFFFF;
+  padding: 15px;
+  width: 100%;
   background: var.$blue;
   text-transform: uppercase;
+  border-radius: var.$btn-border-radius;
+}
+.form:hover {
+  background-color: var.$deep-sky-blue;
 }
