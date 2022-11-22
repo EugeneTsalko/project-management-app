@@ -1,26 +1,26 @@
-export interface Board {
+export interface BoardInterface {
   id: string;
   title: string;
   description: string;
-  columns: Column[];
+  columns: ColumnInterface[];
 }
 
-export interface Column {
+export interface ColumnInterface {
   id: string;
   title: string;
   order: number;
-  tasks: Task[];
+  tasks: TaskInterface[];
 }
 
-export interface Task {
+export interface TaskInterface {
   id: string;
   title: string;
   order: number;
   description: string;
   userId: string;
-  files: File[];
+  files: FileInterface[];
 }
-export interface File {
+export interface FileInterface {
   filename: string;
   fileSize: number;
 }

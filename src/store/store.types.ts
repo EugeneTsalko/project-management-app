@@ -1,9 +1,9 @@
-import { Board } from 'api/boards/boardsApi.types';
+import { BoardInterface } from 'api/boards';
 
-export interface State {
-  data: Data;
+export interface StateInterface {
+  data: DataInterface;
 }
 
-interface Data {
-  currentBoard: Board;
+interface DataInterface {
+  currentBoard: BoardInterface;
 }

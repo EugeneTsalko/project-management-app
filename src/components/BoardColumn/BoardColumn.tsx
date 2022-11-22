@@ -1,31 +1,30 @@
 import React, { useState } from 'react';
 
+import { useDispatch, useSelector } from 'react-redux';
+
 import { BoardTask } from './BoardTask/BoardTask';
-import { deleteColumn } from 'api/boards';
-import { Column } from 'api/boards/boardsApi.types';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { removeColumn as removeColumnAPI, ColumnInterface } from 'api/boards';
+import { removeColumn as removeColumnAction } from 'store/dataSlice';
+import { StateInterface } from 'store/store.types';
 import styles from './BoardColumn.module.scss';
 
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { useDispatch, useSelector } from 'react-redux';
-import { removeColumn as removeColumnAction } from 'store/dataSlice';
-import { State } from 'store/store.types';
-
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYjViYzdkOC0wYjVlLTQ1NDQtOTU5My1iYTcyZmJhYmY1NDAiLCJsb2dpbiI6InZpdGFsaSIsImlhdCI6MTY2OTEwNjczMn0.PWYfhTDgCFlk5BiUYeuw-bGfa2hFbNMKXvrfhiWu-kw';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYjViYzdkOC0wYjVlLTQ1NDQtOTU5My1iYTcyZmJhYmY1NDAiLCJsb2dpbiI6InZpdGFsaSIsImlhdCI6MTY2OTExMzQ3Mn0.HxZyLBx2BGKnHYS0z8-9BjlHn7HIdAiEn4R4oSn-yMk';
 
-const BoardColumn = ({ data }: { data: Column }) => {
+const BoardColumn = ({ data }: { data: ColumnInterface }) => {
   const dispatch = useDispatch();
-  const currentBoard = useSelector((state: State) => state.data.currentBoard);
-  const [isDisplayed, setIsDisplayed] = useState(false);
+  const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
+  const [isConfirmationModalWindow, setIsConfirmationModalWindow] = useState(false);
 
   const removeColumn = () => {
     dispatch(removeColumnAction(data.id));
-    deleteColumn(currentBoard.id, data.id, token);
+    removeColumnAPI(currentBoard.id, data.id, token);
   };
 
   const confirmationActions = {
     confirmAction: removeColumn,
-    closeWindow: () => setIsDisplayed(false),
+    closeWindow: () => setIsConfirmationModalWindow(false),
   };
 
   return (
@@ -42,10 +41,7 @@ const BoardColumn = ({ data }: { data: Column }) => {
             className={styles.deleteColumnButton}
             type="button"
             aria-label="Delete column"
-            onClick={() => {
-              console.log('Column was deleted', data.id);
-              setIsDisplayed(true);
-            }}
+            onClick={() => setIsConfirmationModalWindow(true)}
           >
             X
           </button>
@@ -59,9 +55,9 @@ const BoardColumn = ({ data }: { data: Column }) => {
           </button>
         </div>
       </div>
-      {isDisplayed && (
+      {isConfirmationModalWindow && (
         <ModalWindow type="confirmation" actions={confirmationActions}>
-          <p className="modalDescription">Delete column {data.title}. Are you sure?</p>
+          <p className="modalDescription">{data.title} will be removed. Are you sure?</p>
         </ModalWindow>
       )}
     </>
