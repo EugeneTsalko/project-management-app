@@ -11,7 +11,7 @@ import { removeColumn as removeColumnAction } from 'store/dataSlice';
 import { State } from 'store/store.types';
 
 const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYjViYzdkOC0wYjVlLTQ1NDQtOTU5My1iYTcyZmJhYmY1NDAiLCJsb2dpbiI6InZpdGFsaSIsImlhdCI6MTY2OTAxODc0OX0.3Uv1kUYAmEOwOquH_zl-G7nC1Gz_JcHtbwCXtYj98Hw';
+  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYjViYzdkOC0wYjVlLTQ1NDQtOTU5My1iYTcyZmJhYmY1NDAiLCJsb2dpbiI6InZpdGFsaSIsImlhdCI6MTY2OTEwNjczMn0.PWYfhTDgCFlk5BiUYeuw-bGfa2hFbNMKXvrfhiWu-kw';
 
 const BoardColumn = ({ data }: { data: Column }) => {
   const dispatch = useDispatch();
@@ -21,6 +21,11 @@ const BoardColumn = ({ data }: { data: Column }) => {
   const removeColumn = () => {
     dispatch(removeColumnAction(data.id));
     deleteColumn(currentBoard.id, data.id, token);
+  };
+
+  const confirmationActions = {
+    confirmAction: removeColumn,
+    closeWindow: () => setIsDisplayed(false),
   };
 
   return (
@@ -55,9 +60,8 @@ const BoardColumn = ({ data }: { data: Column }) => {
         </div>
       </div>
       {isDisplayed && (
-        <ModalWindow confirmAction={removeColumn} denyAction={() => setIsDisplayed(false)}>
-          <p className={styles.description}>Are you sure? Delete column:</p>
-          <p className={styles.description}>{data.id}</p>
+        <ModalWindow type="confirmation" actions={confirmationActions}>
+          <p className="modalDescription">Delete column {data.title}. Are you sure?</p>
         </ModalWindow>
       )}
     </>
