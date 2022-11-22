@@ -1,15 +1,16 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as var;
 
 .linkBtn {
-  background-color: $lime-green;
+  color: var.$black;
+  background-color: var.$lime-green;
   display: flex;
   padding: 10px;
-  border-radius: 5px;
+  border-radius: var.$btn-border-radius;
   align-items: center;
   justify-content: center;
-  transition: ease-in-out 0.3s;
+  transition: var.$main-transition;
 }
 
 .linkBtn:hover {
-  background-color: $aqua;
+  background-color: var.$aqua;
 }

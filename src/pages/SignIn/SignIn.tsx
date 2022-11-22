@@ -14,7 +14,7 @@ export const SignIn = () => {
 
   return (
     <main className={styles.main}>
-      <Authorization type={AuthorizationType.signin} onChange={(data) => handleChange(data)}></Authorization>
+      <Authorization type={AuthorizationType.signin} onChange={(data) => handleChange(data)} />
     </main>
   );
 };

@@ -1,9 +1,9 @@
-@import '../../../../styles/variables.scss';
+@use '../../../../styles/variables.scss' as var;
 
 .about {
   display: flex;
   justify-content: space-around;
-  border-bottom: 1px solid $grey;
+  border-bottom: 1px solid var.$light-grey;
   padding: 20px 0;
 
   &Description {
@@ -30,14 +30,14 @@
     display: block;
     width: 40%;
     padding: 20px;
-    color: $black;
-    background-color: $lime-green;
+    color: var.$black;
+    background-color: var.$lime-green;
     text-align: center;
-    border-radius: 5px;
-    transition: ease-in-out 0.3s;
+    border-radius: var.$btn-border-radius;
+    transition: var.$main-transition
   }
 
   .aboutBtn:hover {
-    background-color: $blue;
+    background-color: var.$blue;
   }
 }

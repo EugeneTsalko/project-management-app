@@ -7,8 +7,8 @@ import React, { Suspense, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch } from 'store/hooks';
 import { isUserAuth } from 'store/slices/userSlice';
-import PrivateRoute from './components/PrivateRoute';
-import PublicRoute from './components/PublicRoute';
+import { PrivateRoute } from './components/PrivateRoute';
+import { PublicRoute } from './components/PublicRoute';
 
 export default function AppRoutes() {
   const dispatch = useAppDispatch();

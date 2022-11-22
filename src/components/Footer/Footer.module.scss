@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as var;
 
 .footer {
-  background-color: $lime-green;
+  background-color: var.$lime-green;
   width: 100%;
   display: flex;
   justify-content: space-between;
@@ -10,6 +10,10 @@
   &Github {
     display: flex;
     gap: 20px;
+
+    a {
+      color: var.$black;
+    }
   }
 }
 

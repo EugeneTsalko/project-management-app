@@ -13,7 +13,7 @@ export const Header = () => {
       <NavLink to="/">
         <img src={logo} alt="logo" />
       </NavLink>
-      <Navigation></Navigation>
+      <Navigation />
     </header>
   );
 };

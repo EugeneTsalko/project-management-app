@@ -6,17 +6,18 @@
   outline: 0;
   border: 0;
 }
+
 .nav {
   background: var.$lime-green;
   border-radius: var.$btn-border-radius;
-  color: #FFFFFF;
+  color: var.$white;
 }
 .nav:hover {
   background-color: var.$deep-sky-blue;
 }
 
 .form {
-  color:#FFFFFF;
+  color: var.$white;
   padding: 15px;
   width: 100%;
   background: var.$blue;

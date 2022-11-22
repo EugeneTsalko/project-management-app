@@ -1,7 +1,7 @@
-@import '../../styles/variables.scss';
+@use '../../styles/variables.scss' as var;
 
 .header {
-  background-color: $blue;
+  background-color: var.$blue;
   width: 100%;
   position: sticky;
   top: 0;
@@ -9,10 +9,10 @@
   align-items: center;
   justify-content: space-between;
   padding: 20px;
-  transition: ease-in-out 0.3s;
+  transition: var.$main-transition;
 }
 
 .scrolled {
-  background-color: $deep-sky-blue;
+  background-color: var.$deep-sky-blue;
   padding: 10px 20px;
 }

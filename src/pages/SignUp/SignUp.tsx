@@ -16,7 +16,7 @@ export const SignUp = () => {
   };
   return (
     <main className={styles.main}>
-      <Authorization type={AuthorizationType.signup} onChange={(data) => handleChange(data)}></Authorization>
+      <Authorization type={AuthorizationType.signup} onChange={(data) => handleChange(data)} />
     </main>
   );
 };

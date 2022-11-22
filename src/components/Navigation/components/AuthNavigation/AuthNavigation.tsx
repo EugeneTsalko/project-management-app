@@ -1,9 +1,9 @@
-import { Button } from 'components/Button/Button';
-import { ButtonStyle } from 'components/Button/Button.types';
-import { LinkButton } from 'components/LinkButton/LinkButton';
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'store/hooks';
+import { Button } from 'components/Button/Button';
+import { ButtonStyle } from 'components/Button/Button.types';
+import { LinkButton } from 'components/LinkButton/LinkButton';
 import { signOutUser } from 'store/slices/userSlice';
 import { SelectLanguage } from '../SelectLanguage/SelectLanguage';
 
@@ -23,15 +23,15 @@ export const AuthNavigation = () => {
 
   return (
     <>
-      {location.pathname === '/' && <LinkButton path="/Boards" text="Go to main"></LinkButton>}
+      {location.pathname === '/' && <LinkButton path="/Boards" text="Go to main" />}
       {location.pathname !== '/' && (
         <>
-          <Button text="Create new board" type="button" style={ButtonStyle.nav} onClick={createBoard}></Button>
-          <LinkButton path="/profile" text="Edit profile"></LinkButton>
-          <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={handleClick}></Button>
+          <Button text="Create new board" type="button" style={ButtonStyle.nav} onClick={createBoard} />
+          <LinkButton path="/profile" text="Edit profile" />
+          <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={handleClick} />
         </>
       )}
-      <SelectLanguage></SelectLanguage>
+      <SelectLanguage />
     </>
   );
 };

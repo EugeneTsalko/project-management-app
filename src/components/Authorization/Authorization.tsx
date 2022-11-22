@@ -65,11 +65,7 @@ export const Authorization = ({ type, onChange }: Props) => {
       />
       <div className={styles.error}>{errors.password && errors.password.message}</div>
 
-      <Button
-        type="submit"
-        style={ButtonStyle.form}
-        text={type === AuthorizationType.signup ? 'Sign Up' : 'Sign In'}
-      ></Button>
+      <Button type="submit" style={ButtonStyle.form} text={type === AuthorizationType.signup ? 'Sign Up' : 'Sign In'} />
     </form>
   );
 };
