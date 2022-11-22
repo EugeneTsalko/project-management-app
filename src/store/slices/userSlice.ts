@@ -26,8 +26,8 @@ export const signInUser = createAsyncThunk(
   'user/signIn',
   async ({ login, password }: { login: string; password: string }) => {
     const data = await signIn({ login, password });
-    const userData = decodeJWT(data);
-    return { token: data, ...userData };
+    const userData = decodeJWT(data.token);
+    return { token: data.token, ...userData };
   }
 );
 
