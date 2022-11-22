@@ -2,7 +2,7 @@ import { LinkButton } from 'components/LinkButton/LinkButton';
 import React from 'react';
 import { useLocation } from 'react-router-dom';
 import { useAppDispatch } from 'store/hooks';
-import { SelectLanguage } from './SelectLanguage';
+import { SelectLanguage } from '../SelectLanguage/SelectLanguage';
 
 export const AuthNavigation = () => {
   // const dispatch = useAppDispatch();

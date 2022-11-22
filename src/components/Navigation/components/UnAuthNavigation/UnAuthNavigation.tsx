@@ -1,6 +1,6 @@
 import { LinkButton } from 'components/LinkButton/LinkButton';
 import React from 'react';
-import { SelectLanguage } from './SelectLanguage';
+import { SelectLanguage } from '../SelectLanguage/SelectLanguage';
 
 export const UnAuthNavigation = () => {
   return (
