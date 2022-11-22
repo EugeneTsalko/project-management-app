@@ -32,10 +32,11 @@
 .controls {
   display: flex;
   justify-content: space-between;
+  margin-top: 1em;
 }
 
 .button {
-  margin: 1em;
+  margin: 0 1em;
   padding: 0.5em 1em;
 
   color: $white;

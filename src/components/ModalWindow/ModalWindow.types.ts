@@ -1,5 +1,8 @@
 export interface ModalWindowProps {
-  confirmAction: () => void;
-  denyAction: () => void;
+  type: string;
+  actions: {
+    confirmAction?: () => void;
+    closeWindow: () => void;
+  };
   children: React.ReactNode;
 }
