@@ -1,0 +1,16 @@
+@use '../../styles/variables.scss' as var;
+
+.linkBtn {
+  color: var.$black;
+  background-color: var.$lime-green;
+  display: flex;
+  padding: 10px;
+  border-radius: var.$btn-border-radius;
+  align-items: center;
+  justify-content: center;
+  transition: var.$main-transition;
+}
+
+.linkBtn:hover {
+  background-color: var.$aqua;
+}
