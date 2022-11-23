@@ -2,8 +2,8 @@ import React from 'react';
 import { Authorization } from 'components/Authorization/Authorization';
 import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
 import styles from './SignUp.module.scss';
-import { signInUser, signUpUser } from 'store/slices/userSlice';
 import { useAppDispatch } from 'store/hooks';
+import { signInUser, signUpUser } from 'api';
 
 export const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -11,7 +11,8 @@ export const SignUp = () => {
   const handleChange = async (data: AuthorizationValues) => {
     const response = await dispatch(signUpUser(data));
     if (response) {
-      dispatch(signInUser(data));
+      const { login, password } = data;
+      dispatch(signInUser({ login, password }));
     }
   };
   return (

@@ -2,8 +2,8 @@ import React from 'react';
 import { Authorization } from 'components/Authorization/Authorization';
 import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
 import styles from './SignIn.module.scss';
-import { signInUser } from 'store/slices/userSlice';
 import { useAppDispatch } from 'store/hooks';
+import { signInUser } from 'api';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();

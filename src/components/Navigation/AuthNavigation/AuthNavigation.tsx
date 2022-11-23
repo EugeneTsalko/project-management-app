@@ -12,7 +12,6 @@ export const AuthNavigation = () => {
   const location = useLocation();
 
   const handleClick = () => {
-    console.log('click');
     dispatch(signOutUser());
     return <Navigate to="/" />;
   };
