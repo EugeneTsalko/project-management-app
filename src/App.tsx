@@ -1,3 +1,5 @@
+import { Header } from 'components/Header/Header';
+import { Footer } from 'components/Footer/Footer';
 import React from 'react';
 
 import AppRoutes from './routes/AppRoutes';
@@ -8,10 +10,10 @@ import './styles/common.scss';
 export default function App() {
   return (
     <>
-      <header>HEADER</header>
+      <Header />
       <AppRoutes />
       <Toaster position="top-center" reverseOrder={true} toastOptions={{ duration: 3000 }} />
-      <footer>FOOTER</footer>
+      <Footer />
     </>
   );
 }

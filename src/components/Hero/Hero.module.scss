@@ -1,0 +1,39 @@
+@use '../../styles/variables.scss' as var;
+
+.hero {
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  
+  &Person {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    &Contacts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      a {
+        color: var.$black;
+      }
+    }
+
+    img {
+      width: 25px;
+    }
+  }
+
+  &Image {
+    width: 40%;
+  }
+}
+
+.heroes {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
