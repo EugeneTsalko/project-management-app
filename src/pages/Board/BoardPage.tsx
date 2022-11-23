@@ -11,8 +11,7 @@ import { createColumn as createColumnAction } from 'store/dataSlice';
 import { StateInterface } from 'store/store.types';
 import styles from './BoardPage.module.scss';
 
-const token =
-  'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiIxYjViYzdkOC0wYjVlLTQ1NDQtOTU5My1iYTcyZmJhYmY1NDAiLCJsb2dpbiI6InZpdGFsaSIsImlhdCI6MTY2OTExMzQ3Mn0.HxZyLBx2BGKnHYS0z8-9BjlHn7HIdAiEn4R4oSn-yMk';
+import { token } from 'api/token';
 
 const BoardPage = () => {
   const navigate = useNavigate();
