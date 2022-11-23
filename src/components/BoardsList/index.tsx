@@ -1,39 +1,23 @@
 import React, { useState } from 'react';
 
-import { createBoard } from 'api/boards';
 import { IBoards } from 'api/boards/index.types';
-import { useAppDispatch, useAppSelector } from 'store/hooks';
+import { useAppSelector } from 'store/hooks';
 
 import BoardsItem from './BoardsItem';
 import styles from './index.module.scss';
+import FormBoard from './FormBoard';
+import { Toaster } from 'react-hot-toast';
 
 const BoardsList = () => {
-  const dispatch = useAppDispatch();
-  const { boards } = useAppSelector((state) => state.boards);
+  const { boards, status, error } = useAppSelector((state) => state.boards);
+  const [isFormBoardModal, setIsFormBoardModal] = useState<boolean>(false);
 
-  const [title, setTitle] = useState<string>('');
-  const [description, setDescription] = useState<string>('');
-  const [isCreateBoardModal, setIsCreateBoardModal] = useState<boolean>(false);
+  if (!boards.length && status !== 'Fulfilled') {
+    return <p>Loading...</p>;
+  }
 
-  const submitHandler = () => {
-    try {
-      dispatch(createBoard({ title, description }));
-      setTitle('');
-      setDescription('');
-      setIsCreateBoardModal(false);
-    } catch (err) {
-      alert(err);
-    }
-  };
-
-  const cancelHandler = () => {
-    setTitle('');
-    setDescription('');
-    setIsCreateBoardModal(false);
-  };
-
-  if (!boards.length) {
-    return <p style={{ textAlign: 'center', padding: '2rem 0' }}>Loading...</p>;
+  if (!boards.length && status === 'Rejected') {
+    return <p>{error}</p>;
   }
 
   return (
@@ -42,23 +26,11 @@ const BoardsList = () => {
         <BoardsItem key={board.id} {...board} />
       ))}
 
-      <button className={styles.addBoardButton} onClick={() => setIsCreateBoardModal(true)}>
+      <button className={styles.addBoardButton} onClick={() => setIsFormBoardModal(true)}>
         + Add Board
       </button>
 
-      {isCreateBoardModal && (
-        <div style={{ display: 'flex', flexDirection: 'column', maxWidth: '250px' }}>
-          <input type="text" value={title} placeholder="Title" onChange={(e) => setTitle(e.target.value)} />
-          <input
-            type="text"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            placeholder="Description"
-          />
-          <button onClick={cancelHandler}>Cancel</button>
-          <button onClick={submitHandler}>Submit</button>
-        </div>
-      )}
+      {isFormBoardModal && <FormBoard setIsFormBoardModal={setIsFormBoardModal} />}
     </div>
   );
 };

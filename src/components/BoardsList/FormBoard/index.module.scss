@@ -1,0 +1,28 @@
+@use '../../../styles/variables.scss' as var;
+
+.form {
+  display: flex;
+  flex-direction: column;
+
+  & p {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+}
+
+.inputBox {
+  margin-bottom: 1rem;
+}
+
+.input {
+  border: 1px solid #ccc;
+  padding: 0.5rem 1rem;
+  outline: none;
+  font-size: 1rem;
+  border-radius: var.$btn-border-radius;
+}
+
+.error {
+  color: red;
+  border-color: red !important;
+}
