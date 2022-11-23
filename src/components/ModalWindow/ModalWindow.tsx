@@ -13,7 +13,8 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
     }
   };
 
-  const handleClickConfirm = () => {
+  const handleClickConfirm = (event: React.SyntheticEvent) => {
+    event.preventDefault();
     if (actions.confirmAction) {
       actions.confirmAction();
     }
@@ -28,7 +29,10 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
       onKeyDown={handleClickCloseWindow}
       role="presentation"
     >
-      <div className={styles.container}>
+      <form
+        onSubmit={type === 'modification' ? actions.confirmAction : handleClickConfirm}
+        className={styles.container}
+      >
         {children}
         <div className={styles.controls}>
           {type === 'information' && (
@@ -47,9 +51,8 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
             <>
               <button
                 className={`${styles.button} ${styles.confirmButton}`}
-                type="button"
+                type="submit"
                 aria-label={type === 'confirmation' ? 'Confirm' : 'Save'}
-                onClick={handleClickConfirm}
               >
                 {type === 'confirmation' ? 'Confirm' : 'Save'}
               </button>
@@ -65,7 +68,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
             </>
           )}
         </div>
-      </div>
+      </form>
     </div>
   );
 };
