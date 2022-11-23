@@ -19,9 +19,9 @@ export const getBoardsList = createAsyncThunk<IBoards[], void, { rejectValue: IB
 
       return response.data;
     } catch (err) {
-      toast.error('Failed to fetch boards.');
+      toast.error('Failed to get boards.');
       return thunkApi.rejectWithValue({
-        message: 'Failed to fetch data.',
+        message: 'Failed to get boards.',
       });
     }
   }
@@ -45,7 +45,7 @@ export const createBoard = createAsyncThunk<IBoards[], ICreateBoard, { rejectVal
     } catch (err) {
       toast.error('Failed to create board.');
       return thunkApi.rejectWithValue({
-        message: 'Failed to create data.',
+        message: 'Failed to create board.',
       });
     }
   }
@@ -68,7 +68,7 @@ export const getBoardById = createAsyncThunk<IBoards[], string, { rejectValue: I
     } catch (err) {
       toast.success('Failed to get board.');
       return thunkApi.rejectWithValue({
-        message: 'Failed to get data.',
+        message: 'Failed to get board.',
       });
     }
   }
@@ -89,9 +89,9 @@ export const deleteBoard = createAsyncThunk<IBoards[], string, { rejectValue: IB
       toast.success('Board is deleted');
       return response.data;
     } catch (err) {
-      toast.error('Failed to delete data.');
+      toast.error('Failed to delete board.');
       return thunkApi.rejectWithValue({
-        message: 'Failed to delete data.',
+        message: 'Failed to delete board.',
       });
     }
   }
@@ -113,7 +113,7 @@ export const updateBoard = createAsyncThunk<IBoards[], IBoards, { rejectValue: I
       return response.data;
     } catch (err) {
       return thunkApi.rejectWithValue({
-        message: 'Failed to update data.',
+        message: 'Failed to update board.',
       });
     }
   }
