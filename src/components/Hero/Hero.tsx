@@ -1,8 +1,8 @@
 import React from 'react';
 import styles from './Hero.module.scss';
-import heroImg from '../../../../assets/hero.svg';
-import githubImg from '../../../../assets/github.svg';
-import mailImg from '../../../../assets/mail.svg';
+import heroImg from '../../assets/hero.svg';
+import githubImg from '../../assets/github.svg';
+import mailImg from '../../assets/mail.svg';
 
 export const Hero = () => {
   return (

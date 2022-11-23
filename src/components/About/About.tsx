@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './About.module.scss';
-import aboutImg from '../../../../assets/about.svg';
+import aboutImg from '../../assets/about.svg';
 import { LinkButton } from 'components/LinkButton/LinkButton';
 import { useAppSelector } from 'store/hooks';
 

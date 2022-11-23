@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAppSelector } from 'store/hooks';
-import { AuthNavigation } from './components/AuthNavigation/AuthNavigation';
-import { UnAuthNavigation } from './components/UnAuthNavigation/UnAuthNavigation';
+import { AuthNavigation } from './AuthNavigation/AuthNavigation';
+import { UnAuthNavigation } from './UnAuthNavigation/UnAuthNavigation';
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
