@@ -1,17 +1,12 @@
 @use '../../../styles/variables.scss' as var;
 
-.form {
-  display: flex;
-  flex-direction: column;
+.inputBox {
+  margin-bottom: 1rem;
 
   & p {
     font-size: 0.8rem;
     margin-top: 0.2rem;
   }
-}
-
-.inputBox {
-  margin-bottom: 1rem;
 }
 
 .input {
