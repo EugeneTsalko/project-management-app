@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { User, UserToken } from 'store/slices/userSlice.types';
 import { decodeJWT } from 'utils/decodeJWT';
-import { AuthorizationParams } from './authorization.types';
+import { AuthorizationParams, SignInPayload } from './authorization.types';
 import API from './base';
 
 export const signUpUser = createAsyncThunk('user/signUp', async (user: AuthorizationParams) => {
@@ -14,7 +14,7 @@ export const signInUser = createAsyncThunk('user/signIn', async (user: Authoriza
   const { data }: { data: UserToken } = await API.post('/signin', user);
   const userData = decodeJWT(data.token);
 
-  return { token: data.token, ...userData };
+  return { token: data.token, ...userData } as SignInPayload;
 });
 
 export const isUserAuth = createAsyncThunk('user/isUserAuth', async () => {

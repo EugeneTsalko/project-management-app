@@ -4,12 +4,17 @@ import { AuthorizationType, AuthorizationValues } from 'components/Authorization
 import styles from './SignIn.module.scss';
 import { useAppDispatch } from 'store/hooks';
 import { signInUser } from 'api';
+import { SignInPayload } from 'api/authorization.types';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
 
-  const handleChange = (data: AuthorizationValues) => {
-    dispatch(signInUser(data));
+  const handleChange = async (data: AuthorizationValues) => {
+    const response = await dispatch(signInUser(data));
+    if (response.payload) {
+      const { token } = response.payload as SignInPayload;
+      window.localStorage.setItem('token', token);
+    }
   };
 
   return (

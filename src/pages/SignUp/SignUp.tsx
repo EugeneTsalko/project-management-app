@@ -4,6 +4,7 @@ import { AuthorizationType, AuthorizationValues } from 'components/Authorization
 import styles from './SignUp.module.scss';
 import { useAppDispatch } from 'store/hooks';
 import { signInUser, signUpUser } from 'api';
+import { SignInPayload } from 'api/authorization.types';
 
 export const SignUp = () => {
   const dispatch = useAppDispatch();
@@ -12,9 +13,14 @@ export const SignUp = () => {
     const response = await dispatch(signUpUser(data));
     if (response) {
       const { login, password } = data;
-      dispatch(signInUser({ login, password }));
+      const signInResponse = await dispatch(signInUser({ login, password }));
+      if (signInResponse.payload) {
+        const { token } = response.payload as SignInPayload;
+        window.localStorage.setItem('token', token);
+      }
     }
   };
+
   return (
     <main className={styles.main}>
       <Authorization type={AuthorizationType.signup} onChange={(data) => handleChange(data)} />

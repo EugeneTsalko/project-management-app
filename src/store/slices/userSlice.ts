@@ -1,6 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { isUserAuth, signInUser, signUpUser } from 'api';
-import { signOut } from 'utils/signOut';
 import { User, UserState, UserToken } from './userSlice.types';
 
 const initialState: UserState = {
@@ -18,7 +17,6 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signOutUser: (state) => {
-      signOut();
       state.isAuth = false;
       state.user = { id: '', name: '', login: '' };
     },
@@ -39,9 +37,8 @@ const userSlice = createSlice({
       .addCase(signInUser.fulfilled, (state, action: PayloadAction<User & UserToken>) => {
         state.isLoading = false;
         state.isAuth = true;
-        const { token, ...userData } = action.payload;
-        state.user = { ...userData };
-        localStorage.setItem('token', token);
+        const { id, login, name } = action.payload;
+        state.user = { id, login, name };
       });
 
     builder
@@ -52,6 +49,10 @@ const userSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload;
         state.isAuth = true;
+      })
+      .addCase(isUserAuth.rejected, (state) => {
+        state.isLoading = false;
+        state.isAuth = false;
       });
   },
 });

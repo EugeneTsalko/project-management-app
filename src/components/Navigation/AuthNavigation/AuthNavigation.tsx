@@ -6,6 +6,7 @@ import { ButtonStyle } from 'components/Button/Button.types';
 import { LinkButton } from 'components/LinkButton/LinkButton';
 import { signOutUser } from 'store/slices/userSlice';
 import { SelectLanguage } from '../SelectLanguage/SelectLanguage';
+import { signOut } from 'utils/signOut';
 
 export const AuthNavigation = () => {
   const dispatch = useAppDispatch();
@@ -13,6 +14,7 @@ export const AuthNavigation = () => {
 
   const handleClick = () => {
     dispatch(signOutUser());
+    signOut();
     return <Navigate to="/" />;
   };
 
