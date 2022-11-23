@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createBoard, getBoardsList } from 'api/boards';
+import { createBoard, deleteBoard, getBoardById, getBoardsList, updateBoard } from 'api/boards';
 import { BoardsState } from './index.types';
 
 const initialState: BoardsState = {
@@ -44,6 +44,37 @@ const boardsSlice = createSlice({
           state.error = action.payload.message;
         }
         state.status = 'Rejected';
+      });
+
+    builder
+      .addCase(getBoardById.pending, (state) => {
+        state.status = 'Pending';
+        state.boards = [];
+      })
+      .addCase(getBoardById.fulfilled, (state, action) => {
+        state.status = 'Fulfilled';
+        state.boards = state.boards.concat(action.payload);
+      })
+      .addCase(getBoardById.rejected, (state, action) => {
+        state.status = 'Rejected';
+        if (action.payload) {
+          state.error = action.payload.message;
+        }
+      });
+
+    builder.addCase(deleteBoard.fulfilled, (state, action) => {
+      state.boards = state.boards.filter((obj) => obj.id !== action.meta.arg);
+      state.status = 'Fulfilled';
+    });
+
+    builder
+      .addCase(updateBoard.pending, (state) => {
+        state.status = 'Pending';
+      })
+      .addCase(updateBoard.fulfilled, (state, action) => {
+        const oldBoard = state.boards.findIndex((obj) => obj.id === action.meta.arg.id);
+        Object.assign(state.boards[oldBoard], action.payload);
+        state.status = 'Fulfilled';
       });
   },
 });
