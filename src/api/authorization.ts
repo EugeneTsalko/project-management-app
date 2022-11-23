@@ -1,10 +1,9 @@
-import axios from 'axios';
 import { UserToken } from 'store/slices/userSlice.types';
 import { AuthorizationParams } from './authorization.types';
 import API from './base';
 
 export const signUp = async (user: AuthorizationParams) => {
-  const { data } = await axios.post('/signup', user);
+  const { data } = await API.post('/signup', user);
 
   return data;
 };
