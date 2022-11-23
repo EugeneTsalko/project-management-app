@@ -1,20 +1,48 @@
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
 import { BoardTask } from './BoardTask/BoardTask';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { removeColumn as removeColumnAPI, ColumnInterface } from 'api/boards';
-import { removeColumn as removeColumnAction } from 'store/dataSlice';
+import { removeColumn as removeColumnAPI, ColumnInterface, createTask as createTaskAPI } from 'api/boards';
+import { removeColumn as removeColumnAction, createTask as createTaskAction } from 'store/dataSlice';
+import { ModalWindowModification } from './BoardColumn.type';
 import { StateInterface } from 'store/store.types';
 import styles from './BoardColumn.module.scss';
 
-import { token } from 'api/token';
+import { token, userId } from 'api/token';
 
 const BoardColumn = ({ data }: { data: ColumnInterface }) => {
   const dispatch = useDispatch();
   const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
   const [isConfirmationModalWindow, setIsConfirmationModalWindow] = useState(false);
+  const [isModificationModalWindow, setIsModificationModalWindow] = useState(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    resetField,
+  } = useForm<ModalWindowModification>({ reValidateMode: 'onSubmit' });
+
+  const taskTitleValidate = { required: true, minLength: 3, maxLength: 70 };
+  const taskDescriptionValidate = { required: true, minLength: 3, maxLength: 150 };
+
+  const createTask = async (value: ModalWindowModification) => {
+    const responseData = await createTaskAPI(
+      currentBoard.id,
+      data.id,
+      value.taskTitle,
+      value.taskDescription,
+      userId,
+      token
+    );
+    dispatch(createTaskAction(responseData));
+    setIsModificationModalWindow(false);
+    resetField('taskTitle');
+    resetField('taskDescription');
+  };
 
   const removeColumn = () => {
     dispatch(removeColumnAction(data.id));
@@ -24,6 +52,15 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
   const confirmationActions = {
     confirmAction: removeColumn,
     closeWindow: () => setIsConfirmationModalWindow(false),
+  };
+
+  const modificationActions = {
+    confirmAction: handleSubmit(createTask),
+    closeWindow: () => {
+      setIsModificationModalWindow(false);
+      resetField('taskTitle');
+      resetField('taskDescription');
+    },
   };
 
   return (
@@ -48,7 +85,7 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
             className={styles.createTaskButton}
             type="button"
             aria-label="Create task"
-            onClick={() => console.log('Task was created', data.id)}
+            onClick={() => setIsModificationModalWindow(true)}
           >
             Create task
           </button>
@@ -56,7 +93,22 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
       </div>
       {isConfirmationModalWindow && (
         <ModalWindow type="confirmation" actions={confirmationActions}>
-          <p className="modalDescription">{data.title} will be removed. Are you sure?</p>
+          <p className="modalDescription">Column {data.title} will be removed.</p>
+          <p className="modalDescription">Are you sure?</p>
+        </ModalWindow>
+      )}
+      {isModificationModalWindow && (
+        <ModalWindow type="modification" actions={modificationActions}>
+          <p className="modalDescription">Create new task.</p>
+          <input className="" type="text" id="taskTitle" {...register('taskTitle', taskTitleValidate)} />
+          {errors.taskTitle && <p className="">Title must be more than 3 characters and less than 70.</p>}
+          <input
+            className=""
+            type="text"
+            id="taskDescription"
+            {...register('taskDescription', taskDescriptionValidate)}
+          />
+          {errors.taskDescription && <p className="">Title must be more than 3 characters and less than 150.</p>}
         </ModalWindow>
       )}
     </>

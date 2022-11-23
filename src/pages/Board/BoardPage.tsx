@@ -1,13 +1,15 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 import { useParams, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { useForm } from 'react-hook-form';
 
-import { setCurrentBoard } from 'store/dataSlice';
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { getBoard, createColumn as createColumnAPI, ColumnInterface } from 'api/boards';
+import { setCurrentBoard } from 'store/dataSlice';
 import { createColumn as createColumnAction } from 'store/dataSlice';
+import { ModalWindowModification } from './BoardPage.types';
 import { StateInterface } from 'store/store.types';
 import styles from './BoardPage.module.scss';
 
@@ -18,27 +20,38 @@ const BoardPage = () => {
   const dispatch = useDispatch();
   const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
   const { id } = useParams();
-  const columnTitle: React.RefObject<HTMLInputElement> = useRef(null);
 
   const [isLoading, setLoading] = useState(true);
   const [isModificationModalWindow, setIsModificationModalWindow] = useState(false);
 
-  const createColumn = async () => {
-    if (columnTitle.current) {
-      const data = await createColumnAPI(currentBoard.id, columnTitle.current.value, token);
-      dispatch(createColumnAction(data));
-    }
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    resetField,
+  } = useForm<ModalWindowModification>({ reValidateMode: 'onSubmit' });
+
+  const columnTitleValidate = { required: true, minLength: 3, maxLength: 30 };
+
+  const createColumn = async (value: ModalWindowModification) => {
+    const responseData = await createColumnAPI(currentBoard.id, value.columnTitle, token);
+    dispatch(createColumnAction(responseData));
+    setIsModificationModalWindow(false);
+    resetField('columnTitle');
   };
 
   const modificationActions = {
-    confirmAction: createColumn,
-    closeWindow: () => setIsModificationModalWindow(false),
+    confirmAction: handleSubmit(createColumn),
+    closeWindow: () => {
+      setIsModificationModalWindow(false);
+      resetField('columnTitle');
+    },
   };
 
   const loadBoard = async () => {
     setLoading(true);
-    const data = await getBoard(id as string, token);
-    dispatch(setCurrentBoard(data));
+    const responseData = await getBoard(id as string, token);
+    dispatch(setCurrentBoard(responseData));
     setLoading(false);
   };
 
@@ -81,7 +94,8 @@ const BoardPage = () => {
       {isModificationModalWindow && (
         <ModalWindow type="modification" actions={modificationActions}>
           <p className="modalDescription">Create new column.</p>
-          <input className="" type="text" ref={columnTitle} autoFocus />
+          <input className="" type="text" id="columnTitle" {...register('columnTitle', columnTitleValidate)} />
+          {errors.columnTitle && <p className="">Title must be more than 3 characters and less than 30.</p>}
         </ModalWindow>
       )}
     </>
