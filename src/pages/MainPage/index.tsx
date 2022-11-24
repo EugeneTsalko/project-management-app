@@ -9,9 +9,12 @@ import LoaderSpinner from 'components/LoaderSpinner';
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
+  const token = window.localStorage.getItem('token');
 
   useEffect(() => {
-    dispatch(getBoardsList());
+    if (token) {
+      dispatch(getBoardsList());
+    }
   }, []);
 
   return (
