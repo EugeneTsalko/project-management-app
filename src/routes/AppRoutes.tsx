@@ -1,13 +1,15 @@
-import { NotFound } from 'pages/NotFound/NotFound';
+import React, { useEffect } from 'react';
+
+import MainPage from 'pages/MainPage';
 import { SignIn } from 'pages/SignIn/SignIn';
 import { SignUp } from 'pages/SignUp/SignUp';
+import { NotFound } from 'pages/NotFound/NotFound';
 import { WelcomePage } from 'pages/WelcomePage/WelcomePage';
-import React, { Suspense, useEffect } from 'react';
 
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch } from 'store/hooks';
-import { PrivateRoute } from './PrivateRoute';
 import { PublicRoute } from './PublicRoute';
+import { PrivateRoute } from './PrivateRoute';
 import { isUserAuth } from 'api';
 
 export default function AppRoutes() {
@@ -18,15 +20,13 @@ export default function AppRoutes() {
   }, []);
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
-        <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
-        <Route path="/Boards" element={<PrivateRoute component={<p>Main Page</p>} />} />
-        <Route path="/Boards/:id" element={<p>Board page</p>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path="/" element={<WelcomePage />} />
+      <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
+      <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
+      <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
+      <Route path="/Boards/:id" element={<p>Board page</p>} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

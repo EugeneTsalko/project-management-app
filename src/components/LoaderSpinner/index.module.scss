@@ -1,0 +1,13 @@
+// @use '../../../styles/variables.scss' as var;
+
+.block {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem;
+}
+
+.full {
+  min-height: 30rem;
+  margin-bottom: 5rem;
+}

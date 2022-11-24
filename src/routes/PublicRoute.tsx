@@ -3,7 +3,8 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'store/hooks';
 
 export const PublicRoute = ({ component }: { component: JSX.Element }) => {
-  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const { user } = useAppSelector((state) => state.user);
+  const token = window.localStorage.getItem('token');
 
-  return isAuth ? <Navigate to="/Boards" /> : component;
+  return user && token ? <Navigate to="/Boards" /> : component;
 };

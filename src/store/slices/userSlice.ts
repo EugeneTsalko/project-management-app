@@ -1,15 +1,10 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import { isUserAuth, signInUser, signUpUser } from 'api';
-import { User, UserState, UserToken } from './userSlice.types';
+import { UserState } from './userSlice.types';
 
 const initialState: UserState = {
-  isAuth: null,
-  isLoading: false,
-  user: {
-    id: '',
-    name: '',
-    login: '',
-  },
+  user: null,
+  status: 'Pending',
 };
 
 const userSlice = createSlice({
@@ -17,42 +12,45 @@ const userSlice = createSlice({
   initialState,
   reducers: {
     signOutUser: (state) => {
-      state.isAuth = false;
-      state.user = { id: '', name: '', login: '' };
+      state.user = null;
     },
   },
   extraReducers: (builder) => {
     builder
       .addCase(signUpUser.pending, (state) => {
-        state.isLoading = true;
+        state.user = null;
+        state.status = 'Pending';
       })
-      .addCase(signUpUser.fulfilled, (state) => {
-        state.isLoading = false;
+      .addCase(signUpUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.status = 'Fulfilled';
+      })
+      .addCase(signUpUser.rejected, (state) => {
+        state.status = 'Rejected';
       });
 
     builder
       .addCase(signInUser.pending, (state) => {
-        state.isLoading = true;
+        state.status = 'Pending';
       })
-      .addCase(signInUser.fulfilled, (state, action: PayloadAction<User & UserToken>) => {
-        state.isLoading = false;
-        state.isAuth = true;
-        const { id, login, name } = action.payload;
-        state.user = { id, login, name };
+      .addCase(signInUser.fulfilled, (state) => {
+        state.status = 'Fulfilled';
+      })
+      .addCase(signInUser.rejected, (state) => {
+        state.status = 'Rejected';
       });
 
     builder
       .addCase(isUserAuth.pending, (state) => {
-        state.isLoading = true;
+        state.user = null;
+        state.status = 'Pending';
       })
-      .addCase(isUserAuth.fulfilled, (state, action: PayloadAction<User>) => {
-        state.isLoading = false;
+      .addCase(isUserAuth.fulfilled, (state, action) => {
         state.user = action.payload;
-        state.isAuth = true;
+        state.status = 'Fulfilled';
       })
       .addCase(isUserAuth.rejected, (state) => {
-        state.isLoading = false;
-        state.isAuth = false;
+        state.status = 'Rejected';
       });
   },
 });

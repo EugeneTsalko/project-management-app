@@ -10,6 +10,7 @@
   justify-content: space-between;
   padding: 20px;
   transition: var.$main-transition;
+  z-index: 10;
 }
 
 .scrolled {
