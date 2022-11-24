@@ -3,7 +3,7 @@ import { Authorization } from 'components/Authorization/Authorization';
 import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
 import styles from './SignUp.module.scss';
 import { useAppDispatch } from 'store/hooks';
-import { isUserAuth, signInUser, signUpUser } from 'api';
+import { signInUser, signUpUser } from 'api';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 
