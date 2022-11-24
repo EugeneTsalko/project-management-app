@@ -19,6 +19,11 @@ export const data = createSlice({
     removeColumn: (state, action: PayloadAction<string>) => {
       state.currentBoard.columns = state.currentBoard.columns.filter((column) => column.id !== action.payload);
     },
+    updateColumn: (state, action: PayloadAction<CreateColumnResponseInterface>) => {
+      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.id);
+      state.currentBoard.columns[columnIndex].order = action.payload.order;
+      state.currentBoard.columns[columnIndex].title = action.payload.title;
+    },
     createTask: (state, action: PayloadAction<CreateTaskResponseInterface>) => {
       const newTask = {
         id: action.payload.id,
@@ -32,14 +37,15 @@ export const data = createSlice({
       const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.columnId);
       state.currentBoard.columns[columnIndex].tasks.push(newTask);
     },
-    updateColumn: (state, action: PayloadAction<CreateColumnResponseInterface>) => {
-      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.id);
-      state.currentBoard.columns[columnIndex].order = action.payload.order;
-      state.currentBoard.columns[columnIndex].title = action.payload.title;
+    removeTask: (state, action: PayloadAction<{ columnId: string; taskId: string }>) => {
+      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.columnId);
+      state.currentBoard.columns[columnIndex].tasks = state.currentBoard.columns[columnIndex].tasks.filter(
+        (task) => task.id !== action.payload.taskId
+      );
     },
   },
 });
 
-export const { setCurrentBoard, createColumn, removeColumn, createTask, updateColumn } = data.actions;
+export const { setCurrentBoard, createColumn, removeColumn, updateColumn, createTask, removeTask } = data.actions;
 
 export default data.reducer;

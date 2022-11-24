@@ -1,6 +1,11 @@
 @use '../../../styles/variables.scss' as var;
 
+.main {
+  display: flex;
+}
+
 .task {
+  width: 100%;
   margin: 0.25em 0;
   padding: 0.25em;
 
@@ -14,4 +19,8 @@
   &:hover {
     cursor: pointer;
   }
+}
+
+.deleteTaskButton {
+  margin: 5px;
 }

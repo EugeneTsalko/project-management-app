@@ -23,4 +23,9 @@ async function createTask(
   return response.data as CreateTaskResponseInterface;
 }
 
-export { createTask };
+async function removeTask(boardId: string, columnId: string, taskId: string, token: string) {
+  const headers = { Authorization: `Bearer ${token}` };
+  await axios.delete(`${apiURL}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, { headers });
+}
+
+export { createTask, removeTask };

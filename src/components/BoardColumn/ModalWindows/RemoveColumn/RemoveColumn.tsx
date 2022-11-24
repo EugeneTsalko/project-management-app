@@ -1,23 +1,21 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { removeColumn as removeColumnAPI } from 'api/boards';
 import { removeColumn as removeColumnAction } from 'store/dataSlice';
-import { StateInterface } from 'store/store.types';
 import { ModalWindowProps } from './RemoveColumn.types';
 // import styles from './RemoveColumn.module.scss';
 
 import { token } from 'api/token';
 
-const CreateNewColumn = ({ setState, columnData }: ModalWindowProps) => {
+const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
-  const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
 
   const removeColumn = () => {
-    dispatch(removeColumnAction(columnData.id));
-    removeColumnAPI(currentBoard.id, columnData.id, token);
+    dispatch(removeColumnAction(columnId));
+    removeColumnAPI(boardId, columnId, token);
   };
 
   const confirmationActions = {
@@ -27,10 +25,9 @@ const CreateNewColumn = ({ setState, columnData }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="confirmation" actions={confirmationActions}>
-      <p className="modalDescription">Column {columnData.title} will be removed.</p>
-      <p className="modalDescription">Are you sure?</p>
+      <p className="modalDescription">The column will be removed. Are you sure?</p>
     </ModalWindow>
   );
 };
 
-export { CreateNewColumn };
+export { RemoveColumn };

@@ -6,9 +6,8 @@ const apiURL = 'https://boiling-lake-31774.herokuapp.com';
 async function getBoard(id: string, token: string) {
   const headers = { Authorization: `Bearer ${token}` };
   const response = await axios.get(`${apiURL}/boards/${id}`, { headers });
-  const { data }: { data: BoardInterface } = response;
 
-  return data;
+  return response.data as BoardInterface;
 }
 
 export { getBoard };

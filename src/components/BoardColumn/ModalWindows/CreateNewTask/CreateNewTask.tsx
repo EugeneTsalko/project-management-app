@@ -1,20 +1,18 @@
 import React from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { createTask as createTaskAPI } from 'api/boards';
 import { createTask as createTaskAction } from 'store/dataSlice';
-import { StateInterface } from 'store/store.types';
 import { ModalWindowProps, ModalWindowModification } from './CreateNewTask.types';
 // import styles from './CreateNewTask.types';
 
 import { token, userId } from 'api/token';
 
-const CreateNewTask = ({ setState, columnData }: ModalWindowProps) => {
+const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
-  const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
 
   const {
     register,
@@ -27,14 +25,7 @@ const CreateNewTask = ({ setState, columnData }: ModalWindowProps) => {
   const taskDescriptionValidate = { required: true, minLength: 3, maxLength: 150 };
 
   const createTask = async (value: ModalWindowModification) => {
-    const responseData = await createTaskAPI(
-      currentBoard.id,
-      columnData.id,
-      value.taskTitle,
-      value.taskDescription,
-      userId,
-      token
-    );
+    const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, userId, token);
     dispatch(createTaskAction(responseData));
     setState(false);
     resetField('taskTitle');

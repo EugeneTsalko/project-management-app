@@ -3,7 +3,7 @@ import React, { useRef, useState } from 'react';
 import { useDispatch } from 'react-redux';
 
 import { BoardTask } from './BoardTask/BoardTask';
-import { CreateNewColumn } from './ModalWindows/RemoveColumn/RemoveColumn';
+import { RemoveColumn } from './ModalWindows/RemoveColumn/RemoveColumn';
 import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
 import { ColumnInterface, updateColumn as updateColumnAPI } from 'api/boards';
 import { updateColumn as updateColumnAction } from 'store/dataSlice';
@@ -60,7 +60,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
         )}
         <div className={styles.taskContainer}>
           {data.tasks.map((item) => (
-            <BoardTask key={item.id} data={item} />
+            <BoardTask key={item.id} data={item} boardId={boardId} columnId={data.id} />
           ))}
         </div>
         <div className={styles.columnControl}>
@@ -82,8 +82,10 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
           </button>
         </div>
       </div>
-      {removeColumnModalWindow && <CreateNewColumn setState={setRemoveColumnModalWindow} columnData={data} />}
-      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} columnData={data} />}
+      {removeColumnModalWindow && (
+        <RemoveColumn setState={setRemoveColumnModalWindow} boardId={boardId} columnId={data.id} />
+      )}
+      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} boardId={boardId} columnId={data.id} />}
     </>
   );
 };
