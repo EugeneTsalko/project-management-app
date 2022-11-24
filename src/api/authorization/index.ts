@@ -1,9 +1,9 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import API from './base';
+import API from '../base';
 
 import { decodeJWT } from 'utils/decodeJWT';
 import { User } from 'store/slices/userSlice.types';
-import { ISignInProps, ISignUpErrorMessage, ISignUpProps } from './authorization.types';
+import { ISignInProps, ISignUpErrorMessage, ISignUpProps } from './index.types';
 
 export const signUpUser = createAsyncThunk<User, ISignUpProps, { rejectValue: ISignUpErrorMessage }>(
   '/user/signUp',
