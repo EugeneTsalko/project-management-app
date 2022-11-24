@@ -1,28 +1,55 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { User, UserToken } from 'store/slices/userSlice.types';
-import { decodeJWT } from 'utils/decodeJWT';
-import { AuthorizationParams, SignInPayload } from './authorization.types';
 import API from './base';
 
-export const signUpUser = createAsyncThunk('user/signUp', async (user: AuthorizationParams) => {
-  const { data } = await API.post('/signup', user);
+import { decodeJWT } from 'utils/decodeJWT';
+import { User } from 'store/slices/userSlice.types';
+import { ISignInProps, ISignUpErrorMessage, ISignUpProps } from './authorization.types';
 
-  return data;
-});
+export const signUpUser = createAsyncThunk<User, ISignUpProps, { rejectValue: ISignUpErrorMessage }>(
+  '/user/signUp',
+  async (user, thunkApi) => {
+    try {
+      const response = await API.post('/signup', user);
 
-export const signInUser = createAsyncThunk('user/signIn', async (user: AuthorizationParams) => {
-  const { data }: { data: UserToken } = await API.post('/signin', user);
-  const userData = decodeJWT(data.token);
+      if (response.status === 404) {
+        return thunkApi.rejectWithValue({
+          message: response.data.message,
+        });
+      }
 
-  return { token: data.token, ...userData } as SignInPayload;
-});
+      return response.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue({
+        message: (err as Error).message,
+      });
+    }
+  }
+);
+
+export const signInUser = createAsyncThunk<User, ISignInProps, { rejectValue: ISignUpErrorMessage }>(
+  '/user/signIn',
+  async ({ login, password }, thunkApi) => {
+    try {
+      const response = await API.post('/signin', { login, password });
+
+      if (response.status === 404) {
+        return thunkApi.rejectWithValue({
+          message: response.data.message,
+        });
+      }
+      return response.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue({
+        message: (err as Error).message,
+      });
+    }
+  }
+);
 
 export const isUserAuth = createAsyncThunk('user/isUserAuth', async () => {
   const token = localStorage.getItem('token');
   if (token) {
-    const userData = decodeJWT(token);
-    const { data }: { data: User } = await API.get(`/users/${userData.id}`);
-
+    const data = decodeJWT(token);
     return data;
   } else {
     throw new Error();

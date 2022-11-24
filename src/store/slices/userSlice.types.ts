@@ -5,9 +5,8 @@ export type User = {
 };
 
 export type UserState = {
-  isAuth: boolean | null;
-  isLoading: boolean;
-  user: User;
+  user: User | null;
+  status: 'Pending' | 'Fulfilled' | 'Rejected';
 };
 
 export type UserToken = {

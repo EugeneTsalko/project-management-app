@@ -1,11 +1,14 @@
 import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
 import { useAppDispatch } from 'store/hooks';
+
 import { IBoards } from 'api/boards/index.types';
-import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import FormBoard from '../FormBoard';
 import { deleteBoard } from 'api/boards';
+
+import FormBoard from '../FormBoard';
+import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+
+import { IoTrash, IoPencil } from 'react-icons/io5';
 import styles from './index.module.scss';
 
 const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
@@ -15,11 +18,12 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
   const [isDeleteBoardModal, setIsDeleteBoardModal] = useState<boolean>(false);
   const [isEditBoardModal, setIsEditBoardModal] = useState<boolean>(false);
 
-  const actionHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const actionHandler = (e: React.MouseEvent<HTMLButtonElement | SVGElement>) => {
     e.stopPropagation();
     if ((e.target as HTMLButtonElement).name === 'edit') {
       setIsEditBoardModal(true);
-    } else {
+    }
+    if ((e.target as HTMLButtonElement).name === 'delete') {
       setIsDeleteBoardModal(true);
     }
   };
@@ -35,11 +39,11 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
         <p className={styles.title}>{title}</p>
         <p className={styles.description}>{description}</p>
         <div className={styles.buttons}>
-          <button name="delete" onClick={actionHandler}>
-            Delete
+          <button name="delete" type="button" onClick={actionHandler}>
+            <IoTrash />
           </button>
-          <button name="edit" onClick={actionHandler}>
-            Edit
+          <button name="edit" type="button" onClick={actionHandler}>
+            <IoPencil />
           </button>
         </div>
       </div>

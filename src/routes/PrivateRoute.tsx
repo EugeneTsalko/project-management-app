@@ -3,7 +3,7 @@ import { Navigate } from 'react-router-dom';
 import { useAppSelector } from 'store/hooks';
 
 export const PrivateRoute = ({ component }: { component: JSX.Element }) => {
-  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const { user } = useAppSelector((state) => state.user);
 
-  return isAuth ? component : <Navigate to="/" />;
+  return user ? component : <Navigate to="/" />;
 };

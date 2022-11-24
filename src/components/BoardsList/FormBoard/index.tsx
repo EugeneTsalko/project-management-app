@@ -47,7 +47,7 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
         <input
           {...register('title', {
             required: "Title can't be empty",
-            maxLength: { value: 30, message: 'Title must be less than 30 letters!' },
+            maxLength: { value: 20, message: 'Title must be less than 20 letters!' },
           })}
           className={`${errors.title ? `${styles.input} ${styles.error}` : styles.input}`}
           type="text"
@@ -59,7 +59,7 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
         <input
           {...register('description', {
             required: "Description can't be empty",
-            maxLength: { value: 30, message: 'Description must be less than 30 letters!' },
+            maxLength: { value: 60, message: 'It must be less than 60 letters!' },
           })}
           className={`${errors.description ? `${styles.input} ${styles.error}` : styles.input}`}
           type="text"

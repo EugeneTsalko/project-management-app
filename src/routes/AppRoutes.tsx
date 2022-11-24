@@ -1,4 +1,4 @@
-import React, { Suspense, useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import MainPage from 'pages/MainPage';
 import { SignIn } from 'pages/SignIn/SignIn';
@@ -20,15 +20,13 @@ export default function AppRoutes() {
   }, []);
 
   return (
-    <Suspense fallback={<p>Loading...</p>}>
-      <Routes>
-        <Route path="/" element={<WelcomePage />} />
-        <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
-        <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
-        <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
-        <Route path="/Boards/:id" element={<p>Board page</p>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </Suspense>
+    <Routes>
+      <Route path="/" element={<WelcomePage />} />
+      <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
+      <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
+      <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
+      <Route path="/Boards/:id" element={<p>Board page</p>} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
   );
 }

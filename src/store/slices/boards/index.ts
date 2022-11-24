@@ -1,11 +1,12 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { createBoard, deleteBoard, getBoardById, getBoardsList, updateBoard } from 'api/boards';
+import { createBoard, deleteBoard, getBoardById, getBoardsList, updateBoard } from 'api';
 import { BoardsState } from './index.types';
 
 const initialState: BoardsState = {
   boards: [],
   error: '',
   status: 'Pending',
+  isFormBoardModal: false,
 };
 
 const boardsSlice = createSlice({

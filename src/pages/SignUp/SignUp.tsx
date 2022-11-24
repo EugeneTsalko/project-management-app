@@ -4,20 +4,23 @@ import { AuthorizationType, AuthorizationValues } from 'components/Authorization
 import styles from './SignUp.module.scss';
 import { useAppDispatch } from 'store/hooks';
 import { signInUser, signUpUser } from 'api';
-import { SignInPayload } from 'api/authorization.types';
+import toast from 'react-hot-toast';
 
 export const SignUp = () => {
   const dispatch = useAppDispatch();
 
-  const handleChange = async (data: AuthorizationValues) => {
-    const response = await dispatch(signUpUser(data));
-    if (response) {
-      const { login, password } = data;
-      const signInResponse = await dispatch(signInUser({ login, password }));
-      if (signInResponse.payload) {
-        const { token } = response.payload as SignInPayload;
-        window.localStorage.setItem('token', token);
-      }
+  const handleChange = async ({ login, password, name }: AuthorizationValues) => {
+    await dispatch(signUpUser({ login, password, name }));
+
+    const { payload } = await dispatch(signInUser({ login, password }));
+    const { token, message } = payload as { token: string; message: string };
+
+    if (token) {
+      window.localStorage.setItem('token', token);
+      toast.success('Welcome on board!');
+    }
+    if (message) {
+      toast.error(message);
     }
   };
 

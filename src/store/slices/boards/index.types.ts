@@ -4,4 +4,5 @@ export interface BoardsState {
   boards: IBoards[];
   error: string;
   status: 'Pending' | 'Fulfilled' | 'Rejected';
+  isFormBoardModal: boolean;
 }

@@ -19,7 +19,7 @@ export const getBoardsList = createAsyncThunk<IBoards[], void, { rejectValue: IB
 
       return response.data;
     } catch (err) {
-      toast.error('Failed to get boards.');
+      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
         message: 'Failed to get boards.',
       });
@@ -34,7 +34,6 @@ export const createBoard = createAsyncThunk<IBoards[], ICreateBoard, { rejectVal
       const response = await API.post('/boards', { title, description });
 
       if (response.status === 404) {
-        toast.error(response.data.message);
         return thunkApi.rejectWithValue({
           message: response.data.message,
         });
@@ -43,9 +42,9 @@ export const createBoard = createAsyncThunk<IBoards[], ICreateBoard, { rejectVal
       toast.success('Board is created');
       return response.data;
     } catch (err) {
-      toast.error('Failed to create board.');
+      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
-        message: 'Failed to create board.',
+        message: (err as Error).message,
       });
     }
   }
@@ -58,7 +57,6 @@ export const getBoardById = createAsyncThunk<IBoards[], string, { rejectValue: I
       const response = await API.get(`/boards/${id}`);
 
       if (response.status === 404) {
-        toast.error(response.data.message);
         return thunkApi.rejectWithValue({
           message: response.data.message,
         });
@@ -66,7 +64,7 @@ export const getBoardById = createAsyncThunk<IBoards[], string, { rejectValue: I
 
       return response.data;
     } catch (err) {
-      toast.success('Failed to get board.');
+      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
         message: 'Failed to get board.',
       });
@@ -81,7 +79,6 @@ export const deleteBoard = createAsyncThunk<IBoards[], string, { rejectValue: IB
       const response = await API.delete(`/boards/${id}`);
 
       if (response.status === 404) {
-        toast.error(response.data.message);
         return thunkApi.rejectWithValue({
           message: response.data.message,
         });
@@ -89,7 +86,7 @@ export const deleteBoard = createAsyncThunk<IBoards[], string, { rejectValue: IB
       toast.success('Board is deleted');
       return response.data;
     } catch (err) {
-      toast.error('Failed to delete board.');
+      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
         message: 'Failed to delete board.',
       });
@@ -104,7 +101,6 @@ export const updateBoard = createAsyncThunk<IBoards[], IBoards, { rejectValue: I
       const response = await API.put(`/boards/${id}`, { title, description });
 
       if (response.status === 404) {
-        toast.error(response.data.message);
         return thunkApi.rejectWithValue({
           message: response.data.message,
         });
@@ -112,8 +108,9 @@ export const updateBoard = createAsyncThunk<IBoards[], IBoards, { rejectValue: I
       toast.success('Board is updated');
       return response.data;
     } catch (err) {
+      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
-        message: 'Failed to update board.',
+        message: (err as Error).message,
       });
     }
   }

@@ -23,7 +23,7 @@ export const Authorization = ({ type, onChange }: Props) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <h1>{type === AuthorizationType.signup ? 'Sign Up' : 'Sign In'}</h1>
+      <h1 className={styles.title}>{type === AuthorizationType.signup ? 'Sign Up' : 'Sign In'}</h1>
 
       {type === AuthorizationType.signup && (
         <>
@@ -35,6 +35,7 @@ export const Authorization = ({ type, onChange }: Props) => {
             {...register('name', {
               required: 'Please enter your name',
               minLength: { value: 2, message: 'At least two symbols' },
+              maxLength: { value: 20, message: 'Name must be less than 20 symbols' },
             })}
           />
           <div className={styles.error}>{errors.name && errors.name.message}</div>
@@ -49,6 +50,7 @@ export const Authorization = ({ type, onChange }: Props) => {
         {...register('login', {
           required: 'Please enter your login',
           minLength: { value: 2, message: 'At least two symbols' },
+          maxLength: { value: 15, message: 'Login must be less than 15 symbols' },
         })}
       />
       <div className={styles.error}>{errors.login && errors.login.message}</div>

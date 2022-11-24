@@ -5,7 +5,7 @@ import { UnAuthNavigation } from './UnAuthNavigation/UnAuthNavigation';
 import styles from './Navigation.module.scss';
 
 export const Navigation = () => {
-  const isAuth = useAppSelector((state) => state.user.isAuth);
+  const { user } = useAppSelector((state) => state.user);
 
-  return <nav className={styles.nav}>{isAuth ? <AuthNavigation /> : <UnAuthNavigation />}</nav>;
+  return <nav className={styles.nav}>{user ? <AuthNavigation /> : <UnAuthNavigation />}</nav>;
 };
