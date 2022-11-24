@@ -19,7 +19,7 @@ const BoardPage = () => {
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
-  const [CreateColumnModalWindow, setCreateColumnModalWindow] = useState(false);
+  const [createColumnModalWindow, setCreateColumnModalWindow] = useState(false);
 
   const loadBoard = async () => {
     setIsLoading(true);
@@ -61,11 +61,11 @@ const BoardPage = () => {
         </header>
         <div className={styles.boardColumns}>
           {currentBoard.columns.map((item: ColumnInterface) => (
-            <BoardColumn key={item.id} data={item} />
+            <BoardColumn key={item.id} data={item} boardId={currentBoard.id} />
           ))}
         </div>
       </main>
-      {CreateColumnModalWindow && (
+      {createColumnModalWindow && (
         <CreateNewColumn setState={setCreateColumnModalWindow} boardId={currentBoard.id} token={token} />
       )}
     </>

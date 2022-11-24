@@ -24,6 +24,24 @@
   }
 }
 
+.editColumnTitle {
+  textarea {
+    height: 4rem;
+    width: 100%;
+
+    resize: none;
+  }
+
+  div {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  button {
+    margin-left: 0.5em;
+  }
+}
+
 .taskContainer {
   margin: 0.2em 0;
 

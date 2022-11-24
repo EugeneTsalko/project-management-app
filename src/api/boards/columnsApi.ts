@@ -19,4 +19,15 @@ async function createColumn(boardId: string, title: string, token: string) {
   return response.data as CreateColumnResponseInterface;
 }
 
-export { removeColumn, createColumn };
+async function updateColumn(boardId: string, columnId: string, title: string, order: number, token: string) {
+  const headers = { Authorization: `Bearer ${token}` };
+  const data = {
+    title,
+    order,
+  };
+  const response = await axios.put(`${apiURL}/boards/${boardId}/columns/${columnId}`, data, { headers });
+
+  return response.data as CreateColumnResponseInterface;
+}
+
+export { removeColumn, createColumn, updateColumn };

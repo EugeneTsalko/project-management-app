@@ -32,9 +32,14 @@ export const data = createSlice({
       const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.columnId);
       state.currentBoard.columns[columnIndex].tasks.push(newTask);
     },
+    updateColumn: (state, action: PayloadAction<CreateColumnResponseInterface>) => {
+      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.id);
+      state.currentBoard.columns[columnIndex].order = action.payload.order;
+      state.currentBoard.columns[columnIndex].title = action.payload.title;
+    },
   },
 });
 
-export const { setCurrentBoard, createColumn, removeColumn, createTask } = data.actions;
+export const { setCurrentBoard, createColumn, removeColumn, createTask, updateColumn } = data.actions;
 
 export default data.reducer;
