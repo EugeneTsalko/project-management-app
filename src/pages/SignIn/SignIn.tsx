@@ -16,7 +16,7 @@ export const SignIn = () => {
 
     if (token) {
       window.localStorage.setItem('token', token);
-      const res = await dispatch(isUserAuth());
+      dispatch(isUserAuth());
       toast.success('Welcome back on board!');
     }
     if (message) {
