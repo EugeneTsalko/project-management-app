@@ -2,10 +2,11 @@
 
 .cardsBlock {
   width: 100%;
+  min-height: 40rem;
   max-width: 1280px;
   display: flex;
   flex-direction: column;
-  padding: 2rem 0;
+  padding: 1rem;
 }
 
 .title {
