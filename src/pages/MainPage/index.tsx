@@ -18,12 +18,12 @@ const MainPage = () => {
   }, []);
 
   return (
-    <div className={styles.cardsBlock}>
+    <main className={styles.main}>
       <h1 className={styles.title}>Boards</h1>
       <Suspense fallback={<LoaderSpinner />}>
         <BoardsList />
       </Suspense>
-    </div>
+    </main>
   );
 };
 

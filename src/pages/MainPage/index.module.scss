@@ -1,8 +1,7 @@
 @use '../../styles/variables.scss' as var;
 
-.cardsBlock {
+.main {
   width: 100%;
-  min-height: 40rem;
   max-width: 1280px;
   display: flex;
   flex-direction: column;
