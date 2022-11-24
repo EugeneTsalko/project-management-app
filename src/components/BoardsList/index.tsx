@@ -4,6 +4,7 @@ import { IBoards } from 'api/boards/index.types';
 import { useAppSelector } from 'store/hooks';
 
 const BoardsItem = lazy(() => import('./BoardsItem'));
+import { BsClipboardPlus } from 'react-icons/bs';
 
 import styles from './index.module.scss';
 import FormBoard from './FormBoard';
@@ -24,7 +25,8 @@ const BoardsList = () => {
       </Suspense>
 
       <button className={styles.addBoardButton} onClick={() => setIsFormBoardModal(true)}>
-        + Add Board
+        <BsClipboardPlus />
+        Add Board
       </button>
 
       {isFormBoardModal && <FormBoard setIsFormBoardModal={setIsFormBoardModal} />}

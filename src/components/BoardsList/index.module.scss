@@ -16,6 +16,15 @@
   color: var.$grey;
   min-height: 85px;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > svg {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+  }
+
   &:hover {
     color: var.$blue;
     border-color: var.$blue;
