@@ -49,7 +49,9 @@ export const signInUser = createAsyncThunk<User, ISignInProps, { rejectValue: IS
 export const isUserAuth = createAsyncThunk('user/isUserAuth', async () => {
   const token = localStorage.getItem('token');
   if (token) {
-    const data = decodeJWT(token);
+    const userData = decodeJWT(token);
+    const { data }: { data: User } = await API.get(`/users/${userData.id}`);
+
     return data;
   } else {
     throw new Error();
