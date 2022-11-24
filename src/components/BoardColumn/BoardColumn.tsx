@@ -13,11 +13,15 @@ import styles from './BoardColumn.module.scss';
 
 import { token, userId } from 'api/token';
 
+const INITIAL_STATE = {
+  isConfirmationModalWindow: false,
+  isModificationModalWindow: false,
+};
+
 const BoardColumn = ({ data }: { data: ColumnInterface }) => {
   const dispatch = useDispatch();
   const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
-  const [isConfirmationModalWindow, setIsConfirmationModalWindow] = useState(false);
-  const [isModificationModalWindow, setIsModificationModalWindow] = useState(false);
+  const [state, setState] = useState(INITIAL_STATE);
 
   const {
     register,
@@ -39,7 +43,7 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
       token
     );
     dispatch(createTaskAction(responseData));
-    setIsModificationModalWindow(false);
+    setState({ ...state, isModificationModalWindow: false });
     resetField('taskTitle');
     resetField('taskDescription');
   };
@@ -51,13 +55,13 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
 
   const confirmationActions = {
     confirmAction: removeColumn,
-    closeWindow: () => setIsConfirmationModalWindow(false),
+    closeWindow: () => setState({ ...state, isConfirmationModalWindow: false }),
   };
 
   const modificationActions = {
     confirmAction: handleSubmit(createTask),
     closeWindow: () => {
-      setIsModificationModalWindow(false);
+      setState({ ...state, isModificationModalWindow: false });
       resetField('taskTitle');
       resetField('taskDescription');
     },
@@ -77,7 +81,7 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
             className={styles.deleteColumnButton}
             type="button"
             aria-label="Delete column"
-            onClick={() => setIsConfirmationModalWindow(true)}
+            onClick={() => setState({ ...state, isConfirmationModalWindow: true })}
           >
             X
           </button>
@@ -85,19 +89,19 @@ const BoardColumn = ({ data }: { data: ColumnInterface }) => {
             className={styles.createTaskButton}
             type="button"
             aria-label="Create task"
-            onClick={() => setIsModificationModalWindow(true)}
+            onClick={() => setState({ ...state, isModificationModalWindow: true })}
           >
             Create task
           </button>
         </div>
       </div>
-      {isConfirmationModalWindow && (
+      {state.isConfirmationModalWindow && (
         <ModalWindow type="confirmation" actions={confirmationActions}>
           <p className="modalDescription">Column {data.title} will be removed.</p>
           <p className="modalDescription">Are you sure?</p>
         </ModalWindow>
       )}
-      {isModificationModalWindow && (
+      {state.isModificationModalWindow && (
         <ModalWindow type="modification" actions={modificationActions}>
           <p className="modalDescription">Create new task.</p>
           <input className="" type="text" id="taskTitle" {...register('taskTitle', taskTitleValidate)} />
