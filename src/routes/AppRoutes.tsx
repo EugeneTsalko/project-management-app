@@ -26,6 +26,7 @@ export default function AppRoutes() {
       <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
       <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
       <Route path="/Boards/:id" element={<p>Board page</p>} />
+      <Route path="/profile" element={<PrivateRoute component={<p>Profile</p>} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
