@@ -52,9 +52,8 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
       <p className="modalDescription">Create new task.</p>
       <div className={styles.inputField}>
         <label htmlFor="taskTitle">Enter title:</label>
-        <input
-          className={`${errors.taskTitle ? `${styles.input} ${styles.error}` : styles.input}`}
-          type="text"
+        <textarea
+          className={`${errors.taskTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
           id="taskTitle"
           {...register('taskTitle', taskTitleValidate)}
         />
@@ -62,9 +61,8 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
       {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
       <div className={styles.inputField}>
         <label htmlFor="taskDescription">Enter description:</label>
-        <input
-          className={`${errors.taskDescription ? `${styles.input} ${styles.error}` : styles.input}`}
-          type="text"
+        <textarea
+          className={`${errors.taskDescription ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
           id="taskDescription"
           {...register('taskDescription', taskDescriptionValidate)}
         />

@@ -45,9 +45,8 @@ const CreateNewColumn = ({ setState, boardId, token }: ModalWindowProps) => {
       <p className="modalDescription">Create new column.</p>
       <div className={styles.inputField}>
         <label htmlFor="columnTitle">Enter title:</label>
-        <input
-          className={`${errors.columnTitle ? `${styles.input} ${styles.error}` : styles.input}`}
-          type="text"
+        <textarea
+          className={`${errors.columnTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
           id="columnTitle"
           {...register('columnTitle', columnTitleValidate)}
         />

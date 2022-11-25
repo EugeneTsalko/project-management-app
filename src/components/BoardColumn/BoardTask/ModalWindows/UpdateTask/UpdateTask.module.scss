@@ -5,6 +5,8 @@
   flex-direction: column;
   margin: 0.5em 0;
 
+  user-select: none;
+
   label {
     margin-right: 10px;
   }
@@ -12,7 +14,8 @@
 
 .textarea {
   height: 10rem;
-  width: 25rem;
+  width: 100%;
+  min-width: 25rem;
   padding: 0.5rem 1rem;
 
   font-size: 1rem;
@@ -33,4 +36,6 @@
   color: var.$ruby-red;
 
   border-color: var.$ruby-red;
+
+  user-select: none;
 }
