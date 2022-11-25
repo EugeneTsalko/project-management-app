@@ -7,7 +7,7 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { createTask as createTaskAPI } from 'api/boards';
 import { createTask as createTaskAction } from 'store/dataSlice';
 import { ModalWindowProps, ModalWindowModification } from './CreateNewTask.types';
-// import styles from './CreateNewTask.types';
+import styles from './CreateNewTask.module.scss';
 
 import { token, userId } from 'api/token';
 
@@ -21,8 +21,14 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
     resetField,
   } = useForm<ModalWindowModification>({ reValidateMode: 'onSubmit' });
 
-  const taskTitleValidate = { required: true, minLength: 3, maxLength: 70 };
-  const taskDescriptionValidate = { required: true, minLength: 3, maxLength: 150 };
+  const taskTitleValidate = {
+    required: "Title can't be empty",
+    maxLength: { value: 100, message: 'Title must be less than 100 letters.' },
+  };
+  const taskDescriptionValidate = {
+    required: "Description can't be empty",
+    maxLength: { value: 400, message: 'Description must be less than 400 letters.' },
+  };
 
   const createTask = async (value: ModalWindowModification) => {
     const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, userId, token);
@@ -44,10 +50,26 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   return (
     <ModalWindow type="modification" actions={modificationActions}>
       <p className="modalDescription">Create new task.</p>
-      <input className="" type="text" id="taskTitle" {...register('taskTitle', taskTitleValidate)} />
-      {errors.taskTitle && <p className="">Title must be more than 3 characters and less than 70.</p>}
-      <input className="" type="text" id="taskDescription" {...register('taskDescription', taskDescriptionValidate)} />
-      {errors.taskDescription && <p className="">Title must be more than 3 characters and less than 150.</p>}
+      <div className={styles.inputField}>
+        <label htmlFor="taskTitle">Enter title:</label>
+        <input
+          className={`${errors.taskTitle ? `${styles.input} ${styles.error}` : styles.input}`}
+          type="text"
+          id="taskTitle"
+          {...register('taskTitle', taskTitleValidate)}
+        />
+      </div>
+      {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
+      <div className={styles.inputField}>
+        <label htmlFor="taskDescription">Enter description:</label>
+        <input
+          className={`${errors.taskDescription ? `${styles.input} ${styles.error}` : styles.input}`}
+          type="text"
+          id="taskDescription"
+          {...register('taskDescription', taskDescriptionValidate)}
+        />
+      </div>
+      {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
     </ModalWindow>
   );
 };

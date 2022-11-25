@@ -1,0 +1,31 @@
+@use '../../../../styles/variables.scss' as var;
+
+.inputField {
+  align-self: flex-end;
+  margin: 0.5em 0;
+
+  label {
+    margin-right: 10px;
+  }
+}
+
+.input {
+  background: var.$white;
+  border: 2px solid var.$grey;
+
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: var.$btn-border-radius;
+
+  &:focus {
+    border-color: var.$grey;
+  }
+}
+
+.error {
+  align-self: flex-end;
+
+  color: var.$ruby-red;
+  border-color: var.$ruby-red;
+}
+

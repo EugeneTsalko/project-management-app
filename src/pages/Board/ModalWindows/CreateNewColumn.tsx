@@ -8,7 +8,7 @@ import { createColumn as createColumnAPI } from 'api/boards';
 import { createColumn as createColumnAction } from 'store/dataSlice';
 import { ModalWindowModification, ModalWindowProps } from './CreateNewColumn.types';
 
-// import styles from './CreateNewColumn.module.scss';
+import styles from './CreateNewColumn.module.scss';
 
 const CreateNewColumn = ({ setState, boardId, token }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -20,7 +20,10 @@ const CreateNewColumn = ({ setState, boardId, token }: ModalWindowProps) => {
     resetField,
   } = useForm<ModalWindowModification>({ reValidateMode: 'onSubmit' });
 
-  const columnTitleValidate = { required: true, minLength: 3, maxLength: 50 };
+  const columnTitleValidate = {
+    required: "Title can't be empty",
+    maxLength: { value: 100, message: 'Title must be less than 100 letters.' },
+  };
 
   const createColumn = async (value: ModalWindowModification) => {
     const responseData = await createColumnAPI(boardId, value.columnTitle, token);
@@ -40,8 +43,16 @@ const CreateNewColumn = ({ setState, boardId, token }: ModalWindowProps) => {
   return (
     <ModalWindow type="modification" actions={modificationActions}>
       <p className="modalDescription">Create new column.</p>
-      <input className="" type="text" id="columnTitle" {...register('columnTitle', columnTitleValidate)} />
-      {errors.columnTitle && <p className="">Title must be more than 3 characters and less than 50.</p>}
+      <div className={styles.inputField}>
+        <label htmlFor="columnTitle">Enter title:</label>
+        <input
+          className={`${errors.columnTitle ? `${styles.input} ${styles.error}` : styles.input}`}
+          type="text"
+          id="columnTitle"
+          {...register('columnTitle', columnTitleValidate)}
+        />
+      </div>
+      {errors.columnTitle && <p className={styles.error}>{errors.columnTitle?.message}</p>}
     </ModalWindow>
   );
 };
