@@ -2,27 +2,24 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 import { BoardInterface, ColumnResponseInterface, TaskResponseInterface } from 'api/boards';
 
-const initialState = {
-  currentBoard: {} as BoardInterface,
-};
-
+const initialState = {} as BoardInterface;
 export const data = createSlice({
   name: 'currentBoard',
   initialState,
   reducers: {
     setCurrentBoard: (state, action: PayloadAction<BoardInterface>) => {
-      state.currentBoard = action.payload;
+      return action.payload;
     },
     createColumn: (state, action: PayloadAction<ColumnResponseInterface>) => {
-      state.currentBoard.columns.push({ ...action.payload, tasks: [] });
+      state.columns.push({ ...action.payload, tasks: [] });
     },
     removeColumn: (state, action: PayloadAction<string>) => {
-      state.currentBoard.columns = state.currentBoard.columns.filter((column) => column.id !== action.payload);
+      state.columns = state.columns.filter((column) => column.id !== action.payload);
     },
     updateColumn: (state, action: PayloadAction<ColumnResponseInterface>) => {
-      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.id);
-      state.currentBoard.columns[columnIndex].order = action.payload.order;
-      state.currentBoard.columns[columnIndex].title = action.payload.title;
+      const columnIndex = state.columns.findIndex((column) => column.id === action.payload.id);
+      state.columns[columnIndex].order = action.payload.order;
+      state.columns[columnIndex].title = action.payload.title;
     },
     createTask: (state, action: PayloadAction<TaskResponseInterface>) => {
       const newTask = {
@@ -34,23 +31,21 @@ export const data = createSlice({
         files: [],
       };
 
-      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.columnId);
-      state.currentBoard.columns[columnIndex].tasks.push(newTask);
+      const columnIndex = state.columns.findIndex((column) => column.id === action.payload.columnId);
+      state.columns[columnIndex].tasks.push(newTask);
     },
     removeTask: (state, action: PayloadAction<{ columnId: string; taskId: string }>) => {
-      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.columnId);
-      state.currentBoard.columns[columnIndex].tasks = state.currentBoard.columns[columnIndex].tasks.filter(
+      const columnIndex = state.columns.findIndex((column) => column.id === action.payload.columnId);
+      state.columns[columnIndex].tasks = state.columns[columnIndex].tasks.filter(
         (task) => task.id !== action.payload.taskId
       );
     },
     updateTask: (state, action: PayloadAction<TaskResponseInterface>) => {
-      const columnIndex = state.currentBoard.columns.findIndex((column) => column.id === action.payload.columnId);
-      const taskIndex = state.currentBoard.columns[columnIndex].tasks.findIndex(
-        (task) => task.id === action.payload.id
-      );
-      state.currentBoard.columns[columnIndex].tasks[taskIndex].title = action.payload.title;
-      state.currentBoard.columns[columnIndex].tasks[taskIndex].description = action.payload.description;
-      state.currentBoard.columns[columnIndex].tasks[taskIndex].order = action.payload.order;
+      const columnIndex = state.columns.findIndex((column) => column.id === action.payload.columnId);
+      const taskIndex = state.columns[columnIndex].tasks.findIndex((task) => task.id === action.payload.id);
+      state.columns[columnIndex].tasks[taskIndex].title = action.payload.title;
+      state.columns[columnIndex].tasks[taskIndex].description = action.payload.description;
+      state.columns[columnIndex].tasks[taskIndex].order = action.payload.order;
     },
   },
 });

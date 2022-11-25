@@ -15,7 +15,7 @@ import { token } from 'api/token';
 const BoardPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currentBoard = useSelector((state: RootState) => state.currentBoard.currentBoard);
+  const currentBoard = useSelector((state: RootState) => state.currentBoard);
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);
