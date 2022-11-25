@@ -1,4 +1,4 @@
-export interface CreateColumnResponseInterface {
+export interface ColumnResponseInterface {
   id: string;
   title: string;
   order: number;

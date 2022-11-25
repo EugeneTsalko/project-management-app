@@ -10,11 +10,12 @@
 }
 
 .input {
+  padding: 0.5rem 1rem;
+
+  font-size: 1rem;
+
   background: var.$white;
   border: 2px solid var.$grey;
-
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
   border-radius: var.$btn-border-radius;
 
   &:focus {
@@ -26,6 +27,6 @@
   align-self: flex-end;
 
   color: var.$ruby-red;
+
   border-color: var.$ruby-red;
 }
-

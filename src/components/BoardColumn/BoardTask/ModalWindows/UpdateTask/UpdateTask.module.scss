@@ -1,7 +1,8 @@
-@use '../../../styles/variables.scss' as var;
+@use '../../../../../styles/variables.scss' as var;
 
 .inputField {
-  align-self: flex-end;
+  display: flex;
+  flex-direction: column;
   margin: 0.5em 0;
 
   label {
@@ -9,7 +10,9 @@
   }
 }
 
-.input {
+.textarea {
+  height: 10rem;
+  width: 25rem;
   padding: 0.5rem 1rem;
 
   font-size: 1rem;
@@ -17,6 +20,7 @@
   background: var.$white;
   border: 2px solid var.$grey;
   border-radius: var.$btn-border-radius;
+  resize: none;
 
   &:focus {
     border-color: var.$grey;
@@ -27,6 +31,6 @@
   align-self: flex-end;
 
   color: var.$ruby-red;
-  
+
   border-color: var.$ruby-red;
 }

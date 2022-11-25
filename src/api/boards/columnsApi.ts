@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { CreateColumnResponseInterface } from 'api/boards';
+import { ColumnResponseInterface } from 'api/boards';
 
 const apiURL = 'https://boiling-lake-31774.herokuapp.com';
 
@@ -16,7 +16,7 @@ async function createColumn(boardId: string, title: string, token: string) {
   };
   const response = await axios.post(`${apiURL}/boards/${boardId}/columns`, data, { headers });
 
-  return response.data as CreateColumnResponseInterface;
+  return response.data as ColumnResponseInterface;
 }
 
 async function updateColumn(boardId: string, columnId: string, title: string, order: number, token: string) {
@@ -27,7 +27,7 @@ async function updateColumn(boardId: string, columnId: string, title: string, or
   };
   const response = await axios.put(`${apiURL}/boards/${boardId}/columns/${columnId}`, data, { headers });
 
-  return response.data as CreateColumnResponseInterface;
+  return response.data as ColumnResponseInterface;
 }
 
 export { removeColumn, createColumn, updateColumn };

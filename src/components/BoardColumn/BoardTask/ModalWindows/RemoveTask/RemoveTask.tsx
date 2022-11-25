@@ -6,7 +6,6 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { removeTask as removeTaskAPI } from 'api/boards';
 import { removeTask as removeTaskAction } from 'store/dataSlice';
 import { ModalWindowProps } from './RemoveTask.types';
-// import styles from './RemoveColumn.module.scss';
 
 import { token } from 'api/token';
 

@@ -1,4 +1,4 @@
-export interface CreateTaskResponseInterface {
+export interface TaskResponseInterface {
   boardId: string;
   columnId: string;
   description: string;
