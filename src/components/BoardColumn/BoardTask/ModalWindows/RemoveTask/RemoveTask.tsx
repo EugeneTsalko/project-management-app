@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { removeTask as removeTaskAPI } from 'api/boards';
-import { removeTask as removeTaskAction } from 'store/dataSlice';
+import { removeTask as removeTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveTask.types';
 
 import { token } from 'api/token';

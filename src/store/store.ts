@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 
-import dataReducer from './dataSlice';
+import dataReducer from './slices/currentBoardSlice';
 
-export default configureStore({
+export const store = configureStore({
   reducer: {
-    data: dataReducer,
+    currentBoard: dataReducer,
   },
 });
+
+export type RootState = ReturnType<typeof store.getState>;

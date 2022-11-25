@@ -6,8 +6,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import { CreateNewColumn } from './ModalWindows/CreateNewColumn';
 import { getBoard, ColumnInterface } from 'api/boards';
-import { setCurrentBoard } from 'store/dataSlice';
-import { StateInterface } from 'store/store.types';
+import { setCurrentBoard } from 'store/slices/currentBoardSlice';
+import { RootState } from 'store/store';
 import styles from './BoardPage.module.scss';
 
 import { token } from 'api/token';
@@ -15,7 +15,7 @@ import { token } from 'api/token';
 const BoardPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const currentBoard = useSelector((state: StateInterface) => state.data.currentBoard);
+  const currentBoard = useSelector((state: RootState) => state.currentBoard.currentBoard);
   const { id } = useParams();
 
   const [isLoading, setIsLoading] = useState(true);

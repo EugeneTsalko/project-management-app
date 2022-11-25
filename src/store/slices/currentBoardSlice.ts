@@ -7,8 +7,8 @@ const initialState = {
 };
 
 export const data = createSlice({
-  name: 'cache',
-  initialState: initialState,
+  name: 'currentBoard',
+  initialState,
   reducers: {
     setCurrentBoard: (state, action: PayloadAction<BoardInterface>) => {
       state.currentBoard = action.payload;

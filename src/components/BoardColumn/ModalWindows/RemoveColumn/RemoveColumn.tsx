@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { removeColumn as removeColumnAPI } from 'api/boards';
-import { removeColumn as removeColumnAction } from 'store/dataSlice';
+import { removeColumn as removeColumnAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveColumn.types';
 // import styles from './RemoveColumn.module.scss';
 

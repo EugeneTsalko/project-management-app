@@ -5,7 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { createColumn as createColumnAPI } from 'api/boards';
-import { createColumn as createColumnAction } from 'store/dataSlice';
+import { createColumn as createColumnAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowModification, ModalWindowProps } from './CreateNewColumn.types';
 
 import styles from './CreateNewColumn.module.scss';
