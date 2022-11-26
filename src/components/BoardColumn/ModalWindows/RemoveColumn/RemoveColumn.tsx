@@ -7,14 +7,12 @@ import { removeColumn as removeColumnAPI } from 'api/currentBoard';
 import { removeColumn as removeColumnAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveColumn.types';
 
-import { token } from 'api/token';
-
 const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
 
   const removeColumn = () => {
     dispatch(removeColumnAction(columnId));
-    removeColumnAPI(boardId, columnId, token);
+    removeColumnAPI(boardId, columnId);
   };
 
   const confirmationActions = {

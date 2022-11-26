@@ -5,5 +5,4 @@ export interface ModalWindowModification {
 export interface ModalWindowProps {
   setState: (value: boolean) => void;
   boardId: string;
-  token: string;
 }

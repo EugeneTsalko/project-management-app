@@ -11,8 +11,6 @@ import { setCurrentBoard } from 'store/slices/currentBoardSlice';
 import { RootState } from 'store/store';
 import styles from './BoardPage.module.scss';
 
-import { token } from 'api/token';
-
 const BoardPage = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -24,7 +22,7 @@ const BoardPage = () => {
 
   const loadBoard = async () => {
     setIsLoading(true);
-    const responseData = await getBoard(id as string, token);
+    const responseData = await getBoard(id as string);
     dispatch(setCurrentBoard(responseData));
 
     setIsLoading(false);
@@ -66,9 +64,7 @@ const BoardPage = () => {
           ))}
         </div>
       </main>
-      {createColumnModalWindow && (
-        <CreateNewColumn setState={setCreateColumnModalWindow} boardId={currentBoard.id} token={token} />
-      )}
+      {createColumnModalWindow && <CreateNewColumn setState={setCreateColumnModalWindow} boardId={currentBoard.id} />}
     </>
   );
 };

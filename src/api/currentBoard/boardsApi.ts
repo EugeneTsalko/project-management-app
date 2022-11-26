@@ -1,12 +1,10 @@
-import axios from 'axios';
+import { AxiosResponse } from 'axios';
 import { BoardInterface } from 'api/currentBoard/index.types';
 
-const apiURL = 'https://boiling-lake-31774.herokuapp.com';
+import API from 'api/base';
 
-const getBoard = async (id: string, token: string) => {
-  const headers = { Authorization: `Bearer ${token}` };
-  const response = await axios.get(`${apiURL}/boards/${id}`, { headers });
-
+const getBoard = async (id: string) => {
+  const response = (await API.get(`/boards/${id}`)) as AxiosResponse;
   return response.data as BoardInterface;
 };
 

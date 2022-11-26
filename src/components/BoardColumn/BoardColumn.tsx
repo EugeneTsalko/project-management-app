@@ -10,8 +10,6 @@ import { ColumnInterface } from 'api/currentBoard/index.types';
 import { updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
 import styles from './BoardColumn.module.scss';
 
-import { token } from 'api/token';
-
 const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string }) => {
   const dispatch = useDispatch();
   const [removeColumnModalWindow, setRemoveColumnModalWindow] = useState(false);
@@ -27,7 +25,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
         return;
       }
 
-      const responseData = await updateColumnAPI(boardId, data.id, title, data.order, token);
+      const responseData = await updateColumnAPI(boardId, data.id, title, data.order);
       dispatch(updateColumnAction(responseData));
     }
     setIsEditColumnTitle(false);

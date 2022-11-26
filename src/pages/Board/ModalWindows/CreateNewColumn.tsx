@@ -10,7 +10,7 @@ import { ModalWindowModification, ModalWindowProps } from './CreateNewColumn.typ
 
 import styles from './CreateNewColumn.module.scss';
 
-const CreateNewColumn = ({ setState, boardId, token }: ModalWindowProps) => {
+const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
   const dispatch = useDispatch();
 
   const {
@@ -26,7 +26,7 @@ const CreateNewColumn = ({ setState, boardId, token }: ModalWindowProps) => {
   };
 
   const createColumn = async (value: ModalWindowModification) => {
-    const responseData = await createColumnAPI(boardId, value.columnTitle, token);
+    const responseData = await createColumnAPI(boardId, value.columnTitle);
     dispatch(createColumnAction(responseData));
     setState(false);
     resetField('columnTitle');
