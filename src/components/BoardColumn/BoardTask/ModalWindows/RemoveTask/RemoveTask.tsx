@@ -3,7 +3,7 @@ import React from 'react';
 import { useDispatch } from 'react-redux';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { removeTask as removeTaskAPI } from 'api/boards';
+import { removeTask as removeTaskAPI } from 'api/currentBoard';
 import { removeTask as removeTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveTask.types';
 

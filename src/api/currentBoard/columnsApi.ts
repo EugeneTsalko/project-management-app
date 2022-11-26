@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-import { ColumnResponseInterface } from 'api/boards';
+import { ColumnResponseInterface } from 'api/currentBoard/index.types';
 
 const apiURL = 'https://boiling-lake-31774.herokuapp.com';
 

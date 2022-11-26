@@ -5,7 +5,8 @@ import { useDispatch } from 'react-redux';
 import { BoardTask } from './BoardTask/BoardTask';
 import { RemoveColumn } from './ModalWindows/RemoveColumn/RemoveColumn';
 import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
-import { ColumnInterface, updateColumn as updateColumnAPI } from 'api/boards';
+import { updateColumn as updateColumnAPI } from 'api/currentBoard';
+import { ColumnInterface } from 'api/currentBoard/index.types';
 import { updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
 import styles from './BoardColumn.module.scss';
 

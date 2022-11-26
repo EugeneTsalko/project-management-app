@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { BoardInterface, ColumnResponseInterface, TaskResponseInterface } from 'api/boards';
+import { BoardInterface, ColumnResponseInterface, TaskResponseInterface } from 'api/currentBoard/index.types';
 
 const initialState = {} as BoardInterface;
 export const data = createSlice({

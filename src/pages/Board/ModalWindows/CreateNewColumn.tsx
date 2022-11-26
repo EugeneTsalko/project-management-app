@@ -4,7 +4,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { createColumn as createColumnAPI } from 'api/boards';
+import { createColumn as createColumnAPI } from 'api/currentBoard';
 import { createColumn as createColumnAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowModification, ModalWindowProps } from './CreateNewColumn.types';
 

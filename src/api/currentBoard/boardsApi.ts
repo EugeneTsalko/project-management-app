@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { BoardInterface } from 'api/boards';
+import { BoardInterface } from 'api/currentBoard/index.types';
 
 const apiURL = 'https://boiling-lake-31774.herokuapp.com';
 

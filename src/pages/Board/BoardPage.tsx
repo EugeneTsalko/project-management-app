@@ -5,7 +5,8 @@ import { useDispatch, useSelector } from 'react-redux';
 
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import { CreateNewColumn } from './ModalWindows/CreateNewColumn';
-import { getBoard, ColumnInterface } from 'api/boards';
+import { getBoard } from 'api/currentBoard';
+import { ColumnInterface } from 'api/currentBoard/index.types';
 import { setCurrentBoard } from 'store/slices/currentBoardSlice';
 import { RootState } from 'store/store';
 import styles from './BoardPage.module.scss';

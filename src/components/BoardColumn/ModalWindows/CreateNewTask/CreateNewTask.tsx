@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { createTask as createTaskAPI } from 'api/boards';
+import { createTask as createTaskAPI } from 'api/currentBoard';
 import { createTask as createTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './CreateNewTask.types';
 import styles from './CreateNewTask.module.scss';

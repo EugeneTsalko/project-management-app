@@ -1,4 +1,4 @@
-import { TaskInterface } from 'api/boards';
+import { TaskInterface } from 'api/currentBoard/index.types';
 
 export interface BoardTaskProps {
   data: TaskInterface;

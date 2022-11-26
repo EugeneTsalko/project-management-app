@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
-import { updateTask as updateTaskAPI } from 'api/boards';
+import { updateTask as updateTaskAPI } from 'api/currentBoard';
 import { updateTask as updateTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './UpdateTask.types';
 import styles from './UpdateTask.module.scss';
