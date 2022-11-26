@@ -9,7 +9,7 @@ import { updateTask as updateTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './UpdateTask.types';
 import styles from './UpdateTask.module.scss';
 
-import { token, userId } from 'api/token';
+import { userId } from 'api/token';
 
 const UpdateTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -44,8 +44,7 @@ const UpdateTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => 
       value.taskTitle,
       value.taskDescription,
       data.order,
-      userId,
-      token
+      userId
     );
     dispatch(updateTaskAction(responseData));
 

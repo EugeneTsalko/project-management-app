@@ -1,12 +1,8 @@
 import { AxiosResponse } from 'axios';
 
-import { ColumnResponseInterface } from 'api/currentBoard/index.types';
-
 import API from 'api/base';
 
-const removeColumn = async (boardId: string, columnId: string) => {
-  (await API.delete(`/boards/${boardId}/columns/${columnId}`)) as AxiosResponse;
-};
+import { ColumnResponseInterface } from 'api/currentBoard/index.types';
 
 const createColumn = async (boardId: string, title: string) => {
   const response = (await API.post(`/boards/${boardId}/columns`, { title })) as AxiosResponse;
@@ -18,4 +14,9 @@ const updateColumn = async (boardId: string, columnId: string, title: string, or
   return response.data as ColumnResponseInterface;
 };
 
-export { removeColumn, createColumn, updateColumn };
+const removeColumn = async (boardId: string, columnId: string) => {
+  const response = (await API.delete(`/boards/${boardId}/columns/${columnId}`)) as AxiosResponse;
+  return response;
+};
+
+export { createColumn, updateColumn, removeColumn };

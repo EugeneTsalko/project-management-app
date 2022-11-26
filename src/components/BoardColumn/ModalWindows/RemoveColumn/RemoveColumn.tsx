@@ -11,8 +11,8 @@ const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
 
   const removeColumn = () => {
-    dispatch(removeColumnAction(columnId));
     removeColumnAPI(boardId, columnId);
+    dispatch(removeColumnAction(columnId));
   };
 
   const confirmationActions = {

@@ -9,7 +9,7 @@ import { createTask as createTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './CreateNewTask.types';
 import styles from './CreateNewTask.module.scss';
 
-import { token, userId } from 'api/token';
+import { userId } from 'api/token';
 
 const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -31,7 +31,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   };
 
   const createTask = async (value: ModalWindowModification) => {
-    const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, userId, token);
+    const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, userId);
     dispatch(createTaskAction(responseData));
     setState(false);
     resetField('taskTitle');

@@ -1,7 +1,8 @@
 import { AxiosResponse } from 'axios';
-import { BoardInterface } from 'api/currentBoard/index.types';
 
 import API from 'api/base';
+
+import { BoardInterface } from 'api/currentBoard/index.types';
 
 const getBoard = async (id: string) => {
   const response = (await API.get(`/boards/${id}`)) as AxiosResponse;

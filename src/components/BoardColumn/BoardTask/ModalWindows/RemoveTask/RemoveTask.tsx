@@ -7,14 +7,12 @@ import { removeTask as removeTaskAPI } from 'api/currentBoard';
 import { removeTask as removeTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveTask.types';
 
-import { token } from 'api/token';
-
 const RemoveTask = ({ setState, boardId, columnId, taskId }: ModalWindowProps) => {
   const dispatch = useDispatch();
 
   const removeTask = () => {
+    removeTaskAPI(boardId, columnId, taskId);
     dispatch(removeTaskAction({ columnId, taskId }));
-    removeTaskAPI(boardId, columnId, taskId, token);
   };
 
   const confirmationActions = {
