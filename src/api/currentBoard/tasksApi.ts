@@ -4,14 +4,14 @@ import { TaskResponseInterface } from 'api/currentBoard/index.types';
 
 const apiURL = 'https://boiling-lake-31774.herokuapp.com';
 
-async function createTask(
+const createTask = async (
   boardId: string,
   columnId: string,
   title: string,
   description: string,
   userId: string,
   token: string
-) {
+) => {
   const headers = { Authorization: `Bearer ${token}` };
   const data = {
     title,
@@ -21,9 +21,9 @@ async function createTask(
   const response = await axios.post(`${apiURL}/boards/${boardId}/columns/${columnId}/tasks`, data, { headers });
 
   return response.data as TaskResponseInterface;
-}
+};
 
-async function updateTask(
+const updateTask = async (
   boardId: string,
   columnId: string,
   taskId: string,
@@ -32,7 +32,7 @@ async function updateTask(
   order: number,
   userId: string,
   token: string
-) {
+) => {
   const headers = { Authorization: `Bearer ${token}` };
   const data = {
     title,
@@ -47,11 +47,11 @@ async function updateTask(
   });
 
   return response.data as TaskResponseInterface;
-}
+};
 
-async function removeTask(boardId: string, columnId: string, taskId: string, token: string) {
+const removeTask = async (boardId: string, columnId: string, taskId: string, token: string) => {
   const headers = { Authorization: `Bearer ${token}` };
   await axios.delete(`${apiURL}/boards/${boardId}/columns/${columnId}/tasks/${taskId}`, { headers });
-}
+};
 
 export { createTask, updateTask, removeTask };
