@@ -1,21 +1,38 @@
 @use '../../../../../styles/variables.scss' as var;
 
 .inputField {
+  position: relative;
+
   display: flex;
   flex-direction: column;
-  margin: 0.5em 0;
+  margin: 1.0em 0;
 
   user-select: none;
 
   label {
     margin-right: 10px;
+
+    font-weight: 900;
   }
+}
+
+.editButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.columnTitle,
+.columnDescription {
+  width: 40vw;
+  min-width: 40vw;
+  margin-top: 0.5em;
 }
 
 .textarea {
   height: 10rem;
   width: 100%;
-  min-width: 25rem;
+  min-width: 40vw;
   padding: 0.5rem 1rem;
 
   font-size: 1rem;
@@ -27,6 +44,16 @@
 
   &:focus {
     border-color: var.$grey;
+  }
+}
+
+.buttonsContainer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 0.5em;
+
+  button {
+    margin-left: 0.5em;
   }
 }
 
