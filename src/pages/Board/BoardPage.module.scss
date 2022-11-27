@@ -1,8 +1,11 @@
+@use './../../styles/variables.scss' as var;
+
 .main {
   display: flex;
   flex-direction: column;
   width: 100%;
   height: 100%;
+  padding-bottom: var.$scrollbar-indent;
 
   background-blend-mode: screen;
   background: linear-gradient(limegreen, transparent), linear-gradient(90deg, skyblue, transparent),
@@ -33,6 +36,8 @@
 .columnList {
   display: flex;
   height: 100%;
+  margin-bottom: var.$scrollbar-indent;
+  margin: 0 var.$scrollbar-indent;
 
   overflow-x: auto;
   overflow-y: hidden;

@@ -1,12 +1,36 @@
 @charset 'utf-8';
 
-@import './variables.scss';
+@use './variables.scss' as var;
 @import './fonts.scss';
 
 *,
 *::before,
 *::after {
   box-sizing: border-box;
+}
+
+* {
+  &::-webkit-scrollbar {
+    width: 0.6em;
+    height: 0.6em;
+    margin-block: 0.25em;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin-block: 0.25em;
+
+    border-radius: 100vw;
+    background-color: var.$column-background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100vw;
+    background-color: var.$grey;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var.$deep-sky-blue;
+  }
 }
 
 body,
@@ -20,10 +44,10 @@ ul {
 }
 
 body {
-  color: $black;
+  color: var.$black;
   font-weight: 500;
 
-  background-color: $white;
+  background-color: var.$white;
 
   overflow: hidden;
 }
