@@ -57,7 +57,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
             </div>
           </div>
         )}
-        <ul className={styles.taskContainer}>
+        <ul className={styles.taskList}>
           {data.tasks.map((item) => (
             <li key={item.id}>
               <BoardTask data={item} boardId={boardId} columnId={data.id} />

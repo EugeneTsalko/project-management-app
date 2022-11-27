@@ -58,7 +58,7 @@ const BoardPage = () => {
             Create column
           </button>
         </header>
-        <ul className={styles.boardColumns}>
+        <ul className={styles.columnList}>
           {currentBoard.columns.map((item: ColumnInterface) => (
             <li key={item.id}>
               <BoardColumn data={item} boardId={currentBoard.id} />

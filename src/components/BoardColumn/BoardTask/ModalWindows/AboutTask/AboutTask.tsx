@@ -67,6 +67,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   return (
     <ModalWindow type="information" actions={modificationActions}>
       <p className="modalDescription">About task.</p>
+
       <div className={styles.inputField}>
         <label htmlFor="taskTitle">Title:</label>
         {!isEditTaskTitle && (
@@ -92,22 +93,18 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
               {...register('taskTitle', taskTitleValidate)}
             />
             {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
-            <div className={styles.buttonsContainer}>
-              <button className={styles.sendButton} type="submit" aria-label="Send" onClick={handleSubmit(updateTask)}>
-                Send
-              </button>
-              <button
-                className={styles.cancelButton}
-                type="button"
-                aria-label="Cancel"
-                onClick={() => setIsEditTaskTitle(false)}
-              >
-                Cancel
-              </button>
-            </div>
+            <button
+              className={styles.cancelButton}
+              type="button"
+              aria-label="Cancel"
+              onClick={() => setIsEditTaskTitle(false)}
+            >
+              Cancel
+            </button>
           </>
         )}
       </div>
+
       <div className={styles.inputField}>
         <label htmlFor="taskDescription">Description:</label>
         {!isEditTaskDescription && (
@@ -133,22 +130,22 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
               {...register('taskDescription', taskDescriptionValidate)}
             />
             {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
-            <div className={styles.buttonsContainer}>
-              <button className={styles.sendButton} type="submit" aria-label="Send" onClick={handleSubmit(updateTask)}>
-                Send
-              </button>
-              <button
-                className={styles.cancelButton}
-                type="button"
-                aria-label="Cancel"
-                onClick={() => setIsEditTaskDescription(false)}
-              >
-                Cancel
-              </button>
-            </div>
+            <button
+              className={styles.cancelButton}
+              type="button"
+              aria-label="Cancel"
+              onClick={() => setIsEditTaskDescription(false)}
+            >
+              Cancel
+            </button>
           </>
         )}
       </div>
+      {(isEditTaskTitle || isEditTaskDescription) && (
+        <button className={styles.sendButton} type="submit" aria-label="Send" onClick={handleSubmit(updateTask)}>
+          Send
+        </button>
+      )}
     </ModalWindow>
   );
 };

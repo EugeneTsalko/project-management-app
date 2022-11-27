@@ -5,13 +5,11 @@
 
   display: flex;
   flex-direction: column;
-  margin: 1.0em 0;
+  margin: 1em 0;
 
   user-select: none;
 
   label {
-    margin-right: 10px;
-
     font-weight: 900;
   }
 }
@@ -47,16 +45,6 @@
   }
 }
 
-.buttonsContainer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 0.5em;
-
-  button {
-    margin-left: 0.5em;
-  }
-}
-
 .error {
   align-self: flex-end;
 
@@ -65,4 +53,9 @@
   border-color: var.$ruby-red;
 
   user-select: none;
+}
+
+.cancelButton {
+  align-self: flex-end;
+  margin-top: 0.5em;
 }
