@@ -57,11 +57,13 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
             </div>
           </div>
         )}
-        <div className={styles.taskContainer}>
+        <ul className={styles.taskContainer}>
           {data.tasks.map((item) => (
-            <BoardTask key={item.id} data={item} boardId={boardId} columnId={data.id} />
+            <li key={item.id}>
+              <BoardTask data={item} boardId={boardId} columnId={data.id} />
+            </li>
           ))}
-        </div>
+        </ul>
         <div className={styles.columnControl}>
           <button
             className={styles.deleteColumnButton}

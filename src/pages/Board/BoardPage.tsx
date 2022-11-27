@@ -58,11 +58,13 @@ const BoardPage = () => {
             Create column
           </button>
         </header>
-        <div className={styles.boardColumns}>
+        <ul className={styles.boardColumns}>
           {currentBoard.columns.map((item: ColumnInterface) => (
-            <BoardColumn key={item.id} data={item} boardId={currentBoard.id} />
+            <li key={item.id}>
+              <BoardColumn data={item} boardId={currentBoard.id} />
+            </li>
           ))}
-        </div>
+        </ul>
       </main>
       {createColumnModalWindow && <CreateNewColumn setState={setCreateColumnModalWindow} boardId={currentBoard.id} />}
     </>
