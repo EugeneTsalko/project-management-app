@@ -1,0 +1,29 @@
+@use '../../styles/variables.scss' as var;
+
+.btn {
+  transition: ease-in-out 0.3s;
+  cursor: pointer;
+  outline: 0;
+  border: 0;
+}
+
+.nav {
+  background: var.$lime-green;
+  border-radius: var.$btn-border-radius;
+  color: var.$white;
+}
+.nav:hover {
+  background-color: var.$deep-sky-blue;
+}
+
+.form {
+  color: var.$white;
+  padding: 15px;
+  width: 100%;
+  background: var.$blue;
+  text-transform: uppercase;
+  border-radius: var.$btn-border-radius;
+}
+.form:hover {
+  background-color: var.$deep-sky-blue;
+}

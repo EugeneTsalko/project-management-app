@@ -1,16 +1,12 @@
 import axios from 'axios';
 
-import { token } from './token';
-
 const API = axios.create({
-  // baseURL: process.env.REACT_APP_API_URL,
-  baseURL: 'https://boiling-lake-31774.herokuapp.com',
+  baseURL: process.env.REACT_APP_API_URL,
 });
 
 API.interceptors.request.use(
   (config) => {
-    // config.headers = { Authorization: `Bearer ${window.localStorage.getItem('token')}` };
-    config.headers = { Authorization: `Bearer ${token}` };
+    config.headers = { Authorization: `Bearer ${window.localStorage.getItem('token')}` };
     return config;
   },
   (error) => {

@@ -1,0 +1,31 @@
+@use '../../styles/variables.scss' as var;
+
+.footer {
+  background-color: var.$lime-green;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px;
+  margin-top: auto;
+  // position: fixed;
+  // bottom: 0;
+
+  &Github {
+    display: flex;
+    gap: 20px;
+
+    a {
+      color: var.$black;
+      transition: var.$main-transition;
+    }
+
+    a:hover {
+      color: var.$white;
+    }
+  }
+}
+
+.footerLogo {
+  height: 18px;
+  cursor: pointer;
+}

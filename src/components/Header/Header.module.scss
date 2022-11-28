@@ -1,0 +1,19 @@
+@use '../../styles/variables.scss' as var;
+
+.header {
+  background-color: var.$blue;
+  width: 100%;
+  position: sticky;
+  top: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px;
+  transition: var.$main-transition;
+  z-index: 10;
+}
+
+.scrolled {
+  background-color: var.$deep-sky-blue;
+  padding: 10px 20px;
+}
