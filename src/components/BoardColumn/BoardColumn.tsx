@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { BoardTask } from './BoardTask/BoardTask';
 import { RemoveColumn } from './ModalWindows/RemoveColumn/RemoveColumn';
 import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
+import { IoTrash } from 'react-icons/io5';
 import { updateColumn as updateColumnAPI } from 'api/currentBoard';
 import { ColumnInterface } from 'api/currentBoard/index.types';
 import { updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
@@ -71,7 +72,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
             aria-label="Delete column"
             onClick={() => setRemoveColumnModalWindow(true)}
           >
-            X
+            <IoTrash />
           </button>
           <button
             className={styles.createTaskButton}

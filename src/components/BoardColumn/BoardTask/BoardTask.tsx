@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 
 import { RemoveTask } from './ModalWindows/RemoveTask/RemoveTask';
 import { AboutTask } from './ModalWindows/AboutTask/AboutTask';
+import { IoTrash } from 'react-icons/io5';
 import { BoardTaskProps } from './BoardTask.types';
 import styles from './BoardTask.module.scss';
 
@@ -18,7 +19,7 @@ const BoardTask = ({ data, boardId, columnId }: BoardTaskProps) => {
         </p>
         {isTaskHover && (
           <button className={styles.deleteTaskButton} type="button" onClick={() => setRemoveTaskModalWindow(true)}>
-            X
+            <IoTrash />
           </button>
         )}
       </div>

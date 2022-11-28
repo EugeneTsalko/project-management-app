@@ -1,20 +1,25 @@
 @use '../../styles/variables.scss' as var;
 
+$indent: 0.5em;
+
 .column {
   display: flex;
   flex-direction: column;
   width: 300px;
   min-width: 300px;
   height: max-content;
-  max-height: calc(79vh);
-  margin: 0 0.5em;
-  padding: 0.5em;
+  max-height: calc(78vh);
+  margin: 0 $indent;
+  padding: $indent $indent/2 $indent $indent;
 
   background-color: var.$column-background;
   border-radius: 5px;
+  box-shadow: 0px 0px 5px 2px rgba(34, 60, 80, 0.2);
 }
+
 .columnTitle {
   padding-bottom: 0.75rem;
+  margin-right: 0.25em;
   color: var.$white;
   text-overflow: ellipsis;
 
@@ -27,6 +32,8 @@
 }
 
 .editColumnTitle {
+  padding-right: $indent / 2;
+
   textarea {
     height: 4rem;
     width: 100%;
@@ -45,7 +52,7 @@
 }
 
 .taskList {
-  margin: 0.2em 0;
+  margin: $indent 0;
 
   overflow-x: hidden;
   overflow-y: auto;
@@ -56,10 +63,53 @@
   display: flex;
   justify-content: space-between;
   width: 100%;
+  padding-right: $indent / 2;
 }
 
-.deleteColumnButton {
+.sendButton,
+.cancelButton,
+.deleteColumnButton,
+.createTaskButton {
+  padding: 0.25em 0.75em;
+
+  color: var.$white;
+  font-weight: 500;
+
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+
+    transform: scale(1.1);
+    transition: 0.4s;
+  }
+}
+
+.sendButton {
+  background-color: var.$forest-green;
+}
+
+.cancelButton {
+  background-color: var.$ruby-red;
 }
 
 .createTaskButton {
+  background-color: var.$forest-green;
+}
+
+.deleteColumnButton {
+  display: flex;
+  align-items: center;
+  padding: 0.15em;
+
+  font-size: 1.4rem;
+
+  border: none;
+  cursor: pointer;
+  background-color: var.$ruby-red;
+  transition: all 0.3s;
+
+  & > svg {
+    pointer-events: none;
+  }
 }

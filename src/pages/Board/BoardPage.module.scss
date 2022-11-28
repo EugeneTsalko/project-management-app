@@ -25,17 +25,39 @@
   grid-area: board-title;
 }
 
+.closeBoardButton,
+.createColumnButton {
+  padding: 0.25em 0.75em;
+
+  color: var.$white;
+  font-weight: 500;
+
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+
+    transform: scale(1.1);
+    transition: 0.4s;
+  }
+}
+
 .closeBoardButton {
   grid-area: close-board-button;
+
+  background-color: var.$ruby-red;
 }
 
 .createColumnButton {
   grid-area: create-column-button;
+
+  background-color: var.$forest-green;
 }
 
 .columnList {
   display: flex;
-  height: 100%;
+  // height: 100%;
+  height: calc(80vh);
   padding-bottom: 2 * var.$scrollbar-indent;
   margin: 0 var.$scrollbar-indent var.$scrollbar-indent;
 
