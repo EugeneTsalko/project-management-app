@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { updateTask as updateTaskAPI } from 'api/currentBoard';
 import { updateTask as updateTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './AboutTask.types';
+import { RootState } from 'store/store';
 import styles from './AboutTask.module.scss';
-
-import { userId } from 'api/token';
 
 const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
+  const userId = useSelector((state: RootState) => state.user.user!.id);
   const [isEditTaskTitle, setIsEditTaskTitle] = useState(false);
   const [isEditTaskDescription, setIsEditTaskDescription] = useState(false);
 
