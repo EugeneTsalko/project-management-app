@@ -10,9 +10,12 @@ import { ModalWindowProps } from './RemoveColumn.types';
 const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
 
-  const removeColumn = () => {
-    removeColumnAPI(boardId, columnId);
-    dispatch(removeColumnAction(columnId));
+  const removeColumn = async () => {
+    const response = await removeColumnAPI(boardId, columnId);
+
+    if (response.status === 204) {
+      dispatch(removeColumnAction(columnId));
+    }
   };
 
   const confirmationActions = {

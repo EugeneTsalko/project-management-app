@@ -10,9 +10,12 @@ import { ModalWindowProps } from './RemoveTask.types';
 const RemoveTask = ({ setState, boardId, columnId, taskId }: ModalWindowProps) => {
   const dispatch = useDispatch();
 
-  const removeTask = () => {
-    removeTaskAPI(boardId, columnId, taskId);
-    dispatch(removeTaskAction({ columnId, taskId }));
+  const removeTask = async () => {
+    const response = await removeTaskAPI(boardId, columnId, taskId);
+
+    if (response.status === 204) {
+      dispatch(removeTaskAction({ columnId, taskId }));
+    }
   };
 
   const confirmationActions = {
