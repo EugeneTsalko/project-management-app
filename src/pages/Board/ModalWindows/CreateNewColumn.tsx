@@ -9,9 +9,11 @@ import { createColumn as createColumnAction } from 'store/slices/currentBoardSli
 import { ModalWindowModification, ModalWindowProps } from './CreateNewColumn.types';
 
 import styles from './CreateNewColumn.module.scss';
+import { useTranslation } from 'react-i18next';
 
 const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
   const dispatch = useDispatch();
+  const { t } = useTranslation();
 
   const {
     register,
@@ -21,8 +23,8 @@ const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
   } = useForm<ModalWindowModification>({ reValidateMode: 'onSubmit' });
 
   const columnTitleValidate = {
-    required: "Title can't be empty",
-    maxLength: { value: 100, message: 'Title must be less than 100 letters.' },
+    required: t("Title can't be empty"),
+    maxLength: { value: 100, message: t('Title must be less than 100 characters!') },
   };
 
   const createColumn = async (value: ModalWindowModification) => {
@@ -45,9 +47,9 @@ const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="modification" actions={modificationActions}>
-      <p className="modalDescription">Create new column.</p>
+      <p className="modalDescription">{t('Create column')}</p>
       <div className={styles.inputField}>
-        <label htmlFor="columnTitle">Enter title:</label>
+        <label htmlFor="columnTitle">{t('Enter title:')}</label>
         <textarea
           className={`${errors.columnTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
           id="columnTitle"

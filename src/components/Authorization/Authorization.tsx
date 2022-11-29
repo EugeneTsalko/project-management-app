@@ -33,7 +33,7 @@ export const Authorization = ({ type, onChange }: Props) => {
           <input
             className={styles.input}
             type="text"
-            placeholder={t('authName') as string}
+            placeholder={t('Name') as string}
             autoComplete="off"
             {...register('name', {
               required: t('Please enter your name') as string,
@@ -48,7 +48,7 @@ export const Authorization = ({ type, onChange }: Props) => {
       <input
         className={styles.input}
         type="text"
-        placeholder={t('authLogin') as string}
+        placeholder={t('Login') as string}
         autoComplete="off"
         {...register('login', {
           required: t('Please enter your login') as string,
@@ -61,7 +61,7 @@ export const Authorization = ({ type, onChange }: Props) => {
       <input
         className={styles.input}
         type="password"
-        placeholder={t('authPassword') as string}
+        placeholder={t('Password') as string}
         autoComplete="off"
         {...register('password', {
           required: t('Please enter your password') as string,

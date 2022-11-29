@@ -6,14 +6,12 @@ import { createBoard, updateBoard } from 'api/boards';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import styles from './index.module.scss';
 
-import { IBoards, IBoardsErrorMessage, ICreateBoard } from 'api/boards/index.types';
+import { ICreateBoard } from 'api/boards/index.types';
 import { IFormBoardProps } from './index.types';
-import { useTranslation } from 'react-i18next';
-import toast from 'react-hot-toast';
+import { t } from 'i18next';
 
 const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, description }) => {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
 
   const {
     reset,
@@ -33,17 +31,7 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
   };
 
   const submitHandler: SubmitHandler<ICreateBoard> = async ({ title, description }, e) => {
-    const { payload } = await dispatch(
-      id ? updateBoard({ id, title, description }) : createBoard({ title, description })
-    );
-
-    if (payload && 'message' in payload === false) {
-      id ? toast.success(t('Board is updated!')) : toast.success(t('Board is created!'));
-    }
-    if (payload && 'message' in payload) {
-      id ? toast.error(t('Failed to update board.')) : toast.error(t('Failed to create board.'));
-    }
-
+    await dispatch(id ? updateBoard({ id, title, description }) : createBoard({ title, description }));
     setIsFormBoardModal(false);
     reset();
   };
@@ -64,19 +52,18 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
           })}
           className={`${errors.title ? `${styles.input} ${styles.error}` : styles.input}`}
           type="text"
-          placeholder={t('boardTitle') as string}
+          placeholder={t('Title') as string}
         />
         {errors.title && <p className={styles.error}>{errors.title?.message}</p>}
       </div>
       <div className={styles.inputBox}>
-        <input
+        <textarea
           {...register('description', {
             required: t("Description can't be empty") as string,
             maxLength: { value: 60, message: t('It must be less than 60 characters!') },
           })}
           className={`${errors.description ? `${styles.input} ${styles.error}` : styles.input}`}
-          type="text"
-          placeholder={t('boardDescription') as string}
+          placeholder={t('Description') as string}
         />
         {errors.description && <p className={styles.error}>{errors.description?.message}</p>}
       </div>

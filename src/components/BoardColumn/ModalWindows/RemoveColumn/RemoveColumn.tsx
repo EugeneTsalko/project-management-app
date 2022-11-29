@@ -6,6 +6,7 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { removeColumn as removeColumnAPI } from 'api/currentBoard';
 import { removeColumn as removeColumnAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveColumn.types';
+import { t } from 'i18next';
 
 const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="confirmation" actions={confirmationActions}>
-      <p className="modalDescription">The column will be removed. Are you sure?</p>
+      <p className="modalDescription">{t('Are you sure you want to delete this column?')}</p>
     </ModalWindow>
   );
 };

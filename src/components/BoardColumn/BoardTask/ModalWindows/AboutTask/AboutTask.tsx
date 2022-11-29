@@ -9,6 +9,7 @@ import { updateTask as updateTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './AboutTask.types';
 import { RootState } from 'store/store';
 import styles from './AboutTask.module.scss';
+import { t } from 'i18next';
 
 const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -30,12 +31,12 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   });
 
   const taskTitleValidate = {
-    required: "Title can't be empty",
-    maxLength: { value: 100, message: 'Title must be less than 100 letters.' },
+    required: t("Title can't be empty"),
+    maxLength: { value: 100, message: t('Title must be less than 100 letters!') },
   };
   const taskDescriptionValidate = {
-    required: "Description can't be empty",
-    maxLength: { value: 400, message: 'Description must be less than 400 letters.' },
+    required: t("Description can't be empty"),
+    maxLength: { value: 400, message: t('Description must be less than 400 letters!') },
   };
 
   const updateTask = async (value: ModalWindowModification) => {
@@ -69,7 +70,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="information" actions={modificationActions}>
-      <p className="modalDescription">About task.</p>
+      <p className="modalDescription">{t('About task')}</p>
 
       <div className={styles.inputField}>
         <label htmlFor="taskTitle">Title:</label>
@@ -84,7 +85,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
                 setIsEditTaskTitle(true);
               }}
             >
-              Edit
+              {t('Edit')}
             </button>
           </>
         )}
@@ -102,7 +103,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
               aria-label="Cancel"
               onClick={() => setIsEditTaskTitle(false)}
             >
-              Cancel
+              {t('Cancel')}
             </button>
           </>
         )}
@@ -121,7 +122,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
                 setIsEditTaskDescription(true);
               }}
             >
-              Edit
+              {t('Edit')}
             </button>
           </>
         )}
@@ -139,14 +140,14 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
               aria-label="Cancel"
               onClick={() => setIsEditTaskDescription(false)}
             >
-              Cancel
+              {t('Cancel')}
             </button>
           </>
         )}
       </div>
       {(isEditTaskTitle || isEditTaskDescription) && (
         <button className={styles.sendButton} type="submit" aria-label="Send" onClick={handleSubmit(updateTask)}>
-          Send
+          {t('Send')}
         </button>
       )}
     </ModalWindow>

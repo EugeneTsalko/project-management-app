@@ -18,7 +18,7 @@ const MainPage = () => {
 
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>{t('boardsTitle')}</h1>
+      <h1 className={styles.title}>{t('Boards')}</h1>
       <Suspense fallback={<LoaderSpinner />}>
         <BoardsList />
       </Suspense>

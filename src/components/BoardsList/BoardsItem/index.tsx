@@ -4,19 +4,17 @@ import { useAppDispatch } from 'store/hooks';
 
 import { IBoards } from 'api/boards/index.types';
 import { deleteBoard } from 'api/boards';
-import toast from 'react-hot-toast';
 
 import FormBoard from '../FormBoard';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
 import { IoTrash, IoPencil } from 'react-icons/io5';
 import styles from './index.module.scss';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const [isDeleteBoardModal, setIsDeleteBoardModal] = useState<boolean>(false);
   const [isEditBoardModal, setIsEditBoardModal] = useState<boolean>(false);
@@ -32,12 +30,7 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
   };
 
   const deleteHandler = async () => {
-    const { payload } = await dispatch(deleteBoard(id));
-    if (!payload) {
-      toast.success(t('Board is deleted!'));
-    } else {
-      toast.error(t('Failed to delete board.'));
-    }
+    await dispatch(deleteBoard(id));
   };
 
   const deleteActions = {
@@ -62,7 +55,7 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
 
       {isDeleteBoardModal && (
         <ModalWindow type="confirmation" actions={deleteActions}>
-          <h3>{t('Do you want to delete this board?')}</h3>
+          <h3>{t('Are you sure you want to delete this board?')}</h3>
         </ModalWindow>
       )}
 

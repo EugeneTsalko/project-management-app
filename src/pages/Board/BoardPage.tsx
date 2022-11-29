@@ -9,6 +9,7 @@ import LoaderSpinner from 'components/LoaderSpinner';
 import { getBoard } from 'api/currentBoard';
 import { ColumnInterface } from 'api/currentBoard/index.types';
 import { setCurrentBoard } from 'store/slices/currentBoardSlice';
+import { useTranslation } from 'react-i18next';
 import { RootState } from 'store/store';
 import styles from './BoardPage.module.scss';
 
@@ -17,6 +18,7 @@ const BoardPage = () => {
   const dispatch = useDispatch();
   const currentBoard = useSelector((state: RootState) => state.currentBoard);
   const { id } = useParams();
+  const { t } = useTranslation();
 
   const [isLoading, setIsLoading] = useState(true);
   const [createColumnModalWindow, setCreateColumnModalWindow] = useState(false);
@@ -50,9 +52,9 @@ const BoardPage = () => {
             className={styles.closeBoardButton}
             type="button"
             aria-label="Close board"
-            onClick={() => navigate('/Boards')}
+            onClick={() => navigate(-1)}
           >
-            Close board
+            {t('Close Board')}
           </button>
           <button
             className={styles.createColumnButton}
@@ -60,7 +62,7 @@ const BoardPage = () => {
             aria-label="Create column"
             onClick={() => setCreateColumnModalWindow(true)}
           >
-            Create column
+            {t('Create column')}
           </button>
         </header>
         <ul className={styles.columnList}>

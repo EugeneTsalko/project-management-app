@@ -2,11 +2,9 @@ import React from 'react';
 
 import styles from './ModalWindow.module.scss';
 import { ModalWindowProps } from './ModalWindow.types';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
-  const { t } = useTranslation();
-
   const handleClickCloseWindow = (event: React.SyntheticEvent) => {
     event.stopPropagation();
     const { target } = event;
@@ -46,7 +44,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
               aria-label="Close"
               onClick={handleClickCloseWindow}
             >
-              Close
+              {t('Close')}
             </button>
           )}
 
