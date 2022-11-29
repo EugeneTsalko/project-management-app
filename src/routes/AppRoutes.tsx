@@ -11,6 +11,7 @@ import { useAppDispatch } from 'store/hooks';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
 import { isUserAuth } from 'api';
+import { ProfilePage } from 'pages/ProfilePage/ProfilePage';
 
 export default function AppRoutes() {
   const dispatch = useAppDispatch();
@@ -26,7 +27,7 @@ export default function AppRoutes() {
       <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
       <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
       <Route path="/Boards/:id" element={<p>Board page</p>} />
-      <Route path="/profile" element={<PrivateRoute component={<p>Profile</p>} />} />
+      <Route path="/profile" element={<PrivateRoute component={<ProfilePage />} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
