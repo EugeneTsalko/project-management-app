@@ -1,0 +1,67 @@
+@use './../../styles/variables.scss' as var;
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: var.$scrollbar-indent;
+
+  background-blend-mode: screen;
+  background: linear-gradient(limegreen, transparent), linear-gradient(90deg, skyblue, transparent),
+    linear-gradient(-90deg, coral, transparent);
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: 'board-title close-board-button . create-column-button';
+  gap: 1em;
+  padding: 0.5em 1em;
+}
+
+.boardTitle {
+  grid-area: board-title;
+}
+
+.closeBoardButton,
+.createColumnButton {
+  padding: 0.25em 0.75em;
+
+  color: var.$white;
+  font-weight: 500;
+
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+
+    transform: scale(1.1);
+    transition: 0.4s;
+  }
+}
+
+.closeBoardButton {
+  grid-area: close-board-button;
+
+  background-color: var.$ruby-red;
+}
+
+.createColumnButton {
+  grid-area: create-column-button;
+
+  background-color: var.$forest-green;
+}
+
+.columnList {
+  display: flex;
+  flex: 1;
+  padding-bottom: 2 * var.$scrollbar-indent;
+  margin: 0 var.$scrollbar-indent var.$scrollbar-indent;
+
+  overflow-x: auto;
+  overflow-y: hidden;
+  list-style-type: none;
+
+}
