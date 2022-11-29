@@ -1,5 +1,4 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import toast from 'react-hot-toast';
 import API from '../base';
 
 import { IBoards, IBoardsErrorMessage, ICreateBoard } from './index.types';
@@ -11,7 +10,6 @@ export const getBoardsList = createAsyncThunk<IBoards[], void, { rejectValue: IB
       const response = await API.get('/boards');
 
       if (response.status === 404) {
-        toast.error(response.data.message);
         return thunkApi.rejectWithValue({
           message: response.data.message,
         });
@@ -19,15 +17,14 @@ export const getBoardsList = createAsyncThunk<IBoards[], void, { rejectValue: IB
 
       return response.data;
     } catch (err) {
-      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
-        message: 'Failed to get boards.',
+        message: (err as Error).message,
       });
     }
   }
 );
 
-export const createBoard = createAsyncThunk<IBoards[], ICreateBoard, { rejectValue: IBoardsErrorMessage }>(
+export const createBoard = createAsyncThunk<IBoards, ICreateBoard, { rejectValue: IBoardsErrorMessage }>(
   '/createBoard',
   async ({ title, description }, thunkApi) => {
     try {
@@ -39,10 +36,8 @@ export const createBoard = createAsyncThunk<IBoards[], ICreateBoard, { rejectVal
         });
       }
 
-      toast.success('Board is created');
       return response.data;
     } catch (err) {
-      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
         message: (err as Error).message,
       });
@@ -64,9 +59,8 @@ export const getBoardById = createAsyncThunk<IBoards[], string, { rejectValue: I
 
       return response.data;
     } catch (err) {
-      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
-        message: 'Failed to get board.',
+        message: (err as Error).message,
       });
     }
   }
@@ -83,18 +77,16 @@ export const deleteBoard = createAsyncThunk<IBoards[], string, { rejectValue: IB
           message: response.data.message,
         });
       }
-      toast.success('Board is deleted');
       return response.data;
     } catch (err) {
-      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
-        message: 'Failed to delete board.',
+        message: (err as Error).message,
       });
     }
   }
 );
 
-export const updateBoard = createAsyncThunk<IBoards[], IBoards, { rejectValue: IBoardsErrorMessage }>(
+export const updateBoard = createAsyncThunk<IBoards, IBoards, { rejectValue: IBoardsErrorMessage }>(
   '/updateBoard',
   async ({ id, title, description }, thunkApi) => {
     try {
@@ -105,10 +97,8 @@ export const updateBoard = createAsyncThunk<IBoards[], IBoards, { rejectValue: I
           message: response.data.message,
         });
       }
-      toast.success('Board is updated');
       return response.data;
     } catch (err) {
-      toast.error((err as Error).message);
       return thunkApi.rejectWithValue({
         message: (err as Error).message,
       });
