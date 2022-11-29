@@ -60,7 +60,7 @@ const updateTask = async (
 
 const removeTask = async (boardId: string, columnId: string, taskId: string) => {
   try {
-    const response = (await API.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}1`)) as AxiosResponse;
+    const response = (await API.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`)) as AxiosResponse;
 
     if (response.status === 404) {
       toast.error(response.data.message);
