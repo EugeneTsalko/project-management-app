@@ -5,6 +5,7 @@ import { SignIn } from 'pages/SignIn/SignIn';
 import { SignUp } from 'pages/SignUp/SignUp';
 import { NotFound } from 'pages/NotFound/NotFound';
 import { WelcomePage } from 'pages/WelcomePage/WelcomePage';
+import { BoardPage } from 'pages/Board/BoardPage';
 
 import { Routes, Route } from 'react-router-dom';
 import { useAppDispatch } from 'store/hooks';
@@ -25,7 +26,7 @@ export default function AppRoutes() {
       <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
       <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
       <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
-      <Route path="/Boards/:id" element={<p>Board page</p>} />
+      <Route path="/Boards/:id" element={<PrivateRoute component={<BoardPage />} />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -1,0 +1,89 @@
+@use '../../../../../styles/variables.scss' as var;
+
+.inputField {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  margin: 1em 0;
+
+  user-select: none;
+
+  label {
+    font-weight: 900;
+  }
+}
+
+
+.columnTitle,
+.columnDescription {
+  width: 40vw;
+  min-width: 40vw;
+  margin-top: 0.5em;
+}
+
+.textarea {
+  height: 10rem;
+  width: 100%;
+  min-width: 40vw;
+  padding: 0.5rem 1rem;
+  
+  font-size: 1rem;
+  
+  background: var.$white;
+  border: 2px solid var.$grey;
+  border-radius: var.$btn-border-radius;
+  resize: none;
+  
+  &:focus {
+    border-color: var.$grey;
+  }
+}
+
+.error {
+  align-self: flex-end;
+  
+  color: var.$ruby-red;
+  
+  border-color: var.$ruby-red;
+  
+  user-select: none;
+}
+
+
+.editButton,
+.cancelButton,
+.sendButton {
+  padding: 0.25em 0.75em;
+
+  color: var.$white;
+  font-weight: 500;
+
+  border-radius: 5px;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+
+    transform: scale(1.1);
+    transition: 0.4s;
+  }
+}
+
+.editButton {
+  position: absolute;
+  right: 0;
+  top: 0;
+
+  background-color: var.$blue-violet;
+}
+
+.cancelButton {
+  align-self: flex-end;
+  margin-top: 0.5em;
+
+  background-color: var.$ruby-red;
+}
+
+.sendButton {
+  background-color: var.$forest-green;
+}
