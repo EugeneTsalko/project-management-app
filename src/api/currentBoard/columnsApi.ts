@@ -16,8 +16,8 @@ const createColumn = async (boardId: string, title: string) => {
 
     toast.success('Column is created');
     return response.data as ColumnResponseInterface;
-  } catch (err) {
-    toast.error((err as Error).message);
+  } catch {
+    toast.error('Failed to create column');
     return null;
   }
 };
@@ -33,8 +33,8 @@ const updateColumn = async (boardId: string, columnId: string, title: string, or
 
     toast.success('Column is updated');
     return response.data as ColumnResponseInterface;
-  } catch (err) {
-    toast.error((err as Error).message);
+  } catch {
+    toast.error('Failed to update column');
     return null;
   }
 };
@@ -54,8 +54,8 @@ const removeColumn = async (boardId: string, columnId: string) => {
     }
 
     return null;
-  } catch (err) {
-    toast.error((err as Error).message);
+  } catch {
+    toast.error('Failed to remove column');
     return null;
   }
 };

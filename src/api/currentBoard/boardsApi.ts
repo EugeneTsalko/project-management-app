@@ -15,8 +15,8 @@ const getBoard = async (id: string) => {
     }
 
     return response.data as BoardInterface;
-  } catch (err) {
-    toast.error((err as Error).message);
+  } catch {
+    toast.error('Failed to get board');
     return null;
   }
 };
