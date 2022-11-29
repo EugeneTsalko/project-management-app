@@ -53,3 +53,18 @@
     transition: 0.4s;
   }
 }
+
+.deleteTaskButtonEnter {
+  opacity: 0;
+}
+.deleteTaskButtonEnterActive {
+  opacity: 1;
+  transition: opacity 200ms;
+}
+.deleteTaskButtonExit {
+  opacity: 1;
+}
+.deleteTaskButtonExitActive {
+  opacity: 0;
+  transition: opacity 200ms;
+}
