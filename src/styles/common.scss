@@ -1,6 +1,6 @@
 @charset 'utf-8';
 
-@import './variables.scss';
+@use './variables.scss' as var;
 @import './fonts.scss';
 
 *,
@@ -16,7 +16,32 @@ img {
   display: block;
 }
 
+* {
+  &::-webkit-scrollbar {
+    width: 0.6em;
+    height: 0.6em;
+    margin-block: 0.25em;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin-block: 0.25em;
+
+    border-radius: 100vw;
+    background-color: var.$column-background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    border-radius: 100vw;
+    background-color: var.$deep-sky-blue;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var.$lime-green;
+  }
+}
+
 body,
+h2,
 h3,
 h4,
 p,
@@ -33,12 +58,19 @@ select {
   outline: none;
 }
 
+button {
+  border: 0;
+
+  cursor: pointer;
+  outline: 0;
+}
+
 body {
-  color: $black;
+  color: var.$black;
+  font-family: 'Work Sans', sans-serif;
   font-weight: 500;
 
-  background-color: $white;
-  font-family: 'Work Sans', sans-serif;
+  background-color: var.$white;
 }
 
 #root {
@@ -53,4 +85,6 @@ body {
 
   font-size: 1.75rem;
   font-weight: 900;
+
+  user-select: none;
 }

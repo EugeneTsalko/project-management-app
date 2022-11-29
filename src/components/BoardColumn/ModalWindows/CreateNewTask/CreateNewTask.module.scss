@@ -1,0 +1,37 @@
+@use '../../../../styles/variables.scss' as var;
+
+.inputField {
+  display: flex;
+  flex-direction: column;
+  margin: 0.5em 0;
+
+  label {
+    font-weight: 900;
+  }
+}
+
+.textarea {
+  height: 10rem;
+  width: 100%;
+  min-width: 40vw;
+  padding: 0.5rem 1rem;
+
+  font-size: 1rem;
+
+  background: var.$white;
+  border: 2px solid var.$grey;
+  border-radius: var.$btn-border-radius;
+  resize: none;
+
+  &:focus {
+    border-color: var.$grey;
+  }
+}
+
+.error {
+  align-self: flex-end;
+
+  color: var.$ruby-red;
+
+  border-color: var.$ruby-red;
+}

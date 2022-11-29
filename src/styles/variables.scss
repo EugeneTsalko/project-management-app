@@ -5,10 +5,12 @@ $black: rgb(0, 0, 0);
 $blue: rgb(0, 110, 255);
 $deep-sky-blue: rgb(0, 191, 255);
 $aqua: rgb(0, 255, 255);
+$blue-violet: rgb(138, 43, 226);
 $lime-green: rgb(50, 205, 50);
 $forest-green: rgb(34, 139, 34);
 $ruby-red: rgb(224, 17, 95);
 $modal-background: rgba(0, 0, 0, 0.6);
+$column-background: rgba(0, 0, 0, 0.5);
 $shadow: rgba(56, 56, 56, 0.3);
 $yellow: rgb(255, 210, 76);
 $light-yellow: rgb(255, 230, 154);
@@ -26,6 +28,8 @@ $screen-width-small: 640px;
 $default-fonts: Arial, Helvetica, sans-serif;
 
 $btn-border-radius: 5px;
+$modal-window-border-radius: 10px;
+$scrollbar-indent: 0.2em;
 
 $main-transition: ease-in-out 0.3s;
 
