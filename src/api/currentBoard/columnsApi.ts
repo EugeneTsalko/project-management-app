@@ -24,7 +24,7 @@ const createColumn = async (boardId: string, title: string) => {
 
 const updateColumn = async (boardId: string, columnId: string, title: string, order: number) => {
   try {
-    const response = (await API.put(`/boards/${boardId}/columns/${columnId}1`, { title, order })) as AxiosResponse;
+    const response = (await API.put(`/boards/${boardId}/columns/${columnId}`, { title, order })) as AxiosResponse;
 
     if (response.status === 404) {
       toast.error(response.data.message);

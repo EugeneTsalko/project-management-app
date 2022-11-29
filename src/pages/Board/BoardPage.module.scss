@@ -56,12 +56,12 @@
 
 .columnList {
   display: flex;
-  // height: 100%;
-  height: calc(80vh);
+  flex: 1;
   padding-bottom: 2 * var.$scrollbar-indent;
   margin: 0 var.$scrollbar-indent var.$scrollbar-indent;
 
   overflow-x: auto;
   overflow-y: hidden;
   list-style-type: none;
+
 }
