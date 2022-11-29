@@ -13,7 +13,7 @@ const RemoveTask = ({ setState, boardId, columnId, taskId }: ModalWindowProps) =
   const removeTask = async () => {
     const response = await removeTaskAPI(boardId, columnId, taskId);
 
-    if (response.status === 204) {
+    if (response) {
       dispatch(removeTaskAction({ columnId, taskId }));
     }
   };

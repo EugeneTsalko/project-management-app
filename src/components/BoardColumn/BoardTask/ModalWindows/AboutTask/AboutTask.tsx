@@ -48,7 +48,10 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
       data.order,
       userId
     );
-    dispatch(updateTaskAction(responseData));
+
+    if (responseData) {
+      dispatch(updateTaskAction(responseData));
+    }
 
     setState(false);
     resetField('taskTitle');

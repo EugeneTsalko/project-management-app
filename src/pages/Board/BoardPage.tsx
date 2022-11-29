@@ -24,8 +24,12 @@ const BoardPage = () => {
   const loadBoard = async () => {
     setIsLoading(true);
     const responseData = await getBoard(id as string);
-    dispatch(setCurrentBoard(responseData));
 
+    if (!responseData) {
+      navigate('/Boards');
+      return;
+    }
+    dispatch(setCurrentBoard(responseData));
     setIsLoading(false);
   };
 

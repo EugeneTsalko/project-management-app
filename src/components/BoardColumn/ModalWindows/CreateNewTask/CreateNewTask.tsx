@@ -32,7 +32,11 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
 
   const createTask = async (value: ModalWindowModification) => {
     const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, userId);
-    dispatch(createTaskAction(responseData));
+
+    if (responseData) {
+      dispatch(createTaskAction(responseData));
+    }
+
     setState(false);
     resetField('taskTitle');
     resetField('taskDescription');

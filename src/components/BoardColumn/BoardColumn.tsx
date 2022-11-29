@@ -19,16 +19,18 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
   const columnTitle = useRef(null) as React.RefObject<HTMLTextAreaElement>;
 
   const setColumnTitle = async () => {
-    if (columnTitle.current) {
-      const title = columnTitle.current.value;
+    const title = columnTitle.current!.value;
 
-      if (!title.trim().length) {
-        return;
-      }
+    if (!title.trim().length) {
+      return;
+    }
 
-      const responseData = await updateColumnAPI(boardId, data.id, title, data.order);
+    const responseData = await updateColumnAPI(boardId, data.id, title, data.order);
+
+    if (responseData) {
       dispatch(updateColumnAction(responseData));
     }
+
     setIsEditColumnTitle(false);
   };
 

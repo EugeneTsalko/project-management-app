@@ -13,7 +13,7 @@ const RemoveColumn = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const removeColumn = async () => {
     const response = await removeColumnAPI(boardId, columnId);
 
-    if (response.status === 204) {
+    if (response) {
       dispatch(removeColumnAction(columnId));
     }
   };

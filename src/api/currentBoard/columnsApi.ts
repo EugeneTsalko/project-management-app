@@ -1,22 +1,63 @@
 import { AxiosResponse } from 'axios';
+import toast from 'react-hot-toast';
 
 import API from 'api/base';
 
 import { ColumnResponseInterface } from 'api/currentBoard/index.types';
 
 const createColumn = async (boardId: string, title: string) => {
-  const response = (await API.post(`/boards/${boardId}/columns`, { title })) as AxiosResponse;
-  return response.data as ColumnResponseInterface;
+  try {
+    const response = (await API.post(`/boards/${boardId}/columns`, { title })) as AxiosResponse;
+
+    if (response.status === 404) {
+      toast.error(response.data.message);
+      return null;
+    }
+
+    toast.success('Column is created');
+    return response.data as ColumnResponseInterface;
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
 };
 
 const updateColumn = async (boardId: string, columnId: string, title: string, order: number) => {
-  const response = (await API.put(`/boards/${boardId}/columns/${columnId}`, { title, order })) as AxiosResponse;
-  return response.data as ColumnResponseInterface;
+  try {
+    const response = (await API.put(`/boards/${boardId}/columns/${columnId}1`, { title, order })) as AxiosResponse;
+
+    if (response.status === 404) {
+      toast.error(response.data.message);
+      return null;
+    }
+
+    toast.success('Column is updated');
+    return response.data as ColumnResponseInterface;
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
 };
 
 const removeColumn = async (boardId: string, columnId: string) => {
-  const response = (await API.delete(`/boards/${boardId}/columns/${columnId}`)) as AxiosResponse;
-  return response;
+  try {
+    const response = (await API.delete(`/boards/${boardId}/columns/${columnId}`)) as AxiosResponse;
+
+    if (response.status === 404) {
+      toast.error(response.data.message);
+      return null;
+    }
+
+    if (response.status === 204) {
+      toast.success('Column is removed');
+      return response;
+    }
+
+    return null;
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
 };
 
 export { createColumn, updateColumn, removeColumn };
