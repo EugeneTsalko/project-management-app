@@ -6,13 +6,15 @@ import { useAppDispatch } from 'store/hooks';
 import { signInUser, signUpUser } from 'api';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 export const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleChange = async ({ login, password, name }: AuthorizationValues) => {
-    toast.loading('Signing up...', { duration: 2000 });
+    toast.loading(t('Signing up...'), { duration: 2000 });
     await dispatch(signUpUser({ login, password, name }));
 
     const { payload } = await dispatch(signInUser({ login, password }));
@@ -20,7 +22,7 @@ export const SignUp = () => {
 
     if (token) {
       window.localStorage.setItem('token', token);
-      toast.success('Welcome on board!');
+      toast.success(t('Welcome on board!'));
       navigate('/boards');
     }
     if (message) {

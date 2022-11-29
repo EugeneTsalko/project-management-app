@@ -2,8 +2,11 @@ import React from 'react';
 
 import styles from './ModalWindow.module.scss';
 import { ModalWindowProps } from './ModalWindow.types';
+import { useTranslation } from 'react-i18next';
 
 const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
+  const { t } = useTranslation();
+
   const handleClickCloseWindow = (event: React.SyntheticEvent) => {
     event.stopPropagation();
     const { target } = event;
@@ -54,7 +57,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
                 type="submit"
                 aria-label={type === 'confirmation' ? 'Confirm' : 'Save'}
               >
-                {type === 'confirmation' ? 'Confirm' : 'Save'}
+                {type === 'confirmation' ? t('modalConfirmBtn') : t('modalSaveBtn')}
               </button>
               <button
                 className={`${styles.button} ${styles.denyButton}`}
@@ -63,7 +66,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
                 aria-label={type === 'confirmation' ? 'Deny' : 'Cancel'}
                 onClick={handleClickCloseWindow}
               >
-                {type === 'confirmation' ? 'Deny' : 'Cancel'}
+                {type === 'confirmation' ? t('modalDenyBtn') : t('modalCancelBtn')}
               </button>
             </>
           )}

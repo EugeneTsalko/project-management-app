@@ -9,10 +9,12 @@ import { BsClipboardPlus } from 'react-icons/bs';
 import styles from './index.module.scss';
 import FormBoard from './FormBoard';
 import LoaderSpinner from 'components/LoaderSpinner';
+import { useTranslation } from 'react-i18next';
 
 const BoardsList = () => {
   const { boards } = useAppSelector((state) => state.boards);
   const [isFormBoardModal, setIsFormBoardModal] = useState<boolean>(false);
+  const { t } = useTranslation();
 
   return (
     <div className={styles.cards}>
@@ -26,7 +28,7 @@ const BoardsList = () => {
 
       <button className={styles.addBoardButton} onClick={() => setIsFormBoardModal(true)}>
         <BsClipboardPlus />
-        Add Board
+        {t('Add Boards')}
       </button>
 
       {isFormBoardModal && <FormBoard setIsFormBoardModal={setIsFormBoardModal} />}

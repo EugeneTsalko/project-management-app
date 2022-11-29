@@ -6,9 +6,11 @@ import { getBoardsList } from 'api/boards';
 
 import styles from './index.module.scss';
 import LoaderSpinner from 'components/LoaderSpinner';
+import { useTranslation } from 'react-i18next';
 
 const MainPage = () => {
   const dispatch = useAppDispatch();
+  const { t } = useTranslation();
 
   useEffect(() => {
     dispatch(getBoardsList());
@@ -16,7 +18,7 @@ const MainPage = () => {
 
   return (
     <main className={styles.main}>
-      <h1 className={styles.title}>Boards</h1>
+      <h1 className={styles.title}>{t('boardsTitle')}</h1>
       <Suspense fallback={<LoaderSpinner />}>
         <BoardsList />
       </Suspense>
