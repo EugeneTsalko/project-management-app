@@ -26,6 +26,7 @@ export default function AppRoutes() {
       <Route path="/" element={<WelcomePage />} />
       <Route path="/signin" element={<PublicRoute component={<SignIn />} />} />
       <Route path="/signup" element={<PublicRoute component={<SignUp />} />} />
+      <Route path="/profile" element={<PrivateRoute component={<ProfilePage />} />} />
       <Route path="/Boards" element={<PrivateRoute component={<MainPage />} />} />
       <Route path="/Boards/:id" element={<PrivateRoute component={<BoardPage />} />} />
       <Route path="*" element={<NotFound />} />
