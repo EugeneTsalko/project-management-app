@@ -1,13 +1,13 @@
 import { configureStore, ThunkAction, Action } from '@reduxjs/toolkit';
 import { userReducer } from './slices/userSlice';
 import { boardsReducer } from './slices/boards';
-import dataReducer from './slices/currentBoardSlice';
+import currentBoardReducer from './slices/currentBoardSlice';
 
 export const store = configureStore({
   reducer: {
     user: userReducer,
     boards: boardsReducer,
-    currentBoard: dataReducer,
+    currentBoard: currentBoardReducer,
   },
 });
 

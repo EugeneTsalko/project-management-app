@@ -3,7 +3,7 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { BoardInterface, ColumnResponseInterface, TaskResponseInterface } from 'api/currentBoard/index.types';
 
 const initialState = {} as BoardInterface;
-export const data = createSlice({
+export const currentBoard = createSlice({
   name: 'currentBoard',
   initialState,
   reducers: {
@@ -51,6 +51,6 @@ export const data = createSlice({
 });
 
 export const { setCurrentBoard, createColumn, removeColumn, updateColumn, createTask, removeTask, updateTask } =
-  data.actions;
+  currentBoard.actions;
 
-export default data.reducer;
+export default currentBoard.reducer;
