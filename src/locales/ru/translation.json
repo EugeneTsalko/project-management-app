@@ -1,0 +1,66 @@
+{
+  "langEN": "АНГЛ",
+  "langRU": "РУС",
+
+  "goToMain": "Перейти на главную",
+  "profile": "Профиль",
+  "signOut": "Выйти",
+  "signIn": "Войти",
+  "signUp": "Регистрация",
+
+  "authName": "Имя",
+  "Please enter your name": "Пожалуйста, введите ваше имя",
+  "At least two symbols": "Не менее двух символов",
+  "Name must be less than 20 symbols": "Имя должно быть меньше 20 символов",
+
+  "authLogin": "Логин",
+  "Please enter your login": "Пожалуйста, введите ваш логин",
+  "Login must be less than 15 symbols": "Логин должен быть меньше 15 символов",
+
+  "authPassword": "Пароль",
+  "Please enter your password": "Пожалуйста, введите ваш пароль",
+  "Minimum eight symbols": "Минимум восемь символов",
+
+  "welcomeTitle": "Канбан — менеджер задач",
+  "welcomeDescription": "Почему компании решают внедрить Канбан? Это очевидно. Ни один из существующих методов управления временем, задачами или проектами не является одновременно удобным и эффективным. Кроме того, было доказано, что внедрение Agile-методов, таких как Kanban, повышает показатели успешности проектов.",
+  "welcomeButton": "Начать",
+
+  "notFoundPageTitle": "Похоже, вы потерялись",
+  "notFoundPageDescription": "страница, которую вы ищете, недоступна!",
+  "notFoundPageButton": "Перейти на главную страницу",
+
+  "boardsTitle": "Доски",
+  "Add Boards": "Добавить доску",
+  "Create Board": "Создать доску",
+  "Edit Board": "Изменить доску",
+
+  "boardTitle": "Название",
+  "Title can't be empty": "Название не может быть пустым!",
+  "Title must be less than 20 letters!": "Название должно быть меньше 20 букв!",
+
+  "boardDescription": "Описание",
+  "Description can't be empty": "Описание не может быть пустым!",
+  "It must be less than 60 letters!": "Должно быть меньше 60 букв!",
+
+  "Failed to get boards.": "Не удалось получить доски.",
+  "Board is created!": "Доска создана!",
+  "Failed to create board.": "Не удалось создать доску.",
+  "Failed to get board.": "Не удалось получить доску.",
+  "Board is deleted!": "Доска удалена!",
+  "Failed to delete board.": "Не удалось удалить доску.",
+  "Board is updated!": "Доска обновлена!",
+  "Failed to update board.": "Не удалось обновить доску.",
+
+  "modalConfirmBtn": "Да",
+  "modalDenyBtn": "Нет",
+  "modalSaveBtn": "Сохранить",
+  "modalCancelBtn": "Отменить",
+
+  "Signing up...": "Мы регистрируем вас...",
+  "Welcome on board!": "Добро пожаловать!",
+  "Welcome back on board!": "Добро пожаловать снова!",
+  "You are signed out!": "Вы вышли из системы!",
+
+  "Are you sure you want to sign out?": "Вы уверены, что хотите выйти?",
+  "Do you want to delete this board?": "Вы хотите удалить эту доску?"
+}
