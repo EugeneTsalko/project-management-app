@@ -14,10 +14,9 @@ const createColumn = async (boardId: string, title: string) => {
       return null;
     }
 
-    toast.success('Column is created');
     return response.data as ColumnResponseInterface;
-  } catch {
-    toast.error('Failed to create column');
+  } catch (err) {
+    toast.error((err as Error).message);
     return null;
   }
 };
@@ -31,10 +30,9 @@ const updateColumn = async (boardId: string, columnId: string, title: string, or
       return null;
     }
 
-    toast.success('Column is updated');
     return response.data as ColumnResponseInterface;
-  } catch {
-    toast.error('Failed to update column');
+  } catch (err) {
+    toast.error((err as Error).message);
     return null;
   }
 };
@@ -43,19 +41,17 @@ const removeColumn = async (boardId: string, columnId: string) => {
   try {
     const response = (await API.delete(`/boards/${boardId}/columns/${columnId}`)) as AxiosResponse;
 
-    if (response.status === 404) {
-      toast.error(response.data.message);
-      return null;
+    switch (response.status) {
+      case 404:
+        toast.error(response.data.message);
+        return null;
+      case 204:
+        return response;
+      default:
+        return null;
     }
-
-    if (response.status === 204) {
-      toast.success('Column is removed');
-      return response;
-    }
-
-    return null;
-  } catch {
-    toast.error('Failed to remove column');
+  } catch (err) {
+    toast.error((err as Error).message);
     return null;
   }
 };

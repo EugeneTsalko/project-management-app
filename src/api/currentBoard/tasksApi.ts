@@ -18,10 +18,9 @@ const createTask = async (boardId: string, columnId: string, title: string, desc
       return null;
     }
 
-    toast.success('Task is created');
     return response.data as TaskResponseInterface;
-  } catch {
-    toast.error('Failed to create task');
+  } catch (err) {
+    toast.error((err as Error).message);
     return null;
   }
 };
@@ -50,10 +49,9 @@ const updateTask = async (
       return null;
     }
 
-    toast.success('Task is updated');
     return response.data as TaskResponseInterface;
-  } catch {
-    toast.error('Failed to update task');
+  } catch (err) {
+    toast.error((err as Error).message);
     return null;
   }
 };
@@ -62,19 +60,17 @@ const removeTask = async (boardId: string, columnId: string, taskId: string) => 
   try {
     const response = (await API.delete(`/boards/${boardId}/columns/${columnId}/tasks/${taskId}`)) as AxiosResponse;
 
-    if (response.status === 404) {
-      toast.error(response.data.message);
-      return null;
+    switch (response.status) {
+      case 404:
+        toast.error(response.data.message);
+        return null;
+      case 204:
+        return response;
+      default:
+        return null;
     }
-
-    if (response.status === 204) {
-      toast.success('Task is removed');
-      return response;
-    }
-
-    return null;
-  } catch {
-    toast.error('Failed to remove task');
+  } catch (err) {
+    toast.error((err as Error).message);
     return null;
   }
 };
