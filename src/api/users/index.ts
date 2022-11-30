@@ -1,3 +1,4 @@
+import { createAsyncThunk } from '@reduxjs/toolkit';
 import API from 'api/base';
 import toast from 'react-hot-toast';
 import { UserParams } from './index.types';
@@ -18,20 +19,22 @@ export const deleteUser = async (id: string) => {
   }
 };
 
-export const updateUser = async ({ id, name, login, password }: UserParams) => {
-  try {
-    const response = await API.put(`/users/${id}`, { name, login, password });
+export const updateUser = createAsyncThunk(
+  '/users/update',
+  async ({ id, name, login, password }: UserParams, thunkApi) => {
+    try {
+      const response = await API.put(`/users/${id}`, { name, login, password });
 
-    if (response.status === 404) {
-      toast.error(response.data.message);
-
-      return null;
+      if (response.status === 404) {
+        return thunkApi.rejectWithValue({
+          message: response.data.message,
+        });
+      }
+      return response.data;
+    } catch (err) {
+      return thunkApi.rejectWithValue({
+        message: (err as Error).message,
+      });
     }
-
-    return response.data;
-  } catch {
-    toast.error('Failed to update user');
-
-    return null;
   }
-};
+);
