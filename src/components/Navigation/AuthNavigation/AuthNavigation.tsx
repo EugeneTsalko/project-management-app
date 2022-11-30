@@ -39,11 +39,22 @@ export const AuthNavigation = () => {
   return (
     <>
       {pathname === '/' && <LinkButton path="/Boards" text="Go to main" />}
-      {pathname !== '/' && (
+      {pathname === '/profile' && (
+        <>
+          <LinkButton path="/Boards" text="Go to boards" />
+          <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
+        </>
+      )}
+      {pathname === '/Boards' && (
         <>
           <Button text="Create new board" type="button" style={ButtonStyle.nav} onClick={createBoard} />
           <LinkButton path="/profile" text="Edit profile" />
           <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
+        </>
+      )}
+      {pathname.includes('/boards/') && (
+        <>
+          <LinkButton path="/Boards" text="Go to boards" />
         </>
       )}
       <SelectLanguage />
