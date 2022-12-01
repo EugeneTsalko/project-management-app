@@ -26,14 +26,16 @@ export const Authorization = ({ type, onChange }: Props) => {
 
   return (
     <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
-      <h1 className={styles.title}>{type === AuthorizationType.signup ? t('signUp') : t('signIn')}</h1>
+      <h1 className={styles.title}>
+        {type === AuthorizationType.signup ? 'Sign Up' : type === AuthorizationType.signin ? 'Sign In' : 'Edit profile'}
+      </h1>
 
-      {type === AuthorizationType.signup && (
+      {(type === AuthorizationType.signup || type === AuthorizationType.edit) && (
         <>
           <input
             className={styles.input}
             type="text"
-            placeholder={t('Name') as string}
+            placeholder={type === AuthorizationType.edit ? 'New name' : 'Name'}
             autoComplete="off"
             {...register('name', {
               required: t('Please enter your name') as string,
@@ -48,7 +50,7 @@ export const Authorization = ({ type, onChange }: Props) => {
       <input
         className={styles.input}
         type="text"
-        placeholder={t('Login') as string}
+        placeholder={type === AuthorizationType.edit ? 'New login' : 'Login'}
         autoComplete="off"
         {...register('login', {
           required: t('Please enter your login') as string,
@@ -73,7 +75,7 @@ export const Authorization = ({ type, onChange }: Props) => {
       <Button
         type="submit"
         style={ButtonStyle.form}
-        text={type === AuthorizationType.signup ? t('signUp') : t('signIn')}
+        text={type === AuthorizationType.signup ? 'Sign Up' : type === AuthorizationType.signin ? 'Sign In' : 'Edit'}
       />
     </form>
   );
