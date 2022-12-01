@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { isUserAuth, signInUser, signUpUser } from 'api';
+import { isUserAuth, signInUser, signUpUser, updateUser } from 'api';
 import { UserState } from './userSlice.types';
 
 const initialState: UserState = {
@@ -50,6 +50,18 @@ const userSlice = createSlice({
         state.status = 'Fulfilled';
       })
       .addCase(isUserAuth.rejected, (state) => {
+        state.status = 'Rejected';
+      });
+
+    builder
+      .addCase(updateUser.pending, (state) => {
+        state.status = 'Pending';
+      })
+      .addCase(updateUser.fulfilled, (state, action) => {
+        state.user = action.payload;
+        state.status = 'Fulfilled';
+      })
+      .addCase(updateUser.rejected, (state) => {
         state.status = 'Rejected';
       });
   },

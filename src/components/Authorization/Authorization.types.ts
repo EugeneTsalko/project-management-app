@@ -12,4 +12,5 @@ export type Props = {
 export enum AuthorizationType {
   'signin',
   'signup',
+  'edit',
 }
