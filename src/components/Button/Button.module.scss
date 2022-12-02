@@ -1,29 +1,78 @@
 @use '../../styles/variables.scss' as var;
+@import '../../styles/fonts.scss';
+
+%admit {
+  background-color: var.$forest-green;
+}
+
+%deny {
+  background-color: var.$ruby-red;
+}
+
+%edit {
+  background-color: var.$blue-violet;
+}
 
 .btn {
-  transition: ease-in-out 0.3s;
-  cursor: pointer;
+  font-weight: 500;
+
   outline: 0;
   border: 0;
+  border-radius: var.$btn-border-radius;
+  cursor: pointer;
+
+  transition: ease-in-out 0.3s;
+
+  user-select: none;
 }
 
 .nav {
-  background: var.$lime-green;
-  border-radius: var.$btn-border-radius;
   color: var.$white;
-}
-.nav:hover {
-  background-color: var.$deep-sky-blue;
+
+  background: var.$lime-green;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+  }
 }
 
 .form {
-  color: var.$white;
-  padding: 15px;
   width: 100%;
-  background: var.$blue;
+  padding: 15px;
+
+  color: var.$white;
   text-transform: uppercase;
-  border-radius: var.$btn-border-radius;
+
+  background: var.$blue;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+  }
 }
-.form:hover {
-  background-color: var.$deep-sky-blue;
+
+.admitModalWindow,
+.denyModalWindow {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+
+  color: var.$white;
+  font-family: RobotoMono, var.$default-fonts;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.admitModalWindow {
+  @extend %admit;
+}
+
+.denyModalWindow {
+  @extend %deny;
 }

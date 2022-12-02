@@ -1,4 +1,5 @@
 export type Props = {
+  id?: string;
   text: string;
   onClick?: (e: React.MouseEvent<Element, MouseEvent>) => void;
   type: 'button' | 'submit';

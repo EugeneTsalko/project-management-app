@@ -5,6 +5,7 @@
 
   display: flex;
   flex-direction: column;
+  width: 100%;
   margin: 1em 0;
 
   user-select: none;
@@ -17,15 +18,11 @@
 
 .columnTitle,
 .columnDescription {
-  width: 40vw;
-  min-width: 40vw;
   margin-top: 0.5em;
 }
 
 .textarea {
   height: 10rem;
-  width: 100%;
-  min-width: 40vw;
   padding: 0.5rem 1rem;
   
   font-size: 1rem;
@@ -72,7 +69,7 @@
 .editButton {
   position: absolute;
   right: 0;
-  top: 0;
+  top: -0.5em;
 
   background-color: var.$blue-violet;
 }

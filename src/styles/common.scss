@@ -58,13 +58,6 @@ select {
   outline: none;
 }
 
-button {
-  border: 0;
-
-  cursor: pointer;
-  outline: 0;
-}
-
 body {
   color: var.$black;
   font-family: 'Work Sans', sans-serif;
@@ -81,10 +74,22 @@ body {
 }
 
 .modalDescription {
-  margin: 1em;
+  margin-bottom: 0.75em;
 
+  font-family: PTSansRegular, var.$default-fonts;
   font-size: 1.75rem;
   font-weight: 900;
+  color: var.$black;
 
   user-select: none;
+
+  @media screen and (max-width: var.$screen-width-large) {
+    margin-bottom: 0.7em;
+  }
+  @media screen and (max-width: var.$screen-width-medium) {
+    margin-bottom: 0.5em;
+  }
+  @media screen and (max-width: var.$screen-width-small) {
+    margin-bottom: 0.3em;
+  }
 }
