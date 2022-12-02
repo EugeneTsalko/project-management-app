@@ -1,5 +1,6 @@
 import React from 'react';
 
+import { Button } from 'components/Button/Button';
 import styles from './ModalWindow.module.scss';
 import { ModalWindowProps } from './ModalWindow.types';
 
@@ -36,35 +37,25 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
         {children}
         <div className={styles.controls}>
           {type === 'information' && (
-            <button
-              className={`${styles.button} ${styles.denyButton}`}
+            <Button
               id="denyButton"
+              text="Close"
               type="button"
-              aria-label="Close"
+              style="denyModalWindow"
               onClick={handleClickCloseWindow}
-            >
-              Close
-            </button>
+            />
           )}
 
           {type !== 'information' && (
             <>
-              <button
-                className={`${styles.button} ${styles.confirmButton}`}
-                type="submit"
-                aria-label={type === 'confirmation' ? 'Confirm' : 'Save'}
-              >
-                {type === 'confirmation' ? 'Confirm' : 'Save'}
-              </button>
-              <button
-                className={`${styles.button} ${styles.denyButton}`}
+              <Button text={type === 'confirmation' ? 'Confirm' : 'Save'} type="submit" style="admitModalWindow" />
+              <Button
                 id="denyButton"
+                text={type === 'confirmation' ? 'Deny' : 'Cancel'}
                 type="button"
-                aria-label={type === 'confirmation' ? 'Deny' : 'Cancel'}
+                style="denyModalWindow"
                 onClick={handleClickCloseWindow}
-              >
-                {type === 'confirmation' ? 'Deny' : 'Cancel'}
-              </button>
+              />
             </>
           )}
         </div>
