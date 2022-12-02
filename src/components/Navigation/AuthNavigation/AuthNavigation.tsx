@@ -11,11 +11,13 @@ import { SelectLanguage } from '../SelectLanguage/SelectLanguage';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import FormBoard from 'components/BoardsList/FormBoard';
 import toast from 'react-hot-toast';
+import { useTranslation } from 'react-i18next';
 
 export const AuthNavigation = () => {
   const dispatch = useAppDispatch();
   const { pathname } = useLocation();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const [modal, setModal] = useState<boolean>(false);
   const [createBoardModal, setCreateBoardModal] = useState<boolean>(false);
@@ -24,7 +26,7 @@ export const AuthNavigation = () => {
     dispatch(signOutUser());
     window.localStorage.removeItem('token');
     navigate('/');
-    toast.success('You are signed out!');
+    toast.success(t('You are signed out!'));
   };
 
   const createBoard = () => {
@@ -38,30 +40,30 @@ export const AuthNavigation = () => {
 
   return (
     <>
-      {pathname === '/' && <LinkButton path="/Boards" text="Go to main" />}
+      {pathname === '/' && <LinkButton path="/boards" text={t('Go to main')} />}
       {pathname === '/profile' && (
         <>
-          <LinkButton path="/Boards" text="Go to boards" />
-          <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
+          <LinkButton path="/boards" text={t('Go to boards')} />
+          <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
         </>
       )}
-      {pathname === '/Boards' && (
+      {pathname === '/boards' && (
         <>
-          <Button text="Create new board" type="button" style={ButtonStyle.nav} onClick={createBoard} />
-          <LinkButton path="/profile" text="Edit profile" />
-          <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
+          <Button text={t('Create Board')} type="button" style={ButtonStyle.nav} onClick={createBoard} />
+          <LinkButton path="/profile" text={t('Profile')} />
+          <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
         </>
       )}
       {pathname.includes('/boards/') && (
         <>
-          <LinkButton path="/Boards" text="Go to boards" />
+          <LinkButton path="/boards" text={t('Go to boards')} />
         </>
       )}
       <SelectLanguage />
 
       {modal && (
         <ModalWindow type="confirmation" actions={confirmationActions}>
-          <h3>Are you sure you want to sign out?</h3>
+          <h3>{t('Are you sure you want to sign out?')}</h3>
         </ModalWindow>
       )}
 

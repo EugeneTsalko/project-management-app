@@ -10,6 +10,7 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 
 import { IoTrash, IoPencil } from 'react-icons/io5';
 import styles from './index.module.scss';
+import { t } from 'i18next';
 
 const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
   const dispatch = useAppDispatch();
@@ -28,8 +29,12 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
     }
   };
 
+  const deleteHandler = async () => {
+    await dispatch(deleteBoard(id));
+  };
+
   const deleteActions = {
-    confirmAction: () => dispatch(deleteBoard(id)),
+    confirmAction: () => deleteHandler(),
     closeWindow: () => setIsDeleteBoardModal(false),
   };
 
@@ -50,7 +55,7 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
 
       {isDeleteBoardModal && (
         <ModalWindow type="confirmation" actions={deleteActions}>
-          <p>Do you want to delete this board?</p>
+          <h3>{t('Are you sure you want to delete this board?')}</h3>
         </ModalWindow>
       )}
 

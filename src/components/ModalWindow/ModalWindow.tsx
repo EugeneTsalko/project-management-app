@@ -3,6 +3,7 @@ import React from 'react';
 import { Button } from 'components/Button/Button';
 import styles from './ModalWindow.module.scss';
 import { ModalWindowProps } from './ModalWindow.types';
+import { t } from 'i18next';
 
 const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
   const handleClickCloseWindow = (event: React.SyntheticEvent) => {
@@ -39,7 +40,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
           {type === 'information' && (
             <Button
               id="denyButton"
-              text="Close"
+              text={t('Close')}
               type="button"
               style="denyModalWindow"
               onClick={handleClickCloseWindow}
@@ -48,10 +49,14 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
 
           {type !== 'information' && (
             <>
-              <Button text={type === 'confirmation' ? 'Confirm' : 'Save'} type="submit" style="admitModalWindow" />
+              <Button
+                text={type === 'confirmation' ? t('Confirm') : t('Save')}
+                type="submit"
+                style="admitModalWindow"
+              />
               <Button
                 id="denyButton"
-                text={type === 'confirmation' ? 'Deny' : 'Cancel'}
+                text={type === 'confirmation' ? t('Deny') : t('Cancel')}
                 type="button"
                 style="denyModalWindow"
                 onClick={handleClickCloseWindow}

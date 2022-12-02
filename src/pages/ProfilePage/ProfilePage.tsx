@@ -11,8 +11,10 @@ import { signOutUser } from 'store/slices/userSlice';
 import styles from './ProfilePage.module.scss';
 import { EditedUserParams } from './ProfilePage.types';
 import { IoPersonCircleOutline } from 'react-icons/io5';
+import { useTranslation } from 'react-i18next';
 
 export const ProfilePage = () => {
+  const { t } = useTranslation();
   const { user } = useAppSelector((state) => state.user);
   const [deleteUserModal, setDeleteUserModal] = useState<boolean>(false);
   const [editUser, setEditUser] = useState<boolean>(false);
@@ -24,9 +26,9 @@ export const ProfilePage = () => {
     const id = user!.id;
     const response = dispatch(updateUser({ id, name, login, password }));
     await toast.promise(response, {
-      loading: 'Updating...',
-      success: 'Your profile has been updated!',
-      error: 'Something went wrong...',
+      loading: t('Updating...'),
+      success: t('Your profile has been updated!'),
+      error: t('Something went wrong...'),
     });
     setEditUser(false);
   };
@@ -35,10 +37,11 @@ export const ProfilePage = () => {
     const id = user!.id;
     const response = deleteUser(id);
     await toast.promise(response, {
-      loading: 'Delete...',
-      success: 'Your profile has been deleted!',
-      error: 'Something went wrong...',
+      loading: t('Deleting...'),
+      success: t('Your profile has been deleted!'),
+      error: t('Something went wrong...'),
     });
+
     dispatch(signOutUser());
     window.localStorage.removeItem('token');
     navigate('/');
@@ -53,22 +56,22 @@ export const ProfilePage = () => {
     <main className={styles.profilePage}>
       {deleteUserModal && (
         <ModalWindow type="confirmation" actions={confirmationActions}>
-          Are you sure you want to delete your profile?
+          {t('Are you sure you want to delete your account?')}
         </ModalWindow>
       )}
 
       <section className={styles.profile}>
-        <h1>Your Profile:</h1>
+        <h1>{t('Your profile')}:</h1>
         <IoPersonCircleOutline />
         <p>
-          Name: <span>{user?.name}</span>
+          {t('Name')}: <span>{user?.name}</span>
         </p>
         <p>
-          Login: <span> {user?.login}</span>
+          {t('Login')}: <span> {user?.login}</span>
         </p>
         <div className={styles.profileButtons}>
-          <Button text="Delete user" type="button" style="form" onClick={() => setDeleteUserModal(true)} />
-          <Button text="Edit user" type="button" style="form" onClick={() => setEditUser(!editUser)} />
+          <Button text={t('Edit profile')} type="button" style="form" onClick={() => setEditUser(!editUser)} />
+          <Button text={t('Delete account')} type="button" style="form" onClick={() => setDeleteUserModal(true)} />
         </div>
       </section>
       <section className={styles.editSection}>

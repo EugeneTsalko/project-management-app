@@ -8,6 +8,7 @@ import styles from './index.module.scss';
 
 import { ICreateBoard } from 'api/boards/index.types';
 import { IFormBoardProps } from './index.types';
+import { t } from 'i18next';
 
 const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, description }) => {
   const dispatch = useAppDispatch();
@@ -42,28 +43,27 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
 
   return (
     <ModalWindow actions={confirmationActions} type="modification">
-      <h1>{id ? 'Edit board' : 'Create board'}</h1>
+      <h1>{id ? t('Edit Board') : t('Create Board')}</h1>
       <div className={styles.inputBox}>
         <input
           {...register('title', {
-            required: "Title can't be empty",
-            maxLength: { value: 20, message: 'Title must be less than 20 letters!' },
+            required: t("Title can't be empty") as string,
+            maxLength: { value: 20, message: t('Title must be less than characters!', { val: 20 }) },
           })}
           className={`${errors.title ? `${styles.input} ${styles.error}` : styles.input}`}
           type="text"
-          placeholder="Title"
+          placeholder={t('Title') as string}
         />
         {errors.title && <p className={styles.error}>{errors.title?.message}</p>}
       </div>
       <div className={styles.inputBox}>
-        <input
+        <textarea
           {...register('description', {
-            required: "Description can't be empty",
-            maxLength: { value: 60, message: 'It must be less than 60 letters!' },
+            required: t("Description can't be empty") as string,
+            maxLength: { value: 60, message: t('Description must be less than characters!', { val: 60 }) },
           })}
           className={`${errors.description ? `${styles.input} ${styles.error}` : styles.input}`}
-          type="text"
-          placeholder="Description"
+          placeholder={t('Description') as string}
         />
         {errors.description && <p className={styles.error}>{errors.description?.message}</p>}
       </div>

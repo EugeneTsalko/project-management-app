@@ -9,10 +9,13 @@ import { IoTrash } from 'react-icons/io5';
 import { updateColumn as updateColumnAPI } from 'api/currentBoard';
 import { ColumnInterface } from 'api/currentBoard/index.types';
 import { updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
+
 import styles from './BoardColumn.module.scss';
+import { t } from 'i18next';
 
 const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string }) => {
   const dispatch = useDispatch();
+
   const [removeColumnModalWindow, setRemoveColumnModalWindow] = useState(false);
   const [newTaskModalWindow, setNewTaskModalWindow] = useState(false);
   const [isEditColumnTitle, setIsEditColumnTitle] = useState(false);
@@ -47,7 +50,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
             <textarea defaultValue={data.title} ref={columnTitle} />
             <div>
               <button className={styles.sendButton} type="button" aria-label="Send" onClick={setColumnTitle}>
-                Send
+                {t('Send')}
               </button>
               <button
                 className={styles.cancelButton}
@@ -55,7 +58,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
                 aria-label="Cancel"
                 onClick={() => setIsEditColumnTitle(false)}
               >
-                Cancel
+                {t('Cancel')}
               </button>
             </div>
           </div>
@@ -82,7 +85,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
             aria-label="Create task"
             onClick={() => setNewTaskModalWindow(true)}
           >
-            Create task
+            {t('Create task')}
           </button>
         </div>
       </div>

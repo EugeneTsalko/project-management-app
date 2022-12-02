@@ -6,6 +6,7 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import { removeTask as removeTaskAPI } from 'api/currentBoard';
 import { removeTask as removeTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps } from './RemoveTask.types';
+import { t } from 'i18next';
 
 const RemoveTask = ({ setState, boardId, columnId, taskId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -25,7 +26,7 @@ const RemoveTask = ({ setState, boardId, columnId, taskId }: ModalWindowProps) =
 
   return (
     <ModalWindow type="confirmation" actions={confirmationActions}>
-      <p className="modalDescription">The task will be removed. Are you sure?</p>
+      <p className="modalDescription">{t('Are you sure you want to delete this task?')}</p>
     </ModalWindow>
   );
 };
