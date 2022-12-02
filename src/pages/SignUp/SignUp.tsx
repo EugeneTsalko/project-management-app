@@ -6,27 +6,28 @@ import { useAppDispatch } from 'store/hooks';
 import { signInUser, signUpUser } from 'api';
 import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 export const SignUp = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { t } = useTranslation();
 
   const handleChange = async ({ login, password, name }: AuthorizationValues) => {
-    toast.loading(t('Signing up...'), { duration: 2000 });
-    await dispatch(signUpUser({ login, password, name }));
+    const register = await dispatch(signUpUser({ login, password, name }));
+    const { message: errorMessage } = register.payload as { message: string };
+
+    if (errorMessage) {
+      toast.error(t('User login already exists!'));
+      return;
+    }
 
     const { payload } = await dispatch(signInUser({ login, password }));
-    const { token, message } = payload as { token: string; message: string };
+    const { token } = payload as { token: string; message: string };
 
     if (token) {
       window.localStorage.setItem('token', token);
-      toast.success(t('Welcome on board!'));
       navigate('/boards');
-    }
-    if (message) {
-      toast.error(message);
+      toast.success(t('Welcome on board!'));
     }
   };
 

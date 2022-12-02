@@ -8,8 +8,8 @@ export const UnAuthNavigation = () => {
 
   return (
     <>
-      <LinkButton path="/signin" text={t('signIn')} />
-      <LinkButton path="/signup" text={t('signUp')} />
+      <LinkButton path="/signin" text={t('Sign in')} />
+      <LinkButton path="/signup" text={t('Sign up')} />
       <SelectLanguage />
     </>
   );

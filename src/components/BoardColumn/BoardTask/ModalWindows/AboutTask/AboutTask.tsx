@@ -32,11 +32,11 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
 
   const taskTitleValidate = {
     required: t("Title can't be empty"),
-    maxLength: { value: 100, message: t('Title must be less than 100 letters!') },
+    maxLength: { value: 100, message: t('Title must be less than characters!', { val: 100 }) },
   };
   const taskDescriptionValidate = {
     required: t("Description can't be empty"),
-    maxLength: { value: 400, message: t('Description must be less than 400 letters!') },
+    maxLength: { value: 400, message: t('Description must be less than characters!', { val: 400 }) },
   };
 
   const updateTask = async (value: ModalWindowModification) => {

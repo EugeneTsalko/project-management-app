@@ -55,7 +55,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
                 type="submit"
                 aria-label={type === 'confirmation' ? 'Confirm' : 'Save'}
               >
-                {type === 'confirmation' ? t('modalConfirmBtn') : t('modalSaveBtn')}
+                {type === 'confirmation' ? t('Confirm') : t('Save')}
               </button>
               <button
                 className={`${styles.button} ${styles.denyButton}`}
@@ -64,7 +64,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
                 aria-label={type === 'confirmation' ? 'Deny' : 'Cancel'}
                 onClick={handleClickCloseWindow}
               >
-                {type === 'confirmation' ? t('modalDenyBtn') : t('modalCancelBtn')}
+                {type === 'confirmation' ? t('Deny') : t('Cancel')}
               </button>
             </>
           )}

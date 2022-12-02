@@ -24,7 +24,7 @@ const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
 
   const columnTitleValidate = {
     required: t("Title can't be empty"),
-    maxLength: { value: 100, message: t('Title must be less than 100 characters!') },
+    maxLength: { value: 100, message: t('Title must be less than characters!', { val: 100 }) },
   };
 
   const createColumn = async (value: ModalWindowModification) => {

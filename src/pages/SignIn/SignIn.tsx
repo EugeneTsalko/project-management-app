@@ -6,11 +6,10 @@ import styles from './SignIn.module.scss';
 import { isUserAuth, signInUser } from 'api';
 import { Authorization } from 'components/Authorization/Authorization';
 import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
-import { useTranslation } from 'react-i18next';
+import { t } from 'i18next';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
-  const { t } = useTranslation();
 
   const handleChange = async (data: AuthorizationValues) => {
     const { payload } = await dispatch(signInUser(data));
@@ -22,7 +21,7 @@ export const SignIn = () => {
       toast.success(t('Welcome back on board!'));
     }
     if (message) {
-      toast.error(message);
+      toast.error(t('User was not found!'));
     }
   };
 

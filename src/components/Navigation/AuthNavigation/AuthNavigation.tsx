@@ -40,23 +40,23 @@ export const AuthNavigation = () => {
 
   return (
     <>
-      {pathname === '/' && <LinkButton path="/Boards" text="Go to main" />}
+      {pathname === '/' && <LinkButton path="/boards" text={t('Go to main')} />}
       {pathname === '/profile' && (
         <>
-          <LinkButton path="/Boards" text="Go to boards" />
-          <Button text="Sign Out" type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
+          <LinkButton path="/boards" text={t('Go to boards')} />
+          <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
         </>
       )}
-      {pathname === '/Boards' && (
+      {pathname === '/boards' && (
         <>
           <Button text={t('Create Board')} type="button" style={ButtonStyle.nav} onClick={createBoard} />
-          <LinkButton path="/profile" text={t('profile')} />
-          <Button text={t('signOut')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
+          <LinkButton path="/profile" text={t('Profile')} />
+          <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
         </>
       )}
       {pathname.includes('/boards/') && (
         <>
-          <LinkButton path="/Boards" text="Go to boards" />
+          <LinkButton path="/boards" text={t('Go to boards')} />
         </>
       )}
       <SelectLanguage />
