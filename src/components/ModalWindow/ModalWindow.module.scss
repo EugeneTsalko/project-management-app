@@ -1,5 +1,13 @@
 @use '../../styles/variables.scss' as var;
 
+// @media screen and (max-width: var.$screen-width-small) and (orientation: portrait) {
+//   max-height: calc(100vh - 300px);
+// }
+
+// $screen-width-large: 1366px;
+// $screen-width-medium: 1024px;
+// $screen-width-small: 640px;
+
 .main {
   position: fixed;
   top: 0;
@@ -9,8 +17,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 100%;
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 
   background-color: var.$modal-background;
 }
@@ -23,10 +31,23 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  width: 40%;
   padding: 3em 5em;
 
   background-color: var.$white;
   border-radius: var.$modal-window-border-radius;
+
+  @media screen and (max-width: var.$screen-width-large) {
+    width: 60%;
+  }
+  @media screen and (max-width: var.$screen-width-medium) {
+    width: 80%;
+    padding: 2.5em 4em;
+  }
+  @media screen and (max-width: var.$screen-width-small) {
+    width: 95%;
+    padding: 1.5em 2em;
+  }
 }
 
 .controls {

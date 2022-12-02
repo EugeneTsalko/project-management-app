@@ -82,4 +82,14 @@ body {
   color: var.$black;
 
   user-select: none;
+
+  @media screen and (max-width: var.$screen-width-large) {
+    margin-bottom: 0.7em;
+  }
+  @media screen and (max-width: var.$screen-width-medium) {
+    margin-bottom: 0.5em;
+  }
+  @media screen and (max-width: var.$screen-width-small) {
+    margin-bottom: 0.3em;
+  }
 }
