@@ -1,13 +1,5 @@
 @use '../../styles/variables.scss' as var;
 
-// @media screen and (max-width: var.$screen-width-small) and (orientation: portrait) {
-//   max-height: calc(100vh - 300px);
-// }
-
-// $screen-width-large: 1366px;
-// $screen-width-medium: 1024px;
-// $screen-width-small: 640px;
-
 .main {
   position: fixed;
   top: 0;
