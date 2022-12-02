@@ -6,6 +6,7 @@ import styles from './SignIn.module.scss';
 import { isUserAuth, signInUser } from 'api';
 import { Authorization } from 'components/Authorization/Authorization';
 import { AuthorizationType, AuthorizationValues } from 'components/Authorization/Authorization.types';
+import { t } from 'i18next';
 
 export const SignIn = () => {
   const dispatch = useAppDispatch();
@@ -17,10 +18,13 @@ export const SignIn = () => {
     if (token) {
       window.localStorage.setItem('token', token);
       dispatch(isUserAuth());
-      toast.success('Welcome back on board!');
+      toast.success(t('Welcome back on board!'));
     }
-    if (message) {
-      toast.error(message);
+
+    if (message.includes('403')) {
+      toast.error(t('User was not found!'));
+    } else {
+      toast.error(t('Sorry, something went wrong.'));
     }
   };
 

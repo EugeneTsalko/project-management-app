@@ -1,13 +1,13 @@
 @use '../../styles/variables.scss' as var;
 
 .form {
-  max-width: 350px;
-  width: 100%;
+  width: 350px;
   background: var.$white;
   padding: 45px;
   border-radius: 10px;
   box-shadow: var.$card-shadow;
   transition: all 0.5s;
+  overflow: hidden;
 
   &:hover {
     box-shadow: var.$card-shadow-deep;
@@ -16,11 +16,12 @@
 
 .title {
   text-align: center;
+  font-size: 1.5rem;
+  word-wrap: break-word;
 }
 
 .input {
   border-radius: var.$btn-border-radius;
-  outline: 0;
   background: #f2f2f2;
   width: 100%;
   border: 2px solid #f2f2f2;

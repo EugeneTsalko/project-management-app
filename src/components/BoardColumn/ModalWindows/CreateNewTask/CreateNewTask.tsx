@@ -9,6 +9,7 @@ import { createTask as createTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './CreateNewTask.types';
 import { RootState } from 'store/store';
 import styles from './CreateNewTask.module.scss';
+import { t } from 'i18next';
 
 const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -22,12 +23,12 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   } = useForm<ModalWindowModification>({ reValidateMode: 'onSubmit' });
 
   const taskTitleValidate = {
-    required: "Title can't be empty",
-    maxLength: { value: 100, message: 'Title must be less than 100 letters.' },
+    required: t("Title can't be empty"),
+    maxLength: { value: 100, message: t('Title must be less than characters!', { val: 100 }) },
   };
   const taskDescriptionValidate = {
-    required: "Description can't be empty",
-    maxLength: { value: 400, message: 'Description must be less than 400 letters.' },
+    required: t("Description can't be empty"),
+    maxLength: { value: 400, message: t('Description must be less than characters!', { val: 400 }) },
   };
 
   const createTask = async (value: ModalWindowModification) => {
@@ -53,9 +54,9 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="modification" actions={modificationActions}>
-      <p className="modalDescription">Create new task.</p>
+      <p className="modalDescription">{t('Create task')}</p>
       <div className={styles.inputField}>
-        <label htmlFor="taskTitle">Enter title:</label>
+        <label htmlFor="taskTitle">{t('Enter title:')}</label>
         <textarea
           className={`${errors.taskTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
           id="taskTitle"
@@ -64,7 +65,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
       </div>
       {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
       <div className={styles.inputField}>
-        <label htmlFor="taskDescription">Enter description:</label>
+        <label htmlFor="taskDescription">{t('Enter description:')}</label>
         <textarea
           className={`${errors.taskDescription ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
           id="taskDescription"
