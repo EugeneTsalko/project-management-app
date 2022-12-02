@@ -83,6 +83,8 @@
   "Welcome on board!": "Welcome on board!",
   "Welcome back on board!": "Welcome back on board!",
   "You are signed out!": "You are signed out!",
+  "Sorry, something went wrong.": "Sorry, something went wrong.",
+  "Sorry, user login already exists or something just went wrong!": "Sorry, user login already exists or something just went wrong!",
 
   "Are you sure you want to delete this board?": "Are you sure you want to delete this board?",
   "Are you sure you want to delete this column?": "Are you sure you want to delete this column?",

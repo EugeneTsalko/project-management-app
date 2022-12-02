@@ -84,6 +84,8 @@
   "Welcome on board!": "Добро пожаловать!",
   "Welcome back on board!": "Добро пожаловать снова!",
   "You are signed out!": "Вы вышли из системы!",
+  "Sorry, something went wrong.": "Извините, что-то пошло не так.",
+  "Sorry, user login already exists or something just went wrong!": "Извините, логин пользователя уже существует или что-то пошло не так!",
 
   "Are you sure you want to delete this board?": "Вы уверены, что хотите удалить эту доску?",
   "Are you sure you want to delete this column?": "Вы уверены, что хотите удалить эту колонку?",

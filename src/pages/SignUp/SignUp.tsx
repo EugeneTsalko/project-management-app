@@ -17,7 +17,7 @@ export const SignUp = () => {
     const { message: errorMessage } = register.payload as { message: string };
 
     if (errorMessage) {
-      toast.error(t('User login already exists!'));
+      toast.error(t('Sorry, user login already exists or something just went wrong!'));
       return;
     }
 
