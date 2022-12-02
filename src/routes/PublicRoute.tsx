@@ -6,5 +6,5 @@ export const PublicRoute = ({ component }: { component: JSX.Element }) => {
   const { user } = useAppSelector((state) => state.user);
   const token = window.localStorage.getItem('token');
 
-  return user && token ? <Navigate to="/Boards" /> : component;
+  return user && token ? <Navigate to="/boards" /> : component;
 };
