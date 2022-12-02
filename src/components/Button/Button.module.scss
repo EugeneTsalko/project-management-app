@@ -51,10 +51,12 @@
 }
 
 .admitModalWindow,
-.denyModalWindow {
-  margin: 0 1em;
-  padding: 0.5em 1em;
-
+.denyModalWindow,
+.sendColumnTitle,
+.denyColumnTitle,
+.createTask,
+.closeBoard,
+.createColumn {
   color: var.$white;
   font-family: RobotoMono, var.$default-fonts;
 
@@ -69,10 +71,37 @@
   }
 }
 
-.admitModalWindow {
+.admitModalWindow,
+.denyModalWindow {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+}
+
+.sendColumnTitle,
+.denyColumnTitle,
+.createTask,
+.closeBoard,
+.createColumn {
+  padding: 0.25em 0.75em;
+}
+
+.admitModalWindow,
+.sendColumnTitle,
+.createTask,
+.createColumn {
   @extend %admit;
 }
 
-.denyModalWindow {
+.denyModalWindow,
+.denyColumnTitle,
+.closeBoard {
   @extend %deny;
+}
+
+.closeBoard {
+  grid-area: close-board-button;
+}
+
+.createColumn {
+  grid-area: create-column-button;
 }

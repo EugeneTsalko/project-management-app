@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { BoardColumn } from 'components/BoardColumn/BoardColumn';
 import { CreateNewColumn } from './ModalWindows/CreateNewColumn';
 import LoaderSpinner from 'components/LoaderSpinner';
+import { Button } from 'components/Button/Button';
 import { getBoard } from 'api/currentBoard';
 import { ColumnInterface } from 'api/currentBoard/index.types';
 import { setCurrentBoard } from 'store/slices/currentBoardSlice';
@@ -48,22 +49,13 @@ const BoardPage = () => {
       <main className={styles.main}>
         <header className={styles.header}>
           <h2 className={styles.boardTitle}>{currentBoard.title}</h2>
-          <button
-            className={styles.closeBoardButton}
+          <Button text={t('Close Board')} type="button" style="closeBoard" onClick={() => navigate(-1)} />
+          <Button
+            text={t('Create column')}
             type="button"
-            aria-label="Close board"
-            onClick={() => navigate(-1)}
-          >
-            {t('Close Board')}
-          </button>
-          <button
-            className={styles.createColumnButton}
-            type="button"
-            aria-label="Create column"
+            style="createColumn"
             onClick={() => setCreateColumnModalWindow(true)}
-          >
-            {t('Create column')}
-          </button>
+          />
         </header>
         <ul className={styles.columnList}>
           {currentBoard.columns.map((item: ColumnInterface) => (
