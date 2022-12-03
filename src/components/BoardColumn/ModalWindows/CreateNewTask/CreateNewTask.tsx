@@ -28,7 +28,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   };
   const taskDescriptionValidate = {
     required: t("Description can't be empty"),
-    maxLength: { value: 400, message: t('Description must be less than characters!', { val: 400 }) },
+    maxLength: { value: 1000, message: t('Description must be less than characters!', { val: 1000 }) },
   };
 
   const createTask = async (value: ModalWindowModification) => {
@@ -54,25 +54,27 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="modification" actions={modificationActions}>
-      <p className="modalDescription">{t('Create task')}</p>
-      <div className={styles.inputField}>
-        <label htmlFor="taskTitle">{t('Enter title:')}</label>
-        <textarea
-          className={`${errors.taskTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
-          id="taskTitle"
-          {...register('taskTitle', taskTitleValidate)}
-        />
+      <div className={styles.main}>
+        <p className="modalDescription">{t('Create task')}</p>
+        <div className={styles.inputField}>
+          <label htmlFor="taskTitle">{t('Enter title:')}</label>
+          <textarea
+            className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
+            id="taskTitle"
+            {...register('taskTitle', taskTitleValidate)}
+          />
+        </div>
+        {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
+        <div className={styles.inputField}>
+          <label htmlFor="taskDescription">{t('Enter description:')}</label>
+          <textarea
+            className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
+            id="taskDescription"
+            {...register('taskDescription', taskDescriptionValidate)}
+          />
+        </div>
+        {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
       </div>
-      {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
-      <div className={styles.inputField}>
-        <label htmlFor="taskDescription">{t('Enter description:')}</label>
-        <textarea
-          className={`${errors.taskDescription ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
-          id="taskDescription"
-          {...register('taskDescription', taskDescriptionValidate)}
-        />
-      </div>
-      {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
     </ModalWindow>
   );
 };

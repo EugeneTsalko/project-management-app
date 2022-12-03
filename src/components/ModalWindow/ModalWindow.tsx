@@ -31,10 +31,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
       onKeyDown={handleClickCloseWindow}
       role="presentation"
     >
-      <form
-        onSubmit={type === 'modification' ? actions.confirmAction : handleClickConfirm}
-        className={styles.container}
-      >
+      <form onSubmit={type === 'modification' ? actions.confirmAction : handleClickConfirm} className={styles.content}>
         {children}
         <div className={styles.controls}>
           {type === 'information' && (

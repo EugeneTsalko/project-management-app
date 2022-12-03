@@ -51,10 +51,14 @@
 }
 
 .admitModalWindow,
-.denyModalWindow {
-  margin: 0 1em;
-  padding: 0.5em 1em;
-
+.denyModalWindow,
+.sendColumnTitle,
+.denyColumnTitle,
+.createTask,
+.closeBoard,
+.createColumn,
+.editTask,
+.cancelEditTask {
   color: var.$white;
   font-family: RobotoMono, var.$default-fonts;
 
@@ -69,10 +73,53 @@
   }
 }
 
-.admitModalWindow {
+.admitModalWindow,
+.denyModalWindow {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+}
+
+.sendColumnTitle,
+.denyColumnTitle,
+.createTask,
+.closeBoard,
+.createColumn,
+.editTask,
+.cancelEditTask {
+  padding: 0.25em 0.75em;
+}
+
+.admitModalWindow,
+.sendColumnTitle,
+.createTask,
+.createColumn {
   @extend %admit;
 }
 
-.denyModalWindow {
+.denyModalWindow,
+.denyColumnTitle,
+.closeBoard,
+.cancelEditTask {
   @extend %deny;
+}
+
+.closeBoard {
+  grid-area: close-board-button;
+}
+
+.createColumn {
+  grid-area: create-column-button;
+}
+
+.editTask {
+  @extend %edit;
+
+  position: absolute;
+  right: 0;
+  top: -0.5em;
+}
+
+.cancelEditTask {
+  align-self: flex-end;
+  margin-top: 0.5em;
 }

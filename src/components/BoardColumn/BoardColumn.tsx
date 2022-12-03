@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 import { BoardTask } from './BoardTask/BoardTask';
 import { RemoveColumn } from './ModalWindows/RemoveColumn/RemoveColumn';
 import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
+import { Button } from 'components/Button/Button';
 import { IoTrash } from 'react-icons/io5';
 import { updateColumn as updateColumnAPI } from 'api/currentBoard';
 import { ColumnInterface } from 'api/currentBoard/index.types';
@@ -49,17 +50,13 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
           <div className={styles.editColumnTitle}>
             <textarea defaultValue={data.title} ref={columnTitle} />
             <div>
-              <button className={styles.sendButton} type="button" aria-label="Send" onClick={setColumnTitle}>
-                {t('Send')}
-              </button>
-              <button
-                className={styles.cancelButton}
+              <Button text={t('Send')} type="button" style="sendColumnTitle" onClick={setColumnTitle} />
+              <Button
+                text={t('Cancel')}
                 type="button"
-                aria-label="Cancel"
+                style="denyColumnTitle"
                 onClick={() => setIsEditColumnTitle(false)}
-              >
-                {t('Cancel')}
-              </button>
+              />
             </div>
           </div>
         )}
@@ -79,14 +76,12 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
           >
             <IoTrash />
           </button>
-          <button
-            className={styles.createTaskButton}
+          <Button
+            text={t('Create task')}
             type="button"
-            aria-label="Create task"
+            style="createTask"
             onClick={() => setNewTaskModalWindow(true)}
-          >
-            {t('Create task')}
-          </button>
+          />
         </div>
       </div>
       {removeColumnModalWindow && (
