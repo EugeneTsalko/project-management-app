@@ -56,7 +56,9 @@
 .denyColumnTitle,
 .createTask,
 .closeBoard,
-.createColumn {
+.createColumn,
+.editTask,
+.cancelEditTask {
   color: var.$white;
   font-family: RobotoMono, var.$default-fonts;
 
@@ -81,7 +83,9 @@
 .denyColumnTitle,
 .createTask,
 .closeBoard,
-.createColumn {
+.createColumn,
+.editTask,
+.cancelEditTask {
   padding: 0.25em 0.75em;
 }
 
@@ -94,7 +98,8 @@
 
 .denyModalWindow,
 .denyColumnTitle,
-.closeBoard {
+.closeBoard,
+.cancelEditTask {
   @extend %deny;
 }
 
@@ -104,4 +109,17 @@
 
 .createColumn {
   grid-area: create-column-button;
+}
+
+.editTask {
+  @extend %edit;
+
+  position: absolute;
+  right: 0;
+  top: -0.5em;
+}
+
+.cancelEditTask {
+  align-self: flex-end;
+  margin-top: 0.5em;
 }

@@ -1,15 +1,16 @@
 import React, { useState } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+import { t } from 'i18next';
 import { useForm } from 'react-hook-form';
 
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
+import { Button } from 'components/Button/Button';
 import { updateTask as updateTaskAPI } from 'api/currentBoard';
 import { updateTask as updateTaskAction } from 'store/slices/currentBoardSlice';
 import { ModalWindowProps, ModalWindowModification } from './AboutTask.types';
 import { RootState } from 'store/store';
 import styles from './AboutTask.module.scss';
-import { t } from 'i18next';
 
 const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
@@ -36,7 +37,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   };
   const taskDescriptionValidate = {
     required: t("Description can't be empty"),
-    maxLength: { value: 400, message: t('Description must be less than characters!', { val: 400 }) },
+    maxLength: { value: 1000, message: t('Description must be less than characters!', { val: 1000 }) },
   };
 
   const updateTask = async (value: ModalWindowModification) => {
@@ -77,34 +78,18 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
         {!isEditTaskTitle && (
           <>
             <p className={styles.columnTitle}>{data.title}</p>
-            <button
-              className={styles.editButton}
-              type="button"
-              aria-label="Edit"
-              onClick={() => {
-                setIsEditTaskTitle(true);
-              }}
-            >
-              {t('Edit')}
-            </button>
+            <Button text={t('Edit')} type="button" style="editTask" onClick={() => setIsEditTaskTitle(true)} />
           </>
         )}
         {isEditTaskTitle && (
           <>
             <textarea
-              className={`${errors.taskTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
+              className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
               id="taskTitle"
               {...register('taskTitle', taskTitleValidate)}
             />
             {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
-            <button
-              className={styles.cancelButton}
-              type="button"
-              aria-label="Cancel"
-              onClick={() => setIsEditTaskTitle(false)}
-            >
-              {t('Cancel')}
-            </button>
+            <Button text={t('Cancel')} type="button" style="cancelEditTask" onClick={() => setIsEditTaskTitle(false)} />
           </>
         )}
       </div>
@@ -114,41 +99,29 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
         {!isEditTaskDescription && (
           <>
             <p className={styles.columnDescription}>{data.description}</p>
-            <button
-              className={styles.editButton}
-              type="button"
-              aria-label="Edit"
-              onClick={() => {
-                setIsEditTaskDescription(true);
-              }}
-            >
-              {t('Edit')}
-            </button>
+            <Button text={t('Edit')} type="button" style="editTask" onClick={() => setIsEditTaskDescription(true)} />
           </>
         )}
         {isEditTaskDescription && (
           <>
             <textarea
-              className={`${errors.taskDescription ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
+              className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
               id="taskDescription"
               {...register('taskDescription', taskDescriptionValidate)}
             />
             {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
-            <button
-              className={styles.cancelButton}
+
+            <Button
+              text={t('Cancel')}
               type="button"
-              aria-label="Cancel"
+              style="cancelEditTask"
               onClick={() => setIsEditTaskDescription(false)}
-            >
-              {t('Cancel')}
-            </button>
+            />
           </>
         )}
       </div>
       {(isEditTaskTitle || isEditTaskDescription) && (
-        <button className={styles.sendButton} type="submit" aria-label="Send" onClick={handleSubmit(updateTask)}>
-          {t('Send')}
-        </button>
+        <Button text={t('Send')} type="submit" style="admitModalWindow" onClick={handleSubmit(updateTask)} />
       )}
     </ModalWindow>
   );

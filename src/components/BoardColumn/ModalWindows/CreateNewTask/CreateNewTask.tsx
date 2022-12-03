@@ -28,7 +28,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   };
   const taskDescriptionValidate = {
     required: t("Description can't be empty"),
-    maxLength: { value: 400, message: t('Description must be less than characters!', { val: 400 }) },
+    maxLength: { value: 1000, message: t('Description must be less than characters!', { val: 1000 }) },
   };
 
   const createTask = async (value: ModalWindowModification) => {
@@ -58,7 +58,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
       <div className={styles.inputField}>
         <label htmlFor="taskTitle">{t('Enter title:')}</label>
         <textarea
-          className={`${errors.taskTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
+          className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
           id="taskTitle"
           {...register('taskTitle', taskTitleValidate)}
         />
@@ -67,7 +67,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
       <div className={styles.inputField}>
         <label htmlFor="taskDescription">{t('Enter description:')}</label>
         <textarea
-          className={`${errors.taskDescription ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
+          className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
           id="taskDescription"
           {...register('taskDescription', taskDescriptionValidate)}
         />
