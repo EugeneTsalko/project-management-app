@@ -1,0 +1,32 @@
+{
+  "files": {
+    "main.css": "/project-management-app/static/css/main.92655e29.css",
+    "main.js": "/project-management-app/static/js/main.e886129c.js",
+    "static/css/345.3b367544.chunk.css": "/project-management-app/static/css/345.3b367544.chunk.css",
+    "static/js/345.66f51979.chunk.js": "/project-management-app/static/js/345.66f51979.chunk.js",
+    "static/css/681.eed06c81.chunk.css": "/project-management-app/static/css/681.eed06c81.chunk.css",
+    "static/js/681.2784628f.chunk.js": "/project-management-app/static/js/681.2784628f.chunk.js",
+    "static/js/126.beff520b.chunk.js": "/project-management-app/static/js/126.beff520b.chunk.js",
+    "static/media/PTSans-Regular.ttf": "/project-management-app/static/media/PTSans-Regular.77e92507394e2309d837.ttf",
+    "static/media/RobotoMono-VariableFont_wght.ttf": "/project-management-app/static/media/RobotoMono-VariableFont_wght.9ec32603cb86699d7770.ttf",
+    "static/media/RobotoCondensed-Regular.ttf": "/project-management-app/static/media/RobotoCondensed-Regular.fc3d2f2e3a203d0037c1.ttf",
+    "static/media/about.svg": "/project-management-app/static/media/about.c5c96f1e86c810af5a42e917d79793d6.svg",
+    "static/media/hero.svg": "/project-management-app/static/media/hero.d92a9737fbadfbc3e8e1089dc9ef8875.svg",
+    "static/media/rsschool.svg": "/project-management-app/static/media/rsschool.ad178c0df28bc133be34b982d62f431d.svg",
+    "static/media/github.svg": "/project-management-app/static/media/github.c20f38ca39f02acf75d1aa9994103909.svg",
+    "static/media/logo.svg": "/project-management-app/static/media/logo.09d682bc5b7f523c0a1f2399b76d77d1.svg",
+    "static/media/mail.svg": "/project-management-app/static/media/mail.cea08a25d2a23e49b62da73dd477b16a.svg",
+    "index.html": "/project-management-app/index.html",
+    "main.92655e29.css.map": "/project-management-app/static/css/main.92655e29.css.map",
+    "main.e886129c.js.map": "/project-management-app/static/js/main.e886129c.js.map",
+    "345.3b367544.chunk.css.map": "/project-management-app/static/css/345.3b367544.chunk.css.map",
+    "345.66f51979.chunk.js.map": "/project-management-app/static/js/345.66f51979.chunk.js.map",
+    "681.eed06c81.chunk.css.map": "/project-management-app/static/css/681.eed06c81.chunk.css.map",
+    "681.2784628f.chunk.js.map": "/project-management-app/static/js/681.2784628f.chunk.js.map",
+    "126.beff520b.chunk.js.map": "/project-management-app/static/js/126.beff520b.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.92655e29.css",
+    "static/js/main.e886129c.js"
+  ]
+}
