@@ -54,25 +54,27 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="modification" actions={modificationActions}>
-      <p className="modalDescription">{t('Create task')}</p>
-      <div className={styles.inputField}>
-        <label htmlFor="taskTitle">{t('Enter title:')}</label>
-        <textarea
-          className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
-          id="taskTitle"
-          {...register('taskTitle', taskTitleValidate)}
-        />
+      <div className={styles.main}>
+        <p className="modalDescription">{t('Create task')}</p>
+        <div className={styles.inputField}>
+          <label htmlFor="taskTitle">{t('Enter title:')}</label>
+          <textarea
+            className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
+            id="taskTitle"
+            {...register('taskTitle', taskTitleValidate)}
+          />
+        </div>
+        {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
+        <div className={styles.inputField}>
+          <label htmlFor="taskDescription">{t('Enter description:')}</label>
+          <textarea
+            className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
+            id="taskDescription"
+            {...register('taskDescription', taskDescriptionValidate)}
+          />
+        </div>
+        {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
       </div>
-      {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
-      <div className={styles.inputField}>
-        <label htmlFor="taskDescription">{t('Enter description:')}</label>
-        <textarea
-          className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
-          id="taskDescription"
-          {...register('taskDescription', taskDescriptionValidate)}
-        />
-      </div>
-      {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
     </ModalWindow>
   );
 };

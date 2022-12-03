@@ -71,58 +71,65 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="information" actions={modificationActions}>
-      <p className="modalDescription">{t('About task')}</p>
+      <div className={styles.main}>
+        <p className="modalDescription">{t('About task')}</p>
 
-      <div className={styles.inputField}>
-        <label htmlFor="taskTitle">Title:</label>
-        {!isEditTaskTitle && (
-          <>
-            <p className={styles.columnTitle}>{data.title}</p>
-            <Button text={t('Edit')} type="button" style="editTask" onClick={() => setIsEditTaskTitle(true)} />
-          </>
-        )}
-        {isEditTaskTitle && (
-          <>
-            <textarea
-              className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
-              id="taskTitle"
-              {...register('taskTitle', taskTitleValidate)}
-            />
-            {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
-            <Button text={t('Cancel')} type="button" style="cancelEditTask" onClick={() => setIsEditTaskTitle(false)} />
-          </>
+        <div className={styles.inputField}>
+          <label htmlFor="taskTitle">Title:</label>
+          {!isEditTaskTitle && (
+            <>
+              <p className={styles.columnTitle}>{data.title}</p>
+              <Button text={t('Edit')} type="button" style="editTask" onClick={() => setIsEditTaskTitle(true)} />
+            </>
+          )}
+          {isEditTaskTitle && (
+            <>
+              <textarea
+                className={`${styles.textareaTitle} ${errors.taskTitle ? `${styles.error}` : ''}`}
+                id="taskTitle"
+                {...register('taskTitle', taskTitleValidate)}
+              />
+              {errors.taskTitle && <p className={styles.error}>{errors.taskTitle?.message}</p>}
+              <Button
+                text={t('Cancel')}
+                type="button"
+                style="cancelEditTask"
+                onClick={() => setIsEditTaskTitle(false)}
+              />
+            </>
+          )}
+        </div>
+
+        <div className={styles.inputField}>
+          <label htmlFor="taskDescription">Description:</label>
+          {!isEditTaskDescription && (
+            <>
+              <p className={styles.columnDescription}>{data.description}</p>
+              <Button text={t('Edit')} type="button" style="editTask" onClick={() => setIsEditTaskDescription(true)} />
+            </>
+          )}
+          {isEditTaskDescription && (
+            <>
+              <textarea
+                className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
+                id="taskDescription"
+                {...register('taskDescription', taskDescriptionValidate)}
+              />
+              {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
+
+              <Button
+                text={t('Cancel')}
+                type="button"
+                style="cancelEditTask"
+                onClick={() => setIsEditTaskDescription(false)}
+              />
+            </>
+          )}
+        </div>
+        {(isEditTaskTitle || isEditTaskDescription) && (
+          <Button text={t('Send')} type="submit" style="admitModalWindow" onClick={handleSubmit(updateTask)} />
         )}
       </div>
-
-      <div className={styles.inputField}>
-        <label htmlFor="taskDescription">Description:</label>
-        {!isEditTaskDescription && (
-          <>
-            <p className={styles.columnDescription}>{data.description}</p>
-            <Button text={t('Edit')} type="button" style="editTask" onClick={() => setIsEditTaskDescription(true)} />
-          </>
-        )}
-        {isEditTaskDescription && (
-          <>
-            <textarea
-              className={`${styles.textareaDescription} ${errors.taskDescription ? `${styles.error}` : ''}`}
-              id="taskDescription"
-              {...register('taskDescription', taskDescriptionValidate)}
-            />
-            {errors.taskDescription && <p className={styles.error}>{errors.taskDescription?.message}</p>}
-
-            <Button
-              text={t('Cancel')}
-              type="button"
-              style="cancelEditTask"
-              onClick={() => setIsEditTaskDescription(false)}
-            />
-          </>
-        )}
-      </div>
-      {(isEditTaskTitle || isEditTaskDescription) && (
-        <Button text={t('Send')} type="submit" style="admitModalWindow" onClick={handleSubmit(updateTask)} />
-      )}
     </ModalWindow>
   );
 };

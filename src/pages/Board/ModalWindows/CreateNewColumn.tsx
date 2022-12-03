@@ -47,16 +47,18 @@ const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
 
   return (
     <ModalWindow type="modification" actions={modificationActions}>
-      <p className="modalDescription">{t('Create column')}</p>
-      <div className={styles.inputField}>
-        <label htmlFor="columnTitle">{t('Enter title:')}</label>
-        <textarea
-          className={`${errors.columnTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
-          id="columnTitle"
-          {...register('columnTitle', columnTitleValidate)}
-        />
+      <div className={styles.main}>
+        <p className="modalDescription">{t('Create column')}</p>
+        <div className={styles.inputField}>
+          <label htmlFor="columnTitle">{t('Enter title:')}</label>
+          <textarea
+            className={`${errors.columnTitle ? `${styles.textarea} ${styles.error}` : styles.textarea}`}
+            id="columnTitle"
+            {...register('columnTitle', columnTitleValidate)}
+          />
+        </div>
+        {errors.columnTitle && <p className={styles.error}>{errors.columnTitle?.message}</p>}
       </div>
-      {errors.columnTitle && <p className={styles.error}>{errors.columnTitle?.message}</p>}
     </ModalWindow>
   );
 };
