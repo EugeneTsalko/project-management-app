@@ -19,6 +19,13 @@
   grid-template-areas: 'board-title close-board-button . create-column-button';
   gap: 1em;
   padding: 0.5em 1em;
+
+  @media screen and (max-width: var.$screen-width-small) and (orientation: portrait) {
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      'board-title board-title'
+      'close-board-button create-column-button';
+  }
 }
 
 .boardTitle {
@@ -34,5 +41,4 @@
   overflow-x: auto;
   overflow-y: hidden;
   list-style-type: none;
-
 }
