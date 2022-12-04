@@ -79,6 +79,9 @@
   "Deny": "Deny",
   "Cancel": "Cancel",
 
+  "Your token is expired!": "Your token is expired!",
+  "Token expires in hours": "Token expires in {{val, number}} hours",
+
   "User login already exists!": "User login already exists!",
   "User was not found!": "User was not found!",
   "Welcome on board!": "Welcome on board!",
