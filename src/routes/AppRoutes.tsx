@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import MainPage from 'pages/MainPage';
 import { SignIn } from 'pages/SignIn/SignIn';
@@ -8,19 +8,11 @@ import { WelcomePage } from 'pages/WelcomePage/WelcomePage';
 import { BoardPage } from 'pages/Board/BoardPage';
 
 import { Routes, Route } from 'react-router-dom';
-import { useAppDispatch } from 'store/hooks';
 import { PublicRoute } from './PublicRoute';
 import { PrivateRoute } from './PrivateRoute';
-import { isUserAuth } from 'api';
 import { ProfilePage } from 'pages/ProfilePage/ProfilePage';
 
 export default function AppRoutes() {
-  const dispatch = useAppDispatch();
-
-  useEffect(() => {
-    dispatch(isUserAuth());
-  }, []);
-
   return (
     <Routes>
       <Route path="/" element={<WelcomePage />} />
