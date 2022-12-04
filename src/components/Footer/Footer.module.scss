@@ -1,18 +1,30 @@
 @use '../../styles/variables.scss' as var;
+@use '../../styles//mixins.scss' as mix;
 
 .footer {
-  background-color: var.$lime-green;
+  background-color: rgba(var.$lime-green, 0.8);
   width: 100%;
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
-  padding: 20px;
+  align-items: center;
+  padding: 30px;
   margin-top: auto;
-  // position: fixed;
-  // bottom: 0;
+
+  @include mix.large-mobile {
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+  }
 
   &Github {
     display: flex;
+    flex-wrap: wrap;
     gap: 20px;
+
+    @include mix.large-mobile {
+      justify-content: center;
+    }
 
     a {
       color: var.$black;
@@ -26,6 +38,14 @@
 }
 
 .footerLogo {
-  height: 18px;
+  height: 30px;
   cursor: pointer;
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  color: var.$black;
 }

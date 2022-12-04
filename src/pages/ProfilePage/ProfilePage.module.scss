@@ -2,15 +2,15 @@
 
 .profilePage {
   display: flex;
-  justify-content: space-evenly;
-  align-items: center;
+  justify-content: center;
   width: 100%;
-  flex: 1 1 auto;
-  flex-wrap: wrap;
+
+  transition: all 1s;
+  padding: 3rem 1rem;
 }
 
 .profile {
-  padding: 45px;
+  padding: 2.8rem;
   border-radius: var.$modal-window-border-radius;
   max-width: 350px;
   width: 100%;
@@ -34,17 +34,45 @@
 
   &Buttons {
     padding-top: 20px;
-    width: 150px;
     display: flex;
     flex-direction: column;
     gap: 10px;
+
+    & > button {
+      &:last-child {
+        background-color: var.$white;
+        color: var.$ruby-red;
+        font-weight: 600;
+
+        &:hover {
+          background-color: var.$ruby-red;
+          color: var.$white;
+        }
+      }
+    }
   }
 }
 
 .editSection {
+  position: relative;
+}
+.editButton {
+  position: absolute;
+  border: none;
+  background: none;
   display: flex;
-  justify-content: center;
-  padding: 50px;
-  max-width: 500px;
-  width: 100%;
+  gap: 0.2rem;
+  align-items: center;
+  color: var.$blue;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  & > svg {
+    font-size: 1.2rem;
+  }
 }

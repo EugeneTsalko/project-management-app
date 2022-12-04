@@ -1,7 +1,8 @@
 @use '../../styles/variables.scss' as var;
 
 .form {
-  width: 350px;
+  max-width: 350px;
+  width: 100%;
   background: var.$white;
   padding: 45px;
   border-radius: 10px;

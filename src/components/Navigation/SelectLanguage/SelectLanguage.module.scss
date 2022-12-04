@@ -1,9 +1,23 @@
 @use '../../../styles/variables.scss' as var;
 
 .select {
-  background-color: var.$lime-green;
+  background-color: transparent;
+  color: var.$white;
   border: none;
   border-radius: var.$btn-border-radius;
   padding: 3px;
   cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    background-color: rgba(var.$black, 0.2);
+  }
+
+  & > option {
+    background-color: var.$grey;
+
+    &:hover {
+      background-color: rgba(var.$black, 0.2);
+    }
+  }
 }

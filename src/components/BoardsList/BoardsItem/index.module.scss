@@ -1,4 +1,5 @@
 @use '../../../styles/variables.scss' as var;
+@use '../../../styles/mixins.scss' as mix;
 
 .card {
   position: relative;
@@ -7,7 +8,7 @@
   gap: 0.5rem;
   padding: 1rem;
   border: 1px solid transparent;
-  border-radius: var.$btn-border-radius;
+  border-radius: var.$modal-window-border-radius;
   box-shadow: var.$card-shadow;
   transition: all 0.5s;
   overflow: hidden;
@@ -40,7 +41,7 @@
 .buttons {
   display: flex;
   position: absolute;
-  border-radius: 15px;
+  border-radius: var.$modal-window-border-radius;
   padding: 0.5rem;
   gap: 0.5rem;
   top: 10px;
@@ -49,6 +50,10 @@
   border: 1px solid var.$light-grey;
   backdrop-filter: blur(5px);
   transition: all 0.5s;
+
+  @include mix.tablet {
+    transform: translate(-10px, 0);
+  }
 
   & > button {
     display: flex;
