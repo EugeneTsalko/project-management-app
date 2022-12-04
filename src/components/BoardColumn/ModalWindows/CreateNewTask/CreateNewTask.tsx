@@ -13,7 +13,7 @@ import { t } from 'i18next';
 
 const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootState) => state.user.user!._id);
+  const userId = useSelector((state: RootState) => state.user.user!.id);
 
   const {
     register,

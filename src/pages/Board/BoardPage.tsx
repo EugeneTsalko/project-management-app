@@ -29,7 +29,7 @@ const BoardPage = () => {
     const responseData = await getBoard(id as string);
 
     if (!responseData) {
-      navigate('/boards');
+      navigate('/Boards');
       return;
     }
     dispatch(setCurrentBoard(responseData));
@@ -59,13 +59,13 @@ const BoardPage = () => {
         </header>
         <ul className={styles.columnList}>
           {currentBoard.columns.map((item: ColumnInterface) => (
-            <li key={item._id}>
-              <BoardColumn data={item} boardId={currentBoard._id} />
+            <li key={item.id}>
+              <BoardColumn data={item} boardId={currentBoard.id} />
             </li>
           ))}
         </ul>
       </main>
-      {createColumnModalWindow && <CreateNewColumn setState={setCreateColumnModalWindow} boardId={currentBoard._id} />}
+      {createColumnModalWindow && <CreateNewColumn setState={setCreateColumnModalWindow} boardId={currentBoard.id} />}
     </>
   );
 };
