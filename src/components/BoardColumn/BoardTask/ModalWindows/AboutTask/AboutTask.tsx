@@ -73,7 +73,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
         <p className="modalDescription">{t('About task')}</p>
 
         <div className={styles.inputField}>
-          <label htmlFor="taskTitle">Title:</label>
+          <label htmlFor="taskTitle">{t('Title')}</label>
           {!isEditTaskTitle && (
             <>
               <p className={styles.columnTitle}>{data.title}</p>
@@ -99,7 +99,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
         </div>
 
         <div className={styles.inputField}>
-          <label htmlFor="taskDescription">Description:</label>
+          <label htmlFor="taskDescription">{t('Description')}</label>
           {!isEditTaskDescription && (
             <>
               <p className={styles.columnDescription}>{data.description}</p>
