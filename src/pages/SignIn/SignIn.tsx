@@ -21,10 +21,12 @@ export const SignIn = () => {
       toast.success(t('Welcome back on board!'));
     }
 
-    if (message.includes('403')) {
-      toast.error(t('User was not found!'));
-    } else {
-      toast.error(t('Sorry, something went wrong.'));
+    if (message) {
+      if (message.includes('403')) {
+        toast.error(t('User was not found!'));
+      } else {
+        toast.error(t('Sorry, something went wrong.'));
+      }
     }
   };
 

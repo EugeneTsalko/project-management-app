@@ -12,6 +12,8 @@ import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import FormBoard from 'components/BoardsList/FormBoard';
 import toast from 'react-hot-toast';
 import { useTranslation } from 'react-i18next';
+import { IoLogOutOutline } from 'react-icons/io5';
+import Divider from 'components/Divider';
 
 export const AuthNavigation = () => {
   const dispatch = useAppDispatch();
@@ -29,8 +31,14 @@ export const AuthNavigation = () => {
     toast.success(t('You are signed out!'));
   };
 
-  const createBoard = () => {
+  const createBoard = (e: React.MouseEvent) => {
+    e.stopPropagation();
     setCreateBoardModal(true);
+  };
+
+  const signOutHandler = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setModal(true);
   };
 
   const confirmationActions = {
@@ -41,25 +49,21 @@ export const AuthNavigation = () => {
   return (
     <>
       {pathname === '/' && <LinkButton path="/boards" text={t('Go to main')} />}
-      {pathname === '/profile' && (
-        <>
-          <LinkButton path="/boards" text={t('Go to boards')} />
-          <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
-        </>
-      )}
+      {pathname === '/profile' && <LinkButton path="/boards" text={t('Go to boards')} />}
       {pathname === '/boards' && (
         <>
           <Button text={t('Create Board')} type="button" style={ButtonStyle.nav} onClick={createBoard} />
           <LinkButton path="/profile" text={t('Profile')} />
-          <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={() => setModal(true)} />
         </>
       )}
-      {pathname.includes('/boards/') && (
-        <>
-          <LinkButton path="/boards" text={t('Go to boards')} />
-        </>
-      )}
+
+      {pathname.includes('/boards/') && <LinkButton path="/boards" text={t('Go to boards')} />}
+
       <SelectLanguage />
+      <Divider />
+      <Button text={t('Sign out')} type="button" style={ButtonStyle.nav} onClick={signOutHandler}>
+        <IoLogOutOutline />
+      </Button>
 
       {modal && (
         <ModalWindow type="confirmation" actions={confirmationActions}>

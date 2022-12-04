@@ -1,43 +1,51 @@
 @use '../../styles/variables.scss' as var;
+@use '../../styles/mixins.scss' as mix;
 
 .about {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
   border-bottom: 1px solid var.$light-grey;
-  padding: 20px 0;
+
+  @include mix.large-mobile {
+    flex-direction: column-reverse;
+    border-bottom: none;
+  }
 
   &Description {
-    width: 20%;
+    width: 50%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     gap: 50px;
+
+    & > button {
+      max-width: 200px;
+      width: 100%;
+      padding: 0.5rem 1rem;
+    }
+
+    @include mix.large-mobile {
+      width: 100%;
+      text-align: center;
+      align-items: center;
+    }
   }
 
   &ImageWrapper {
     display: flex;
-    justify-content: center;
-    align-items: center;
-    max-width: 60%;
-    width: 100%;
+    width: 70%;
+
+    @include mix.tablet {
+      width: 50%;
+    }
+
+    @include mix.large-mobile {
+      width: 100%;
+    }
   }
 
   .aboutImage {
-    width: 100%
-  }
-
-  &Btn {
-    display: block;
-    width: 40%;
-    padding: 20px;
-    color: var.$black;
-    background-color: var.$lime-green;
-    text-align: center;
-    border-radius: var.$btn-border-radius;
-    transition: var.$main-transition
-  }
-
-  .aboutBtn:hover {
-    background-color: var.$blue;
+    width: 100%;
   }
 }

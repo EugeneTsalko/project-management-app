@@ -1,10 +1,16 @@
 @use '../../styles/variables.scss' as var;
+@use '../../styles/mixins.scss' as mix;
 
 .hero {
   display: flex;
+  flex-direction: row;
   justify-content: space-around;
-  padding: 20px 0;
-  
+
+  @include mix.large-mobile {
+    flex-direction: column;
+    text-align: center;
+  }
+
   &Person {
     padding: 20px;
     display: flex;
@@ -12,10 +18,19 @@
     justify-content: center;
     gap: 10px;
 
+    @include mix.tablet {
+      padding: 20px 0;
+    }
+
     &Contacts {
       display: flex;
       align-items: center;
       gap: 20px;
+
+      @include mix.large-mobile {
+        justify-content: center;
+        gap: 5px;
+      }
 
       a {
         color: var.$black;
@@ -24,11 +39,23 @@
 
     img {
       width: 25px;
+
+      @include mix.tablet {
+        width: 15px;
+      }
     }
   }
 
   &Image {
     width: 40%;
+
+    @include mix.tablet {
+      width: 50%;
+    }
+
+    @include mix.large-mobile {
+      width: 100%;
+    }
   }
 }
 

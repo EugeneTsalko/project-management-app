@@ -1,16 +1,25 @@
 @use '../../styles/variables.scss' as var;
+@use '../../styles/mixins.scss' as mix;
 
 .linkBtn {
-  color: var.$black;
-  background-color: var.$lime-green;
   display: flex;
-  padding: 10px;
+  padding: 5px 10px;
   border-radius: var.$btn-border-radius;
+  color: var.$white;
   align-items: center;
   justify-content: center;
   transition: var.$main-transition;
+
+  & > svg {
+    font-size: 1.5rem;
+
+    @include mix.mobile {
+      font-size: 1rem;
+    }
+  }
 }
 
-.linkBtn:hover {
-  background-color: var.$aqua;
+.linkBtn:hover,
+.active {
+  background-color: rgba(var.$black, 0.2);
 }

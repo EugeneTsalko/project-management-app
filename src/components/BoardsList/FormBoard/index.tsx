@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import { useForm, SubmitHandler } from 'react-hook-form';
 
-import { useAppDispatch } from 'store/hooks';
+import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { createBoard, updateBoard } from 'api/boards';
 import { ModalWindow } from 'components/ModalWindow/ModalWindow';
 import styles from './index.module.scss';
@@ -10,8 +10,9 @@ import { ICreateBoard } from 'api/boards/index.types';
 import { IFormBoardProps } from './index.types';
 import { t } from 'i18next';
 
-const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, description }) => {
+const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, owner, users }) => {
   const dispatch = useAppDispatch();
+  const { user } = useAppSelector((state) => state.user);
 
   const {
     reset,
@@ -21,7 +22,7 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
   } = useForm<ICreateBoard>({
     defaultValues: {
       title: title ? title : '',
-      description: description ? description : '',
+      owner: owner ? owner : '',
     },
   });
 
@@ -30,8 +31,12 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
     setIsFormBoardModal(false);
   };
 
-  const submitHandler: SubmitHandler<ICreateBoard> = async ({ title, description }, e) => {
-    await dispatch(id ? updateBoard({ id, title, description }) : createBoard({ title, description }));
+  const submitHandler: SubmitHandler<ICreateBoard> = async ({ title, owner }, e) => {
+    await dispatch(
+      id
+        ? updateBoard({ id, title, owner, users: users!.concat([user!._id]) })
+        : createBoard({ title, owner, users: [user!._id] })
+    );
     setIsFormBoardModal(false);
     reset();
   };
@@ -58,14 +63,14 @@ const FormBoard: FC<IFormBoardProps> = ({ setIsFormBoardModal, id, title, descri
       </div>
       <div className={styles.inputBox}>
         <textarea
-          {...register('description', {
+          {...register('owner', {
             required: t("Description can't be empty") as string,
             maxLength: { value: 60, message: t('Description must be less than characters!', { val: 60 }) },
           })}
-          className={`${errors.description ? `${styles.input} ${styles.error}` : styles.input}`}
+          className={`${errors.owner ? `${styles.input} ${styles.error}` : styles.input}`}
           placeholder={t('Description') as string}
         />
-        {errors.description && <p className={styles.error}>{errors.description?.message}</p>}
+        {errors.owner && <p className={styles.error}>{errors.owner?.message}</p>}
       </div>
     </ModalWindow>
   );

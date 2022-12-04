@@ -10,7 +10,7 @@ import { useAppDispatch, useAppSelector } from 'store/hooks';
 import { signOutUser } from 'store/slices/userSlice';
 import styles from './ProfilePage.module.scss';
 import { EditedUserParams } from './ProfilePage.types';
-import { IoPersonCircleOutline } from 'react-icons/io5';
+import { IoArrowBack, IoPersonCircleOutline } from 'react-icons/io5';
 import { useTranslation } from 'react-i18next';
 
 export const ProfilePage = () => {
@@ -23,7 +23,7 @@ export const ProfilePage = () => {
   const dispatch = useAppDispatch();
 
   const handleEdit = async ({ name, login, password }: EditedUserParams) => {
-    const id = user!.id;
+    const id = user!._id;
     const response = dispatch(updateUser({ id, name, login, password }));
     await toast.promise(response, {
       loading: t('Updating...'),
@@ -34,7 +34,7 @@ export const ProfilePage = () => {
   };
 
   const handleDelete = async () => {
-    const id = user!.id;
+    const id = user!._id;
     const response = deleteUser(id);
     await toast.promise(response, {
       loading: t('Deleting...'),
@@ -60,23 +60,32 @@ export const ProfilePage = () => {
         </ModalWindow>
       )}
 
-      <section className={styles.profile}>
-        <h1>{t('Your profile')}:</h1>
-        <IoPersonCircleOutline />
-        <p>
-          {t('Name')}: <span>{user?.name}</span>
-        </p>
-        <p>
-          {t('Login')}: <span> {user?.login}</span>
-        </p>
-        <div className={styles.profileButtons}>
-          <Button text={t('Edit profile')} type="button" style="form" onClick={() => setEditUser(!editUser)} />
-          <Button text={t('Delete account')} type="button" style="form" onClick={() => setDeleteUserModal(true)} />
-        </div>
-      </section>
-      <section className={styles.editSection}>
-        {editUser && <Authorization type={AuthorizationType.edit} onChange={(data) => handleEdit(data)} />}
-      </section>
+      {!editUser && (
+        <section className={styles.profile}>
+          <h1>{t('Your profile')}:</h1>
+          <IoPersonCircleOutline />
+          <p>
+            {t('Name')}: <span>{user?.name}</span>
+          </p>
+          <p>
+            {t('Login')}: <span> {user?.login}</span>
+          </p>
+          <div className={styles.profileButtons}>
+            <Button text={t('Edit profile')} type="button" style="form" onClick={() => setEditUser((prev) => !prev)} />
+            <Button text={t('Delete account')} type="button" style="form" onClick={() => setDeleteUserModal(true)} />
+          </div>
+        </section>
+      )}
+
+      {editUser && (
+        <section className={styles.editSection}>
+          <button onClick={() => setEditUser(false)} className={styles.editButton}>
+            <IoArrowBack />
+            {t('Back')}
+          </button>
+          <Authorization type={AuthorizationType.edit} onChange={(data) => handleEdit(data)} />
+        </section>
+      )}
     </main>
   );
 };

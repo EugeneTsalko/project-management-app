@@ -5,7 +5,7 @@ export type AuthorizationParams = {
 };
 
 export type SignInPayload = {
-  id: string;
+  _id: string;
   name: string;
   login: string;
   token: string;
