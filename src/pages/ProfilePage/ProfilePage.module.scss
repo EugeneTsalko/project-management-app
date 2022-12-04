@@ -53,6 +53,12 @@
   }
 }
 
+.token {
+  color: var.$light-grey;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
 .editSection {
   position: relative;
   max-width: 350px;
