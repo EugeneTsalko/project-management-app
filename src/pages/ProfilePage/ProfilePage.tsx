@@ -12,6 +12,7 @@ import styles from './ProfilePage.module.scss';
 import { EditedUserParams } from './ProfilePage.types';
 import { IoArrowBack, IoPersonCircleOutline } from 'react-icons/io5';
 import { useTranslation } from 'react-i18next';
+import { isTokenExpired } from 'utils/isTokenExpired';
 
 export const ProfilePage = () => {
   const { t } = useTranslation();
@@ -74,6 +75,7 @@ export const ProfilePage = () => {
             <Button text={t('Edit profile')} type="button" style="form" onClick={() => setEditUser((prev) => !prev)} />
             <Button text={t('Delete account')} type="button" style="form" onClick={() => setDeleteUserModal(true)} />
           </div>
+          <p className={styles.token}>{t('Token expires in hours', { val: isTokenExpired().leftTime })}</p>
         </section>
       )}
 
