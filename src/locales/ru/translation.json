@@ -80,6 +80,9 @@
   "Save": "Сохранить",
   "Cancel": "Отменить",
 
+  "Your token is expired!": "Срок действия вашего токена истек!",
+  "Token expires in hours": "Срок действия токена истекает через {{val, number}} часов",
+
   "User login already exists!": "Логин пользователя уже существует!",
   "User was not found!": "Пользователь не найден!",
   "Welcome on board!": "Добро пожаловать!",
