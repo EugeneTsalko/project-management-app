@@ -11,3 +11,34 @@
 
   @include logo($svg-path, $color);
 }
+
+// Screen sizes
+@mixin desktop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin mini-tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin large-mobile {
+  @media screen and (max-width: 624px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}

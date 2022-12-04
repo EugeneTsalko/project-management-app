@@ -1,5 +1,4 @@
 @use '../../styles/variables.scss' as var;
-@import '../../styles/fonts.scss';
 
 %admit {
   background-color: var.$forest-green;
@@ -15,6 +14,10 @@
 
 .btn {
   font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
 
   outline: 0;
   border: 0;
@@ -24,21 +27,27 @@
   transition: ease-in-out 0.3s;
 
   user-select: none;
+
+  & > svg {
+    font-size: 1.5rem;
+  }
 }
 
 .nav {
   color: var.$white;
 
-  background: var.$lime-green;
+  background: transparent;
+  gap: 0.5rem;
 
   &:hover {
-    background-color: var.$deep-sky-blue;
+    background-color: rgba(var.$black, 0.2);
   }
 }
 
 .form {
   width: 100%;
   padding: 15px;
+  gap: 0.5rem;
 
   color: var.$white;
   text-transform: uppercase;
@@ -60,7 +69,6 @@
 .editTask,
 .cancelEditTask {
   color: var.$white;
-  font-family: RobotoMono, var.$default-fonts;
 
   &:hover {
     background-color: var.$deep-sky-blue;

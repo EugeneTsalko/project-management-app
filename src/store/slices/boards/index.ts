@@ -64,7 +64,7 @@ const boardsSlice = createSlice({
       });
 
     builder.addCase(deleteBoard.fulfilled, (state, action) => {
-      state.boards = state.boards.filter((obj) => obj.id !== action.meta.arg);
+      state.boards = state.boards.filter((obj) => obj._id !== action.meta.arg);
       state.status = 'Fulfilled';
     });
 
@@ -73,7 +73,7 @@ const boardsSlice = createSlice({
         state.status = 'Pending';
       })
       .addCase(updateBoard.fulfilled, (state, action) => {
-        const oldBoard = state.boards.findIndex((obj) => obj.id === action.meta.arg.id);
+        const oldBoard = state.boards.findIndex((obj) => obj._id === action.meta.arg.id);
         Object.assign(state.boards[oldBoard], action.payload);
         state.status = 'Fulfilled';
       });
