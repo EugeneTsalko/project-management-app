@@ -1,9 +1,9 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import toast from 'react-hot-toast';
 
 import API from 'api/base';
 
-import { TaskInterface } from 'api/currentBoard/index.types';
+import { ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
 
 const getTasks = async (boardId: string, columnId: string) => {
   try {
@@ -21,9 +21,25 @@ const getTasks = async (boardId: string, columnId: string) => {
   }
 };
 
-//! userId: number ????
-//! userId: 0
-//! order: 0
+const getAllTasks = async (columns: ColumnInterface[]) => {
+  try {
+    const response = (await axios.all(
+      columns.map((column) => API.get(`/boards/${column.boardId}/columns/${column._id}/tasks`))
+    )) as AxiosResponse[];
+
+    const data = {} as { [key: string]: TaskInterface[] };
+
+    columns.forEach((column, index) => {
+      data[column._id] = response[index].data;
+    });
+
+    return data;
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
+};
+
 const createTask = async (
   boardId: string,
   columnId: string,
@@ -53,9 +69,6 @@ const createTask = async (
   }
 };
 
-//! userId: number ????
-//! userId: 0
-//! order: 0
 const updateTask = async (
   boardId: string,
   columnId: string,
@@ -106,4 +119,4 @@ const removeTask = async (boardId: string, columnId: string, taskId: string) => 
   }
 };
 
-export { getTasks, createTask, updateTask, removeTask };
+export { getTasks, getAllTasks, createTask, updateTask, removeTask };

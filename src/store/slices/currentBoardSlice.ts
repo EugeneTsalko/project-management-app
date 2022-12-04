@@ -1,9 +1,8 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { BoardInterface, ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
+import { ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
 
 const initialState = {
-  board: {} as BoardInterface,
   columns: [] as ColumnInterface[],
   tasks: {} as { [key: string]: TaskInterface[] },
 };
@@ -12,8 +11,8 @@ export const currentBoard = createSlice({
   name: 'currentBoard',
   initialState,
   reducers: {
-    setCurrentBoard: (state, action: PayloadAction<BoardInterface>) => {
-      state.board = action.payload;
+    setColumns: (state, action: PayloadAction<ColumnInterface[]>) => {
+      state.columns = action.payload;
     },
     createColumn: (state, action: PayloadAction<ColumnInterface>) => {
       state.columns.push(action.payload);
@@ -27,6 +26,9 @@ export const currentBoard = createSlice({
       const columnIndex = state.columns.findIndex((column) => column._id === action.payload._id);
       state.columns[columnIndex].order = action.payload.order;
       state.columns[columnIndex].title = action.payload.title;
+    },
+    setTasks: (state, action: PayloadAction<{ [key: string]: TaskInterface[] }>) => {
+      state.tasks = action.payload;
     },
     createTask: (state, action: PayloadAction<TaskInterface>) => {
       const newTask = {
@@ -55,7 +57,7 @@ export const currentBoard = createSlice({
   },
 });
 
-export const { setCurrentBoard, createColumn, removeColumn, updateColumn, createTask, removeTask, updateTask } =
+export const { setColumns, createColumn, removeColumn, updateColumn, setTasks, createTask, removeTask, updateTask } =
   currentBoard.actions;
 
 export default currentBoard.reducer;

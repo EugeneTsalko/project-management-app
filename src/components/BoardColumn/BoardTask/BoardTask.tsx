@@ -45,7 +45,7 @@ const BoardTask = ({ data, boardId, columnId }: BoardTaskProps) => {
         </CSSTransition>
       </div>
       {removeTaskModalWindow && (
-        <RemoveTask setState={setRemoveTaskModalWindow} boardId={boardId} columnId={columnId} taskId={data.id} />
+        <RemoveTask setState={setRemoveTaskModalWindow} boardId={boardId} columnId={columnId} taskId={data._id} />
       )}
       {aboutTaskModalWindow && (
         <AboutTask setState={setAboutTaskModalWindow} data={data} boardId={boardId} columnId={columnId} />

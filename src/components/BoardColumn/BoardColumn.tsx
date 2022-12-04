@@ -1,6 +1,7 @@
 import React, { useRef, useState } from 'react';
 
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { t } from 'i18next';
 
 import { BoardTask } from './BoardTask/BoardTask';
 import { RemoveColumn } from './ModalWindows/RemoveColumn/RemoveColumn';
@@ -8,14 +9,15 @@ import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
 import { Button } from 'components/Button/Button';
 import { IoTrash } from 'react-icons/io5';
 import { updateColumn as updateColumnAPI } from 'api/currentBoard';
-import { ColumnInterface } from 'api/currentBoard/index.types';
+import { ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
 import { updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
+import { RootState } from 'store/store';
 
 import styles from './BoardColumn.module.scss';
-import { t } from 'i18next';
 
 const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string }) => {
   const dispatch = useDispatch();
+  const columnTasks = useSelector((state: RootState) => state.currentBoard.tasks[data._id]) || ([] as TaskInterface[]);
 
   const [removeColumnModalWindow, setRemoveColumnModalWindow] = useState(false);
   const [newTaskModalWindow, setNewTaskModalWindow] = useState(false);
@@ -24,17 +26,13 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
 
   const setColumnTitle = async () => {
     const title = columnTitle.current!.value;
-
     if (!title.trim().length) {
       return;
     }
-
-    const responseData = await updateColumnAPI(boardId, data.id, title, data.order);
-
+    const responseData = await updateColumnAPI(boardId, data._id, title, data.order);
     if (responseData) {
       dispatch(updateColumnAction(responseData));
     }
-
     setIsEditColumnTitle(false);
   };
 
@@ -61,9 +59,9 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
           </div>
         )}
         <ul className={styles.taskList}>
-          {data.tasks.map((item) => (
-            <li key={item.id}>
-              <BoardTask data={item} boardId={boardId} columnId={data.id} />
+          {columnTasks.map((item) => (
+            <li key={item._id}>
+              <BoardTask data={item} boardId={boardId} columnId={data._id} />
             </li>
           ))}
         </ul>
@@ -85,9 +83,9 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
         </div>
       </div>
       {removeColumnModalWindow && (
-        <RemoveColumn setState={setRemoveColumnModalWindow} boardId={boardId} columnId={data.id} />
+        <RemoveColumn setState={setRemoveColumnModalWindow} boardId={boardId} columnId={data._id} />
       )}
-      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} boardId={boardId} columnId={data.id} />}
+      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} boardId={boardId} columnId={data._id} />}
     </>
   );
 };

@@ -28,8 +28,7 @@ const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
   };
 
   const createColumn = async (value: ModalWindowModification) => {
-    const responseData = await createColumnAPI(boardId, value.columnTitle);
-
+    const responseData = await createColumnAPI(boardId, value.columnTitle, 0);
     if (responseData) {
       dispatch(createColumnAction(responseData));
     }
