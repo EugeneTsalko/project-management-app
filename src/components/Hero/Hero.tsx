@@ -24,7 +24,7 @@ const heroes = [
     mail: 'argulamov@gmail.com',
     githubLink: 'https://github.com/yuksak',
     githubName: 'yuksak',
-    done: 'Main route, Localization, Deploy backend, API interaction, Design.',
+    done: 'Main route, Localization, Deploy backend, Adaptive layouts, API interaction, Design.',
   },
 ];
 
