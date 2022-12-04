@@ -4,6 +4,7 @@ export type Props = {
   onClick?: (e: React.MouseEvent<Element, MouseEvent>) => void;
   type: 'button' | 'submit';
   style: string;
+  children?: React.ReactNode;
 };
 
 export enum ButtonStyle {

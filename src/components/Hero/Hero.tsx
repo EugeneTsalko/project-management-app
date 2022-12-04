@@ -4,55 +4,53 @@ import heroImg from '../../assets/hero.svg';
 import githubImg from '../../assets/github.svg';
 import mailImg from '../../assets/mail.svg';
 
+const heroes = [
+  {
+    name: 'Eugene',
+    mail: 'tefworkmail@gmail.com',
+    githubLink: 'https://github.com/eugenetsalko',
+    githubName: 'eugenetsalko',
+    done: 'Welcome route, Header, Footer, Sign In, Sign Up, API interaction, Design.',
+  },
+  {
+    name: 'Vitali',
+    mail: 'hauzinski@gmail.com',
+    githubLink: 'https://github.com/hauzinski',
+    githubName: 'hauzinski',
+    done: 'Board route, Columns, Tasks, Generic modal, API interaction, Design. ',
+  },
+  {
+    name: 'Alisher',
+    mail: 'argulamov@gmail.com',
+    githubLink: 'https://github.com/yuksak',
+    githubName: 'yuksak',
+    done: 'Main route, Localization, Deploy backend, Toasts, API interaction, Design.',
+  },
+];
+
 export const Hero = () => {
   return (
     <section className={styles.hero}>
       <img src={heroImg} alt="about image" className={styles.heroImage}></img>
       <div className={styles.heroes}>
-        <div className={styles.heroPerson}>
-          <h3>Eugene</h3>
-          <div>Done: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, ex.</div>
-          <div className={styles.heroPersonContacts}>
-            <img src={githubImg} alt="github" />
-            <a href="https://rs.school/react/" target="_blank" rel="nofollow noreferrer">
-              eugenetsalko
-            </a>
-          </div>
-          <div className={styles.heroPersonContacts}>
-            <img src={mailImg} alt="mail" />
-            <span>tefworkmail@gmail.com</span>
-          </div>
-        </div>
-
-        <div className={styles.heroPerson}>
-          <h3>Vitali</h3>
-          <div>Done: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, ex.</div>
-          <div className={styles.heroPersonContacts}>
-            <img src={githubImg} alt="github" />
-            <a href="https://github.com/hauzinski" target="_blank" rel="nofollow noreferrer">
-              hauzinski
-            </a>
-          </div>
-          <div className={styles.heroPersonContacts}>
-            <img src={mailImg} alt="mail" />
-            <span>hauzinski@gmail.com</span>
-          </div>
-        </div>
-
-        <div className={styles.heroPerson}>
-          <h3>Alisher</h3>
-          <div>Done: Lorem ipsum dolor sit amet consectetur adipisicing elit. Dicta, ex.</div>
-          <div className={styles.heroPersonContacts}>
-            <img src={githubImg} alt="github" />
-            <a href="https://github.com/yuksak" target="_blank" rel="nofollow noreferrer">
-              yuksak
-            </a>
-          </div>
-          <div className={styles.heroPersonContacts}>
-            <img src={mailImg} alt="mail" />
-            <span>argulamov@gmail.com</span>
-          </div>
-        </div>
+        {heroes.map((hero) => {
+          return (
+            <div className={styles.heroPerson} key={hero.githubName}>
+              <h3>{hero.name}</h3>
+              <p>Done: {hero.done}</p>
+              <div className={styles.heroPersonContacts}>
+                <img src={githubImg} alt="github" />
+                <a href={hero.githubLink} target="_blank" rel="nofollow noreferrer">
+                  {hero.githubName}
+                </a>
+              </div>
+              <div className={styles.heroPersonContacts}>
+                <img src={mailImg} alt="mail" />
+                <a href={`mailto:${hero.mail}`}>{hero.mail}</a>
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

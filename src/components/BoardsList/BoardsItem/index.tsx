@@ -2,7 +2,7 @@ import React, { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch } from 'store/hooks';
 
-import { IBoards } from 'api/boards/index.types';
+import { IBoards, IFetchedBoards } from 'api/boards/index.types';
 import { deleteBoard } from 'api/boards';
 
 import FormBoard from '../FormBoard';
@@ -12,7 +12,7 @@ import { IoTrash, IoPencil } from 'react-icons/io5';
 import styles from './index.module.scss';
 import { t } from 'i18next';
 
-const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
+const BoardsItem: FC<IFetchedBoards> = ({ _id, title, owner, users }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -30,7 +30,7 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
   };
 
   const deleteHandler = async () => {
-    await dispatch(deleteBoard(id));
+    await dispatch(deleteBoard(_id));
   };
 
   const deleteActions = {
@@ -40,9 +40,9 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
 
   return (
     <>
-      <div className={styles.card} onClick={() => navigate(`/boards/${id}`)}>
+      <div className={styles.card} onClick={() => navigate(`/boards/${_id}`)}>
         <p className={styles.title}>{title}</p>
-        <p className={styles.description}>{description}</p>
+        <p className={styles.description}>{owner}</p>
         <div className={styles.buttons}>
           <button name="delete" type="button" onClick={actionHandler}>
             <IoTrash />
@@ -60,7 +60,7 @@ const BoardsItem: FC<IBoards> = ({ id, title, description }) => {
       )}
 
       {isEditBoardModal && (
-        <FormBoard setIsFormBoardModal={setIsEditBoardModal} id={id} title={title} description={description} />
+        <FormBoard setIsFormBoardModal={setIsEditBoardModal} id={_id} title={title} owner={owner} users={users} />
       )}
     </>
   );

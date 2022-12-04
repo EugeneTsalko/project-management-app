@@ -9,7 +9,7 @@ export const signUpUser = createAsyncThunk<User, ISignUpProps, { rejectValue: IS
   '/user/signUp',
   async (user, thunkApi) => {
     try {
-      const response = await API.post('/signup', user);
+      const response = await API.post('/auth/signup', user);
 
       if (response.status === 404) {
         return thunkApi.rejectWithValue({
@@ -30,7 +30,7 @@ export const signInUser = createAsyncThunk<User, ISignInProps, { rejectValue: IS
   '/user/signIn',
   async ({ login, password }, thunkApi) => {
     try {
-      const response = await API.post('/signin', { login, password });
+      const response = await API.post('/auth/signin', { login, password });
 
       if (response.status === 404) {
         return thunkApi.rejectWithValue({
@@ -49,8 +49,8 @@ export const signInUser = createAsyncThunk<User, ISignInProps, { rejectValue: IS
 export const isUserAuth = createAsyncThunk('user/isUserAuth', async () => {
   const token = localStorage.getItem('token');
   if (token) {
-    const userData = decodeJWT(token);
-    const { data }: { data: User } = await API.get(`/users/${userData.id}`);
+    const { _id } = decodeJWT(token);
+    const { data }: { data: User } = await API.get(`/users/${_id}`);
 
     return data;
   } else {

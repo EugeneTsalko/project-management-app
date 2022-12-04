@@ -14,7 +14,7 @@ import styles from './AboutTask.module.scss';
 
 const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootState) => state.user.user!.id);
+  const userId = useSelector((state: RootState) => state.user.user!._id);
   const [isEditTaskTitle, setIsEditTaskTitle] = useState(false);
   const [isEditTaskDescription, setIsEditTaskDescription] = useState(false);
 

@@ -3,9 +3,9 @@ import { t } from 'i18next';
 import API from '../base';
 import toast from 'react-hot-toast';
 
-import { IBoards, IBoardsErrorMessage, ICreateBoard } from './index.types';
+import { IBoards, IBoardsErrorMessage, ICreateBoard, ICreateBoardProps, IFetchedBoards } from './index.types';
 
-export const getBoardsList = createAsyncThunk<IBoards[], void, { rejectValue: IBoardsErrorMessage }>(
+export const getBoardsList = createAsyncThunk<IFetchedBoards[], void, { rejectValue: IBoardsErrorMessage }>(
   '/boards',
   async (_, thunkApi) => {
     try {
@@ -28,11 +28,11 @@ export const getBoardsList = createAsyncThunk<IBoards[], void, { rejectValue: IB
   }
 );
 
-export const createBoard = createAsyncThunk<IBoards, ICreateBoard, { rejectValue: IBoardsErrorMessage }>(
+export const createBoard = createAsyncThunk<IFetchedBoards, ICreateBoardProps, { rejectValue: IBoardsErrorMessage }>(
   '/createBoard',
-  async ({ title, description }, thunkApi) => {
+  async ({ title, owner, users }, thunkApi) => {
     try {
-      const response = await API.post('/boards', { title, description });
+      const response = await API.post('/boards', { title, owner, users });
 
       if (response.status === 404) {
         toast.error(response.data.message);
@@ -52,7 +52,7 @@ export const createBoard = createAsyncThunk<IBoards, ICreateBoard, { rejectValue
   }
 );
 
-export const getBoardById = createAsyncThunk<IBoards[], string, { rejectValue: IBoardsErrorMessage }>(
+export const getBoardById = createAsyncThunk<IFetchedBoards, string, { rejectValue: IBoardsErrorMessage }>(
   '/getBoardById',
   async (id, thunkApi) => {
     try {
@@ -75,11 +75,11 @@ export const getBoardById = createAsyncThunk<IBoards[], string, { rejectValue: I
   }
 );
 
-export const deleteBoard = createAsyncThunk<IBoards[], string, { rejectValue: IBoardsErrorMessage }>(
+export const deleteBoard = createAsyncThunk<IFetchedBoards[], string, { rejectValue: IBoardsErrorMessage }>(
   '/deleteBoard',
-  async (id, thunkApi) => {
+  async (_id, thunkApi) => {
     try {
-      const response = await API.delete(`/boards/${id}`);
+      const response = await API.delete(`/boards/${_id}`);
 
       if (response.status === 404) {
         toast.error(response.data.message);
@@ -99,11 +99,11 @@ export const deleteBoard = createAsyncThunk<IBoards[], string, { rejectValue: IB
   }
 );
 
-export const updateBoard = createAsyncThunk<IBoards, IBoards, { rejectValue: IBoardsErrorMessage }>(
+export const updateBoard = createAsyncThunk<IFetchedBoards, IBoards, { rejectValue: IBoardsErrorMessage }>(
   '/updateBoard',
-  async ({ id, title, description }, thunkApi) => {
+  async ({ id, title, owner, users }, thunkApi) => {
     try {
-      const response = await API.put(`/boards/${id}`, { title, description });
+      const response = await API.put(`/boards/${id}`, { title, owner, users });
 
       if (response.status === 404) {
         toast.error(response.data.message);

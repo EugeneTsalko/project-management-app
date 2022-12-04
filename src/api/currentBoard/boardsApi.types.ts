@@ -1,12 +1,12 @@
 export interface BoardInterface {
-  id: string;
+  _id: string;
   title: string;
   description: string;
   columns: ColumnInterface[];
 }
 
 export interface ColumnInterface {
-  id: string;
+  _id: string;
   title: string;
   order: number;
   tasks: TaskInterface[];

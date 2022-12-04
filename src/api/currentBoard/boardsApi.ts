@@ -7,7 +7,7 @@ import { BoardInterface } from 'api/currentBoard/index.types';
 
 const getBoard = async (id: string) => {
   try {
-    const response = (await API.get(`/boards/${id}`)) as AxiosResponse;
+    const response = (await API.get(`/boards/${id}/columns`)) as AxiosResponse;
 
     if (response.status === 404) {
       toast.error(response.data.message);

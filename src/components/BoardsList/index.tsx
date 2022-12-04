@@ -1,6 +1,6 @@
 import React, { lazy, Suspense, useState } from 'react';
 
-import { IBoards } from 'api/boards/index.types';
+import { IBoards, IFetchedBoards } from 'api/boards/index.types';
 import { useAppSelector } from 'store/hooks';
 
 const BoardsItem = lazy(() => import('./BoardsItem'));
@@ -18,9 +18,9 @@ const BoardsList = () => {
   return (
     <div className={styles.cards}>
       <Suspense fallback={<LoaderSpinner />}>
-        {boards.map((board: IBoards) => (
-          <Suspense fallback={<LoaderSpinner />} key={board.id}>
-            <BoardsItem key={board.id} {...board} />
+        {boards.map((board: IFetchedBoards) => (
+          <Suspense fallback={<LoaderSpinner />} key={board._id}>
+            <BoardsItem key={board._id} {...board} />
           </Suspense>
         ))}
       </Suspense>

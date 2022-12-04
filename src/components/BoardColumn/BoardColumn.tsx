@@ -29,7 +29,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
       return;
     }
 
-    const responseData = await updateColumnAPI(boardId, data.id, title, data.order);
+    const responseData = await updateColumnAPI(boardId, data._id, title, data.order);
 
     if (responseData) {
       dispatch(updateColumnAction(responseData));
@@ -63,7 +63,7 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
         <ul className={styles.taskList}>
           {data.tasks.map((item) => (
             <li key={item.id}>
-              <BoardTask data={item} boardId={boardId} columnId={data.id} />
+              <BoardTask data={item} boardId={boardId} columnId={data._id} />
             </li>
           ))}
         </ul>
@@ -85,9 +85,9 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
         </div>
       </div>
       {removeColumnModalWindow && (
-        <RemoveColumn setState={setRemoveColumnModalWindow} boardId={boardId} columnId={data.id} />
+        <RemoveColumn setState={setRemoveColumnModalWindow} boardId={boardId} columnId={data._id} />
       )}
-      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} boardId={boardId} columnId={data.id} />}
+      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} boardId={boardId} columnId={data._id} />}
     </>
   );
 };
