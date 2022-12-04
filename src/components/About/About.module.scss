@@ -34,9 +34,6 @@
 
   &ImageWrapper {
     display: flex;
-    justify-content: center;
-    margin: 0 auto;
-    align-items: center;
     width: 70%;
 
     @include mix.tablet {
@@ -52,7 +49,3 @@
     width: 100%;
   }
 }
-
-// .title {
-//   // font-size: 1.5rem;
-// }
