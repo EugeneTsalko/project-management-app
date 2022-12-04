@@ -34,7 +34,7 @@ export const Footer = () => {
         })}
       </div>
       <div className={styles.copyright}>
-        <FaRegCopyright /> React 2022Q3
+        <FaRegCopyright /> 2022
       </div>
     </footer>
   );
