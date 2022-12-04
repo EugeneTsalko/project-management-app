@@ -55,14 +55,16 @@
 
 .editSection {
   position: relative;
+  max-width: 350px;
+  width: 100%;
 }
+
 .editButton {
   position: absolute;
   border: none;
   background: none;
   display: flex;
   gap: 0.2rem;
-  align-items: center;
   color: var.$blue;
   top: 1rem;
   left: 1rem;
