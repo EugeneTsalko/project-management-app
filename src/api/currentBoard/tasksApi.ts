@@ -3,14 +3,42 @@ import toast from 'react-hot-toast';
 
 import API from 'api/base';
 
-import { TaskResponseInterface } from 'api/currentBoard/index.types';
+import { TaskInterface } from 'api/currentBoard/index.types';
 
-const createTask = async (boardId: string, columnId: string, title: string, description: string, userId: string) => {
+const getTasks = async (boardId: string, columnId: string) => {
+  try {
+    const response = (await API.get(`/boards/${boardId}/columns/${columnId}/tasks`)) as AxiosResponse;
+
+    if (response.status === 404) {
+      toast.error(response.data.message);
+      return null;
+    }
+
+    return response.data as TaskInterface[];
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
+};
+
+//! userId: number ????
+//! userId: 0
+//! order: 0
+const createTask = async (
+  boardId: string,
+  columnId: string,
+  title: string,
+  description: string,
+  order: number,
+  userId: string
+) => {
   try {
     const response = (await API.post(`/boards/${boardId}/columns/${columnId}/tasks`, {
       title,
       description,
+      order,
       userId,
+      users: [userId],
     })) as AxiosResponse;
 
     if (response.status === 404) {
@@ -18,13 +46,16 @@ const createTask = async (boardId: string, columnId: string, title: string, desc
       return null;
     }
 
-    return response.data as TaskResponseInterface;
+    return response.data as TaskInterface;
   } catch (err) {
     toast.error((err as Error).message);
     return null;
   }
 };
 
+//! userId: number ????
+//! userId: 0
+//! order: 0
 const updateTask = async (
   boardId: string,
   columnId: string,
@@ -39,9 +70,9 @@ const updateTask = async (
       title,
       description,
       order,
-      boardId,
       columnId,
       userId,
+      users: [userId],
     })) as AxiosResponse;
 
     if (response.status === 404) {
@@ -49,7 +80,7 @@ const updateTask = async (
       return null;
     }
 
-    return response.data as TaskResponseInterface;
+    return response.data as TaskInterface;
   } catch (err) {
     toast.error((err as Error).message);
     return null;
@@ -64,7 +95,7 @@ const removeTask = async (boardId: string, columnId: string, taskId: string) => 
       case 404:
         toast.error(response.data.message);
         return null;
-      case 204:
+      case 200:
         return response;
       default:
         return null;
@@ -75,4 +106,4 @@ const removeTask = async (boardId: string, columnId: string, taskId: string) => 
   }
 };
 
-export { createTask, updateTask, removeTask };
+export { getTasks, createTask, updateTask, removeTask };
