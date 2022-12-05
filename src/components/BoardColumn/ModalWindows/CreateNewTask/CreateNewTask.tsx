@@ -11,7 +11,7 @@ import { RootState } from 'store/store';
 import styles from './CreateNewTask.module.scss';
 import { t } from 'i18next';
 
-const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
+const CreateNewTask = ({ setState, boardId, columnId, tasksLength }: ModalWindowProps) => {
   const dispatch = useDispatch();
   const userId = useSelector((state: RootState) => state.user.user!._id);
 
@@ -32,7 +32,14 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   };
 
   const createTask = async (value: ModalWindowModification) => {
-    const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, 0, userId);
+    const responseData = await createTaskAPI(
+      boardId,
+      columnId,
+      value.taskTitle,
+      value.taskDescription,
+      tasksLength ? tasksLength + 1 : 1,
+      userId
+    );
 
     if (responseData) {
       dispatch(createTaskAction(responseData));

@@ -11,7 +11,7 @@ import { ModalWindowModification, ModalWindowProps } from './CreateNewColumn.typ
 import styles from './CreateNewColumn.module.scss';
 import { useTranslation } from 'react-i18next';
 
-const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
+const CreateNewColumn = ({ setState, boardId, columnsLength }: ModalWindowProps) => {
   const dispatch = useDispatch();
   const { t } = useTranslation();
 
@@ -28,7 +28,7 @@ const CreateNewColumn = ({ setState, boardId }: ModalWindowProps) => {
   };
 
   const createColumn = async (value: ModalWindowModification) => {
-    const responseData = await createColumnAPI(boardId, value.columnTitle, 0);
+    const responseData = await createColumnAPI(boardId, value.columnTitle, columnsLength ? columnsLength + 1 : 1);
     if (responseData) {
       dispatch(createColumnAction(responseData));
     }

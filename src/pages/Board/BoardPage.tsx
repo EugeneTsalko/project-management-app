@@ -8,11 +8,16 @@ import { CreateNewColumn } from './ModalWindows/CreateNewColumn';
 import LoaderSpinner from 'components/LoaderSpinner';
 import { Button } from 'components/Button/Button';
 import { getColumns as getColumnsAPI, getAllTasks as getAllTasksAPI } from 'api/currentBoard';
-import { setColumns as setColumnsAction, setTasks as setTasksAction } from 'store/slices/currentBoardSlice';
+import { setColumns, setColumns as setColumnsAction, setTasks as setTasksAction } from 'store/slices/currentBoardSlice';
 import { ColumnInterface } from 'api/currentBoard/index.types';
 import { useTranslation } from 'react-i18next';
 import { RootState } from 'store/store';
 import styles from './BoardPage.module.scss';
+
+import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
+import API from 'api/base';
+import { reorderList } from 'utils/reorderList';
+import SearchBar from 'components/searchBar';
 
 const BoardPage = () => {
   const navigate = useNavigate();
@@ -36,10 +41,11 @@ const BoardPage = () => {
     }
 
     const columns = await getColumnsAPI(boardId as string);
-    if (columns) {
-      dispatch(setColumnsAction(columns));
+    const sortedColumns = columns?.sort((a, b) => a.order - b.order);
+    if (sortedColumns) {
+      dispatch(setColumnsAction(sortedColumns));
 
-      const tasks = await getAllTasksAPI(columns);
+      const tasks = await getAllTasksAPI(sortedColumns);
       if (tasks) {
         dispatch(setTasksAction(tasks));
       }
@@ -56,12 +62,22 @@ const BoardPage = () => {
     return <LoaderSpinner full={true} />;
   }
 
+  const dndHandler = async (result: DropResult) => {
+    const list = reorderList(result, boardColumns);
+
+    if (list) {
+      dispatch(setColumns(list.items));
+      await API.patch(`/columnsSet`, list.reorderedItems);
+    }
+  };
+
   return (
     <>
       <main className={styles.main}>
         <header className={styles.header}>
-          <h2 className={styles.boardTitle}>{currentBoard!.title}</h2>
+          <h2 className={styles.boardTitle}>{currentBoard?.title}</h2>
           <Button text={t('Close Board')} type="button" style="closeBoard" onClick={() => navigate(-1)} />
+          <SearchBar />
           <Button
             text={t('Create column')}
             type="button"
@@ -69,15 +85,37 @@ const BoardPage = () => {
             onClick={() => setCreateColumnModalWindow(true)}
           />
         </header>
-        <ul className={styles.columnList}>
-          {boardColumns.map((item: ColumnInterface) => (
-            <li key={item._id}>
-              <BoardColumn data={item} boardId={boardId as string} />
-            </li>
-          ))}
-        </ul>
+        <DragDropContext onDragEnd={dndHandler}>
+          <Droppable droppableId="column" direction="horizontal">
+            {(provided) => (
+              <ul {...provided.droppableProps} ref={provided.innerRef} className={styles.columnList}>
+                {boardColumns.map((item: ColumnInterface, index) => (
+                  <Draggable key={item._id} draggableId={item._id} index={index}>
+                    {(provided) => (
+                      <li
+                        ref={provided.innerRef}
+                        {...provided.dragHandleProps}
+                        {...provided.draggableProps}
+                        key={index}
+                      >
+                        <BoardColumn data={item} boardId={boardId as string} />
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
       </main>
-      {createColumnModalWindow && <CreateNewColumn setState={setCreateColumnModalWindow} boardId={boardId as string} />}
+      {createColumnModalWindow && (
+        <CreateNewColumn
+          setState={setCreateColumnModalWindow}
+          boardId={boardId as string}
+          columnsLength={boardColumns.length}
+        />
+      )}
     </>
   );
 };

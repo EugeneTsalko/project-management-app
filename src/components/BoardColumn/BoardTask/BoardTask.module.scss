@@ -2,13 +2,13 @@
 
 .main {
   display: flex;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .task {
   width: 100%;
   margin: 0.25em 0.25em 0.25em 0;
-  padding: 0.25em;
+  padding: 0.5em;
 
   font-size: 1rem;
   font-weight: 500;
@@ -20,17 +20,13 @@
 
   overflow: hidden;
   user-select: none;
-
-  &:hover {
-    cursor: pointer;
-  }
+  cursor: pointer;
 }
 
 .deleteTaskButton {
   display: flex;
   align-items: center;
-  margin: 0.2em;
-  padding: 0.15em;
+  padding: 0.35em;
 
   color: var.$white;
   font-size: 1.3rem;

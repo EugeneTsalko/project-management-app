@@ -10,7 +10,7 @@ const heroes = [
     mail: 'tefworkmail@gmail.com',
     githubLink: 'https://github.com/eugenetsalko',
     githubName: 'eugenetsalko',
-    done: 'Welcome route, Header, Footer, Sign In, Sign Up, API interaction, Design.',
+    done: 'Welcome route, Header, Footer, Profile, Sign In, Sign Up, API interaction, Design.',
   },
   {
     name: 'Vitali',
@@ -24,7 +24,7 @@ const heroes = [
     mail: 'argulamov@gmail.com',
     githubLink: 'https://github.com/yuksak',
     githubName: 'yuksak',
-    done: 'Main route, Localization, Deploy backend, Adaptive layouts, API interaction, Design.',
+    done: 'Main route, DnD, Localization, Deploy backend, Adaptive layouts, API interaction, Design.',
   },
 ];
 

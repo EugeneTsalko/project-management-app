@@ -6,6 +6,11 @@
   flex-direction: row;
   justify-content: space-around;
   border-bottom: 1px solid var.$light-grey;
+  min-height: 33rem;
+
+  @include mix.tablet {
+    min-height: 20rem;
+  }
 
   @include mix.large-mobile {
     flex-direction: column-reverse;
