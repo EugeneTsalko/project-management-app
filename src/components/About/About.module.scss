@@ -5,7 +5,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-around;
-  height: calc(100vh - 100px);
+
 
   @include mix.large-mobile {
     flex-direction: column-reverse;
