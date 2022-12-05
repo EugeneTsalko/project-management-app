@@ -17,6 +17,7 @@ import styles from './BoardPage.module.scss';
 import { DragDropContext, Droppable, Draggable, DropResult } from 'react-beautiful-dnd';
 import API from 'api/base';
 import { reorderList } from 'utils/reorderList';
+import SearchBar from 'components/searchBar';
 
 const BoardPage = () => {
   const navigate = useNavigate();
@@ -34,10 +35,10 @@ const BoardPage = () => {
   const loadBoard = async () => {
     setIsLoading(true);
 
-    // if (!currentBoard) {
-    //   navigate('/boards');
-    //   return;
-    // }
+    if (!currentBoard) {
+      navigate('/boards');
+      return;
+    }
 
     const columns = await getColumnsAPI(boardId as string);
     const sortedColumns = columns?.sort((a, b) => a.order - b.order);
@@ -76,6 +77,7 @@ const BoardPage = () => {
         <header className={styles.header}>
           <h2 className={styles.boardTitle}>{currentBoard?.title}</h2>
           <Button text={t('Close Board')} type="button" style="closeBoard" onClick={() => navigate(-1)} />
+          <SearchBar />
           <Button
             text={t('Create column')}
             type="button"
