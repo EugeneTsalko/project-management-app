@@ -2,6 +2,7 @@
 
 .wrapper {
   width: 100%;
+  height: calc(100vh - 230px);
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;

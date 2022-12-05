@@ -1,8 +1,9 @@
 import React from 'react';
 import styles from './Hero.module.scss';
-import heroImg from '../../assets/hero.svg';
+import { ReactComponent as HeroImg } from '../../assets/hero.svg';
 import githubImg from '../../assets/github.svg';
 import mailImg from '../../assets/mail.svg';
+import { useTranslation } from 'react-i18next';
 
 const heroes = [
   {
@@ -10,7 +11,7 @@ const heroes = [
     mail: 'tefworkmail@gmail.com',
     githubLink: 'https://github.com/eugenetsalko',
     githubName: 'eugenetsalko',
-    done: 'Welcome route, Header, Footer, Profile, Sign In, Sign Up, API interaction, Design.',
+    done: 'Welcome route, Header, Footer, Sign In, Sign Up, Profile, API interaction, Design.',
   },
   {
     name: 'Vitali',
@@ -29,15 +30,20 @@ const heroes = [
 ];
 
 export const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.hero}>
-      <img src={heroImg} alt="about image" className={styles.heroImage}></img>
+      <HeroImg className={styles.heroImage} />
       <div className={styles.heroes}>
+        <h2 className={styles.title}>{t('Team')}:</h2>
         {heroes.map((hero) => {
           return (
             <div className={styles.heroPerson} key={hero.githubName}>
-              <h3>{hero.name}</h3>
-              <p>Done: {hero.done}</p>
+              <h3>{t(hero.name)}</h3>
+              <p>
+                <strong>{t('Done')}:</strong> {hero.done}
+              </p>
               <div className={styles.heroPersonContacts}>
                 <img src={githubImg} alt="github" />
                 <a href={hero.githubLink} target="_blank" rel="nofollow noreferrer">

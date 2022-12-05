@@ -6,7 +6,7 @@ $indent: 0.5em;
   display: flex;
   flex-direction: column;
   width: 300px;
-  max-height: calc(100vh - 220px);
+  max-height: calc(100vh - 270px);
 
   margin: 0 $indent;
   padding: $indent calc($indent / 2) $indent $indent;
@@ -20,7 +20,7 @@ $indent: 0.5em;
   }
 
   @media screen and (max-width: var.$screen-width-small) and (orientation: portrait) {
-    max-height: calc(100vh - 370px);
+    max-height: calc(100vh - 450px);
   }
 }
 

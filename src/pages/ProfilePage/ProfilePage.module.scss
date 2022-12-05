@@ -4,12 +4,12 @@
   display: flex;
   justify-content: center;
   width: 100%;
-
   transition: all 1s;
   padding: 3rem 1rem;
 }
 
 .profile {
+  background-color: var.$white;
   padding: 2.8rem;
   border-radius: var.$modal-window-border-radius;
   max-width: 350px;

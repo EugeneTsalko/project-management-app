@@ -38,7 +38,7 @@ export const Authorization = ({ type, onChange }: Props) => {
           <input
             className={styles.input}
             type="text"
-            placeholder={type === AuthorizationType.edit ? (t('New Login') as string) : (t('Name') as string)}
+            placeholder={type === AuthorizationType.edit ? (t('New Name') as string) : (t('Name') as string)}
             autoComplete="off"
             {...register('name', {
               required: t('Please enter your name') as string,

@@ -1,7 +1,6 @@
 import React from 'react';
 import styles from './About.module.scss';
 import aboutImg from '../../assets/about.svg';
-import { LinkButton } from 'components/LinkButton/LinkButton';
 import { useAppSelector } from 'store/hooks';
 import { useTranslation } from 'react-i18next';
 import { Button } from 'components/Button/Button';
@@ -16,7 +15,7 @@ export const About = () => {
   return (
     <section className={styles.about}>
       <div className={styles.aboutDescription}>
-        <div>
+        <div className={styles.text}>
           <h1>{t('welcomeTitle')}</h1>
           <p>{t('welcomeDescription')}</p>
         </div>
