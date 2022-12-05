@@ -9,7 +9,7 @@ import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
 import { Button } from 'components/Button/Button';
 import { IoTrash } from 'react-icons/io5';
 import { updateColumn as updateColumnAPI } from 'api/currentBoard';
-import { ColumnInterface } from 'api/currentBoard/index.types';
+import { ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
 import { setTasks, updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
 import { RootState } from 'store/store';
 
@@ -19,8 +19,9 @@ import API from 'api/base';
 
 const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string }) => {
   const dispatch = useDispatch();
-  const columnTasks = useSelector((state: RootState) => state.currentBoard.tasks[data._id]);
+  const columnTasks = useSelector((state: RootState) => state.currentBoard.tasks[data._id]) || ([] as TaskInterface[]);
   const { tasks } = useSelector((state: RootState) => state.currentBoard);
+
   const sortedTasks = [...columnTasks].sort((a, b) => a.order - b.order);
 
   const [removeColumnModalWindow, setRemoveColumnModalWindow] = useState(false);

@@ -1,12 +1,10 @@
 import API from 'api/base';
-import { ColumnInterface } from 'api/currentBoard/columnsApi.types';
 import { TaskInterface } from 'api/currentBoard/tasksApi.types';
-import React, { useEffect, FC, useState } from 'react';
+import React, { useState } from 'react';
 
 import { FiSearch } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
-import { useParams } from 'react-router-dom';
 import { setColumns } from 'store/slices/currentBoardSlice';
 import { RootState } from 'store/store';
 import styles from './index.module.scss';
@@ -14,7 +12,6 @@ import styles from './index.module.scss';
 const SearchBar = () => {
   const [input, setInput] = useState<string>('');
   const dispatch = useDispatch();
-  const { columns } = useSelector((state: RootState) => state.currentBoard);
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -31,8 +28,6 @@ const SearchBar = () => {
         const fetchedColumns = await API.get(`/columnsSet/?ids=${ids}`);
 
         if (fetchedColumns.data) {
-          // console.log(columns);
-          // console.log(fetchedColumns.data);
           dispatch(setColumns(fetchedColumns.data));
         }
       }
