@@ -72,3 +72,11 @@
     max-width: 100%;
   }
 }
+
+.title {
+  padding: 20px;
+
+  @include mix.tablet {
+    padding: 0 0 20px 0;
+  }
+}

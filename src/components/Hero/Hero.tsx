@@ -3,6 +3,7 @@ import styles from './Hero.module.scss';
 import { ReactComponent as HeroImg } from '../../assets/hero.svg';
 import githubImg from '../../assets/github.svg';
 import mailImg from '../../assets/mail.svg';
+import { useTranslation } from 'react-i18next';
 
 const heroes = [
   {
@@ -29,16 +30,19 @@ const heroes = [
 ];
 
 export const Hero = () => {
+  const { t } = useTranslation();
+
   return (
     <section className={styles.hero}>
       <HeroImg className={styles.heroImage} />
       <div className={styles.heroes}>
+        <h2 className={styles.title}>{t('Team')}:</h2>
         {heroes.map((hero) => {
           return (
             <div className={styles.heroPerson} key={hero.githubName}>
-              <h3>{hero.name}</h3>
+              <h3>{t(hero.name)}</h3>
               <p>
-                <strong>Done:</strong> {hero.done}
+                <strong>{t('Done')}:</strong> {hero.done}
               </p>
               <div className={styles.heroPersonContacts}>
                 <img src={githubImg} alt="github" />
