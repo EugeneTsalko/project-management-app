@@ -9,15 +9,19 @@ import { CreateNewTask } from './ModalWindows/CreateNewTask/CreateNewTask';
 import { Button } from 'components/Button/Button';
 import { IoTrash } from 'react-icons/io5';
 import { updateColumn as updateColumnAPI } from 'api/currentBoard';
-import { ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
-import { updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
+import { ColumnInterface } from 'api/currentBoard/index.types';
+import { setTasks, updateColumn as updateColumnAction } from 'store/slices/currentBoardSlice';
 import { RootState } from 'store/store';
 
 import styles from './BoardColumn.module.scss';
+import { DragDropContext, Draggable, Droppable, DropResult } from 'react-beautiful-dnd';
+import API from 'api/base';
 
 const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string }) => {
   const dispatch = useDispatch();
-  const columnTasks = useSelector((state: RootState) => state.currentBoard.tasks[data._id]) || ([] as TaskInterface[]);
+  const columnTasks = useSelector((state: RootState) => state.currentBoard.tasks[data._id]);
+  const { tasks } = useSelector((state: RootState) => state.currentBoard);
+  const sortedTasks = [...columnTasks].sort((a, b) => a.order - b.order);
 
   const [removeColumnModalWindow, setRemoveColumnModalWindow] = useState(false);
   const [newTaskModalWindow, setNewTaskModalWindow] = useState(false);
@@ -34,6 +38,24 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
       dispatch(updateColumnAction(responseData));
     }
     setIsEditColumnTitle(false);
+  };
+
+  const dragEndHandler = async (result: DropResult) => {
+    if (!result.destination) return;
+    const items = Array.from(sortedTasks);
+    const [reorderData] = items.splice(result.source.index, 1);
+    items.splice(result.destination.index, 0, reorderData);
+    const updateTasks = items.map(({ _id, columnId }, index) => {
+      return { _id, columnId, order: index + 1 };
+    });
+
+    const newTasks = { ...tasks };
+    newTasks[data._id] = items.map((item, index) => {
+      return { ...item, order: index + 1 };
+    });
+
+    dispatch(setTasks(newTasks));
+    await API.patch(`/tasksSet`, updateTasks);
   };
 
   return (
@@ -58,13 +80,29 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
             </div>
           </div>
         )}
-        <ul className={styles.taskList}>
-          {columnTasks.map((item) => (
-            <li key={item._id}>
-              <BoardTask data={item} boardId={boardId} columnId={data._id} />
-            </li>
-          ))}
-        </ul>
+        <DragDropContext onDragEnd={dragEndHandler}>
+          <Droppable droppableId="tasks">
+            {(provided) => (
+              <ul className={styles.taskList} {...provided.droppableProps} ref={provided.innerRef}>
+                {sortedTasks.map((item, index) => (
+                  <Draggable key={item._id} draggableId={item._id} index={index}>
+                    {(provided) => (
+                      <li
+                        key={item._id}
+                        ref={provided.innerRef}
+                        {...provided.draggableProps}
+                        {...provided.dragHandleProps}
+                      >
+                        <BoardTask data={item} boardId={boardId} columnId={data._id} />
+                      </li>
+                    )}
+                  </Draggable>
+                ))}
+                {provided.placeholder}
+              </ul>
+            )}
+          </Droppable>
+        </DragDropContext>
         <div className={styles.columnControl}>
           <button
             className={styles.deleteColumnButton}
@@ -85,7 +123,14 @@ const BoardColumn = ({ data, boardId }: { data: ColumnInterface; boardId: string
       {removeColumnModalWindow && (
         <RemoveColumn setState={setRemoveColumnModalWindow} boardId={boardId} columnId={data._id} />
       )}
-      {newTaskModalWindow && <CreateNewTask setState={setNewTaskModalWindow} boardId={boardId} columnId={data._id} />}
+      {newTaskModalWindow && (
+        <CreateNewTask
+          setState={setNewTaskModalWindow}
+          boardId={boardId}
+          columnId={data._id}
+          tasksLength={columnTasks.length}
+        />
+      )}
     </>
   );
 };
