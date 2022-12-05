@@ -1,16 +1,60 @@
-import { AxiosResponse } from 'axios';
+import axios, { AxiosResponse } from 'axios';
 import toast from 'react-hot-toast';
 
 import API from 'api/base';
 
-import { TaskResponseInterface } from 'api/currentBoard/index.types';
+import { ColumnInterface, TaskInterface } from 'api/currentBoard/index.types';
 
-const createTask = async (boardId: string, columnId: string, title: string, description: string, userId: string) => {
+const getTasks = async (boardId: string, columnId: string) => {
+  try {
+    const response = (await API.get(`/boards/${boardId}/columns/${columnId}/tasks`)) as AxiosResponse;
+
+    if (response.status === 404) {
+      toast.error(response.data.message);
+      return null;
+    }
+
+    return response.data as TaskInterface[];
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
+};
+
+const getAllTasks = async (columns: ColumnInterface[]) => {
+  try {
+    const response = (await axios.all(
+      columns.map((column) => API.get(`/boards/${column.boardId}/columns/${column._id}/tasks`))
+    )) as AxiosResponse[];
+
+    const data = {} as { [key: string]: TaskInterface[] };
+
+    columns.forEach((column, index) => {
+      data[column._id] = response[index].data;
+    });
+
+    return data;
+  } catch (err) {
+    toast.error((err as Error).message);
+    return null;
+  }
+};
+
+const createTask = async (
+  boardId: string,
+  columnId: string,
+  title: string,
+  description: string,
+  order: number,
+  userId: string
+) => {
   try {
     const response = (await API.post(`/boards/${boardId}/columns/${columnId}/tasks`, {
       title,
       description,
+      order,
       userId,
+      users: [userId],
     })) as AxiosResponse;
 
     if (response.status === 404) {
@@ -18,7 +62,7 @@ const createTask = async (boardId: string, columnId: string, title: string, desc
       return null;
     }
 
-    return response.data as TaskResponseInterface;
+    return response.data as TaskInterface;
   } catch (err) {
     toast.error((err as Error).message);
     return null;
@@ -39,9 +83,9 @@ const updateTask = async (
       title,
       description,
       order,
-      boardId,
       columnId,
       userId,
+      users: [userId],
     })) as AxiosResponse;
 
     if (response.status === 404) {
@@ -49,7 +93,7 @@ const updateTask = async (
       return null;
     }
 
-    return response.data as TaskResponseInterface;
+    return response.data as TaskInterface;
   } catch (err) {
     toast.error((err as Error).message);
     return null;
@@ -64,7 +108,7 @@ const removeTask = async (boardId: string, columnId: string, taskId: string) => 
       case 404:
         toast.error(response.data.message);
         return null;
-      case 204:
+      case 200:
         return response;
       default:
         return null;
@@ -75,4 +119,4 @@ const removeTask = async (boardId: string, columnId: string, taskId: string) => 
   }
 };
 
-export { createTask, updateTask, removeTask };
+export { getTasks, getAllTasks, createTask, updateTask, removeTask };

@@ -13,7 +13,7 @@ import { t } from 'i18next';
 
 const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootState) => state.user.user!.id);
+  const userId = useSelector((state: RootState) => state.user.user!._id);
 
   const {
     register,
@@ -32,7 +32,7 @@ const CreateNewTask = ({ setState, boardId, columnId }: ModalWindowProps) => {
   };
 
   const createTask = async (value: ModalWindowModification) => {
-    const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, userId);
+    const responseData = await createTaskAPI(boardId, columnId, value.taskTitle, value.taskDescription, 0, userId);
 
     if (responseData) {
       dispatch(createTaskAction(responseData));

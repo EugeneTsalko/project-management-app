@@ -27,7 +27,7 @@ const ModalWindow = ({ type, actions, children }: ModalWindowProps) => {
     <div
       id="modalWindow"
       className={styles.main}
-      onClick={handleClickCloseWindow}
+      onMouseDown={handleClickCloseWindow}
       onKeyDown={handleClickCloseWindow}
       role="presentation"
     >

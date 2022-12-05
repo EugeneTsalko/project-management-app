@@ -14,7 +14,7 @@ import styles from './AboutTask.module.scss';
 
 const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state: RootState) => state.user.user!.id);
+  const userId = useSelector((state: RootState) => state.user.user!._id);
   const [isEditTaskTitle, setIsEditTaskTitle] = useState(false);
   const [isEditTaskDescription, setIsEditTaskDescription] = useState(false);
 
@@ -44,17 +44,15 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
     const responseData = await updateTaskAPI(
       boardId,
       columnId,
-      data.id,
+      data._id,
       value.taskTitle,
       value.taskDescription,
       data.order,
       userId
     );
-
     if (responseData) {
       dispatch(updateTaskAction(responseData));
     }
-
     setState(false);
     resetField('taskTitle');
     resetField('taskDescription');
@@ -75,7 +73,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
         <p className="modalDescription">{t('About task')}</p>
 
         <div className={styles.inputField}>
-          <label htmlFor="taskTitle">Title:</label>
+          <label htmlFor="taskTitle">{t('Title')}</label>
           {!isEditTaskTitle && (
             <>
               <p className={styles.columnTitle}>{data.title}</p>
@@ -101,7 +99,7 @@ const AboutTask = ({ setState, data, boardId, columnId }: ModalWindowProps) => {
         </div>
 
         <div className={styles.inputField}>
-          <label htmlFor="taskDescription">Description:</label>
+          <label htmlFor="taskDescription">{t('Description')}</label>
           {!isEditTaskDescription && (
             <>
               <p className={styles.columnDescription}>{data.description}</p>
