@@ -57,7 +57,9 @@ export const AuthNavigation = () => {
         </>
       )}
 
-      {pathname.includes('/boards/') && <LinkButton path="/boards" text={t('Go to boards')} />}
+      {pathname.includes('/boards/') && (
+        <Button onClick={() => navigate('/boards')} type="button" style="nav" text={t('Go to boards')} />
+      )}
 
       <SelectLanguage />
       <Divider />

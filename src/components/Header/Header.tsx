@@ -11,7 +11,6 @@ export const Header = () => {
   return (
     <header className={scrollPosition > 0 ? `${styles.header} ${styles.scrolled}` : styles.header}>
       <NavLink to="/">
-        {/* <img src={logo} alt="logo" /> */}
         <Logo className={styles.logo} />
       </NavLink>
       <Navigation />
