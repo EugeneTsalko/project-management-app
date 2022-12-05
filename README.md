@@ -6,7 +6,7 @@
 - [Deploy](https://rs-react-backend-production.up.railway.app/api-docs)
 
 ## Description
-Kanban-board application. The final task of the React 2022 Q3 course at Rolling Scopes School. 
+Kanban-board application. The final [task](https://github.com/rolling-scopes-school/tasks/blob/master/tasks/react/project-management-system-EN.md) of the React 2022 Q3 course at Rolling Scopes School. 
 
 ## Used technologies
 - [TypeScript](https://www.typescriptlang.org/)
