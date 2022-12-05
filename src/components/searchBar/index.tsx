@@ -7,8 +7,7 @@ import { FiSearch } from 'react-icons/fi';
 import { useSelector } from 'react-redux';
 import { useDispatch } from 'react-redux';
 import { useParams } from 'react-router-dom';
-// import { useAppDispatch } from 'store/hooks';
-import { setColumns, setTasks } from 'store/slices/currentBoardSlice';
+import { setColumns } from 'store/slices/currentBoardSlice';
 import { RootState } from 'store/store';
 import styles from './index.module.scss';
 
@@ -16,7 +15,6 @@ const SearchBar = () => {
   const [input, setInput] = useState<string>('');
   const dispatch = useDispatch();
   const { columns } = useSelector((state: RootState) => state.currentBoard);
-  const { boardId } = useParams();
 
   const searchHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInput(e.target.value);
@@ -36,7 +34,6 @@ const SearchBar = () => {
           // console.log(columns);
           // console.log(fetchedColumns.data);
           dispatch(setColumns(fetchedColumns.data));
-          // setGlobalColumns(fetchedColumns.data);
         }
       }
     }
