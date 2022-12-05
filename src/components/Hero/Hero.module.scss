@@ -1,0 +1,82 @@
+@use '../../styles/variables.scss' as var;
+@use '../../styles/mixins.scss' as mix;
+
+.hero {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+  @include mix.large-mobile {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  &Person {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+
+    @include mix.tablet {
+      padding: 20px 0;
+    }
+
+    &Contacts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+
+      @include mix.large-mobile {
+        justify-content: center;
+        gap: 5px;
+      }
+
+      a {
+        color: var.$black;
+      }
+    }
+
+    img {
+      width: 25px;
+
+      @include mix.tablet {
+        width: 15px;
+      }
+    }
+  }
+
+  &Image {
+    width: 45%;
+
+    @include mix.tablet {
+      width: 50%;
+    }
+
+    @include mix.large-mobile {
+      width: 100%;
+      align-self: center;
+    }
+  }
+}
+
+.heroes {
+  max-width: 40%;
+  font-size: 1.1rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  @include mix.large-mobile {
+    font-size: 1rem;
+    max-width: 100%;
+  }
+}
+
+.title {
+  padding: 20px;
+
+  @include mix.tablet {
+    padding: 0 0 20px 0;
+  }
+}

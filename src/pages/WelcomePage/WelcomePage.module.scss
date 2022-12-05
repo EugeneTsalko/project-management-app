@@ -1,0 +1,15 @@
+@use '../../styles/mixins.scss' as mix;
+
+.welcomePage {
+  width: 100%;
+  padding: 20px;
+  display: flex;
+  gap: 1.5rem;
+  flex-direction: column;
+  // background: rgb(238,238,238);
+  // background: linear-gradient(180deg, rgba(238,238,238,1) 18%, rgba(255,251,233,1) 48%, rgba(218,226,182,1) 81%, rgba(204,214,166,1) 99%);
+
+  @include mix.large-mobile {
+    padding: 30px;
+  }
+}

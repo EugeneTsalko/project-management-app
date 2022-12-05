@@ -1,0 +1,45 @@
+@use '../../styles/variables.scss' as var;
+
+.main {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: var.$modal-background;
+}
+
+.content {
+  position: relative;
+  z-index: 20;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 1em;
+  padding: 2.5em 3.5em;
+
+  background-color: var.$white;
+  border-radius: var.$modal-window-border-radius;
+
+  @media screen and (max-width: var.$screen-width-medium) {
+    padding: 2em 3em;
+  }
+
+  @media screen and (max-width: var.$screen-width-small) {
+    padding: 1.5em 2em;
+  }
+}
+
+.controls {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1em;
+}

@@ -1,0 +1,38 @@
+$white: rgb(250, 250, 250);
+$light-grey: rgb(200, 200, 200);
+$grey: rgb(140, 140, 140);
+$black: rgb(0, 0, 0);
+$dark-blue: rgb(88, 0, 255);
+$blue:rgb(0, 150, 255);
+$sky-blue: rgb(146, 180, 236);
+$deep-sky-blue: rgb(0, 215, 255);
+$blue-violet: rgb(138, 43, 226);
+$lime-green: rgb(50, 205, 50);
+$forest-green: rgb(34, 139, 34);
+$ruby-red: rgb(224, 17, 95);
+$modal-background: rgba(0, 0, 0, 0.6);
+$column-background: rgba(0, 0, 0, 0.5);
+$shadow: rgba(56, 56, 56, 0.3);
+$yellow: rgb(255, 210, 76);
+$light-yellow: rgb(255, 230, 154);
+$dark: rgb(34, 40, 49);
+$light-dark: rgb(57, 62, 70);
+$cyan: rgb(114, 255, 255);
+$mouse-grey: rgb(238, 238, 238);
+$snow-white: rgb(255, 255, 255);
+
+$screen-width-large: 1366px;
+$screen-width-medium: 1024px;
+$screen-width-small: 640px;
+
+$default-fonts: Arial, Helvetica, sans-serif;
+
+$btn-border-radius: 5px;
+$modal-window-border-radius: 10px;
+$scrollbar-indent: 0.2em;
+
+$main-transition: ease-in-out 0.3s;
+
+$card-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+$card-shadow-deep: 0 1px 1px hsl(0deg 0% 0% / 0.075), 0 2px 2px hsl(0deg 0% 0% / 0.075),
+  0 4px 4px hsl(0deg 0% 0% / 0.075), 0 8px 8px hsl(0deg 0% 0% / 0.075), 0 16px 16px hsl(0deg 0% 0% / 0.075);

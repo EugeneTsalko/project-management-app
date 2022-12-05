@@ -1,0 +1,66 @@
+@use '../../styles/variables.scss' as var;
+@use '../../styles/mixins.scss' as mix;
+
+.about {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+
+
+  @include mix.large-mobile {
+    flex-direction: column-reverse;
+    border-bottom: none;
+  }
+
+  &Description {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+
+    & > button {
+      max-width: 200px;
+      width: 100%;
+      padding: 0.5rem 1rem;
+    }
+
+    @include mix.large-mobile {
+      width: 100%;
+      text-align: center;
+      align-items: center;
+    }
+  }
+
+  &ImageWrapper {
+    display: flex;
+    width: 70%;
+
+    @include mix.tablet {
+      width: 50%;
+    }
+
+    @include mix.large-mobile {
+      width: 100%;
+    }
+  }
+
+  .aboutImage {
+    width: 100%;
+  }
+}
+
+.text {
+  h1 {
+    font-size: 4rem;
+  }
+  
+  font-size: 1.5rem;
+
+  @include mix.tablet {
+    h1{
+      font-size: 2rem;
+    }
+    font-size: 1rem;
+  }
+}

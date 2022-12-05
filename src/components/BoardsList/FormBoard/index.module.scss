@@ -1,0 +1,30 @@
+@use '../../../styles/variables.scss' as var;
+
+.inputBox {
+  margin-bottom: 1rem;
+
+  & p {
+    font-size: 0.8rem;
+    margin-top: 0.2rem;
+  }
+}
+
+.input {
+  background: #f2f2f2;
+  border: 2px solid #f2f2f2;
+
+  padding: 0.5rem 1rem;
+  font-size: 1rem;
+  border-radius: var.$btn-border-radius;
+
+  &:focus {
+    border-color: var.$light-grey;
+  }
+}
+
+.error {
+  color: red;
+  border-color: red !important;
+  // font-size: 0.8rem;
+  // word-wrap: break-word;
+}

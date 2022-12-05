@@ -1,0 +1,89 @@
+@use '../../../styles/variables.scss' as var;
+@use '../../../styles/mixins.scss' as mix;
+
+.card {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 1rem;
+  border: 1px solid transparent;
+  border-radius: var.$modal-window-border-radius;
+  box-shadow: var.$card-shadow;
+  transition: all 0.5s;
+  overflow: hidden;
+  background-color: var.$snow-white;
+
+  &:hover {
+    box-shadow: var.$card-shadow-deep;
+    transform: translate(0, -5px);
+    border-color: var.$light-grey;
+
+    & .buttons {
+      transform: translate(-10px, 0);
+    }
+  }
+}
+
+.title {
+  color: var.$blue;
+  text-decoration: none;
+  font-size: 1.3rem;
+  cursor: pointer;
+  word-wrap: break-word;
+}
+
+.description {
+  cursor: pointer;
+  word-wrap: break-word;
+  flex: 2;
+}
+
+.buttons {
+  display: flex;
+  position: absolute;
+  border-radius: var.$modal-window-border-radius;
+  padding: 0.5rem;
+  gap: 0.5rem;
+  top: 10px;
+  right: 0;
+  transform: translate(80px, 0);
+  border: 1px solid var.$light-grey;
+  backdrop-filter: blur(5px);
+  transition: all 0.5s;
+
+  @include mix.tablet {
+    transform: translate(-10px, 0);
+  }
+
+  & > button {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    font-size: 1.4rem;
+    background-color: transparent;
+    transition: all 0.3s;
+
+    & > svg {
+      pointer-events: none;
+    }
+
+    &:first-child {
+      color: var.$ruby-red;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+
+    &:last-child {
+      color: var.$blue;
+
+      &:hover {
+        transform: scale(1.2);
+      }
+    }
+  }
+}

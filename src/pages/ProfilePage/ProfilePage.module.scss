@@ -1,0 +1,86 @@
+@use '../../styles/variables.scss' as var;
+
+.profilePage {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  transition: all 1s;
+  padding: 3rem 1rem;
+}
+
+.profile {
+  background-color: var.$white;
+  padding: 2.8rem;
+  border-radius: var.$modal-window-border-radius;
+  max-width: 350px;
+  width: 100%;
+  box-shadow: rgb(0 0 0 / 5%) 0px 6px 24px 0px, rgb(0 0 0 / 8%) 0px 0px 0px 1px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  p {
+    padding-top: 10px;
+
+    span {
+      font-weight: 700;
+    }
+  }
+
+  svg {
+    width: 100px;
+    height: 100px;
+  }
+
+  &Buttons {
+    padding-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    & > button {
+      &:last-child {
+        background-color: var.$white;
+        color: var.$ruby-red;
+        font-weight: 600;
+
+        &:hover {
+          background-color: var.$ruby-red;
+          color: var.$white;
+        }
+      }
+    }
+  }
+}
+
+.token {
+  color: var.$light-grey;
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.editSection {
+  position: relative;
+  max-width: 350px;
+  width: 100%;
+}
+
+.editButton {
+  position: absolute;
+  border: none;
+  background: none;
+  display: flex;
+  gap: 0.2rem;
+  color: var.$blue;
+  top: 1rem;
+  left: 1rem;
+  cursor: pointer;
+
+  &:hover {
+    text-decoration: underline;
+  }
+
+  & > svg {
+    font-size: 1.2rem;
+  }
+}

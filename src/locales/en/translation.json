@@ -1,0 +1,105 @@
+{
+  "langEN": "EN",
+  "langRU": "RU",
+
+  "Go to main": "Go to main",
+  "Go to boards": "Go to boards",
+  "Profile": "Profile",
+  "Sign out": "Sign Out",
+  "Sign in": "Sign In",
+  "Sign up": "Sign Up",
+
+  "welcomeTitle": "Kanban Task Manager",
+  "welcomeDescription": "Why do companies decide to implement Kanban? It`s obvious. None of the existing time, task or project management methods are both user-friendly and efficient at the same time. Also, it`s been proven, that implementing Agile methods - such as Kanban - improves projects success rates.",
+  "welcomeButton": "Get started",
+
+  "notFoundPageTitle": "It looks like you`re lost",
+  "notFoundPageDescription": "the page you are looking for is not available!",
+  "notFoundPageButton": "Go to the Home Page",
+
+  "Name": "Name",
+  "New Name": "New Name",
+  "Please enter your name": "Please enter your name",
+  "Name must be less than characters": "Name must be less than {{val, number}} characters",
+
+  "Login": "Login",
+  "New Login": "New Login",
+  "Please enter your login": "Please enter your login",
+  "Login must be less than characters": "Login must be less than {{val, number}} characters",
+
+  "Password": "Password",
+  "Please enter your password": "Please enter your password",
+  "At least characters": "At least {{val, number}} characters",
+
+  "Title": "Title",
+  "Title can't be empty": "Title can't be empty",
+  "Title must be less than characters!": "Title must be less than {{val, number}} characters!",
+  "Enter title:": "Enter title:",
+
+  "Description": "Description",
+  "Enter description:": "Enter description:",
+  "Description can't be empty": "Description can't be empty",
+  "Description must be less than characters!": "Description must be less than {{val, number}} characters!",
+
+  "Boards": "Boards",
+  "Add Boards": "Add Board",
+  "Create Board": "Create Board",
+  "Edit Board": "Edit Board",
+  "Close Board": "Close Board",
+
+  "Failed to get boards!": "Failed to get boards!",
+  "Board is created!": "Board is created!",
+  "Failed to create board!": "Failed to create board!",
+  "Failed to get board!": "Failed to get board!",
+  "Board is deleted!": "Board is deleted",
+  "Failed to delete board!": "Failed to delete board!",
+  "Board is updated!": "Board is updated",
+  "Failed to update board!": "Failed to update board!",
+
+  "Your profile": "Your profile",
+  "Edit profile": "Edit profile",
+  "Delete account": "Delete account",
+  "Updating...": "Updating...",
+  "Your profile has been updated!": "Your profile has been updated!",
+  "Deleting...": "Deleting...",
+  "Your profile has been deleted!": "Your profile has been deleted!",
+  "Something went wrong...": "Something went wrong...",
+  "Failed to delete account!": "Failed to delete account!",
+
+  "Create column": "Create column",
+  "Create task": "Create task",
+  "About task": "About task",
+  "Edit": "Edit",
+  "Close": "Close",
+  "Send": "Send",
+  "Back": "Back",
+
+  "Confirm": "Confirm",
+  "Save": "Save",
+  "Deny": "Deny",
+  "Cancel": "Cancel",
+
+  "Your token is expired!": "Your token is expired!",
+  "Token expires in hours": "Token expires in {{val, number}} hours",
+
+  "User login already exists!": "User login already exists!",
+  "User was not found!": "User was not found!",
+  "Welcome on board!": "Welcome on board!",
+  "Welcome back on board!": "Welcome back on board!",
+  "You are signed out!": "You are signed out!",
+  "Sorry, something went wrong.": "Sorry, something went wrong.",
+  "Sorry, user login already exists or something just went wrong!": "Sorry, user login already exists or something just went wrong!",
+
+  "Are you sure you want to delete this board?": "Are you sure you want to delete this board?",
+  "Are you sure you want to delete this column?": "Are you sure you want to delete this column?",
+  "Are you sure you want to delete this task?": "Are you sure you want to delete this task?",
+  "Are you sure you want to delete your account?": "Are you sure you want to delete your account?",
+
+  "Are you sure you want to sign out?": "Are you sure you want to sign out?",
+
+  "Eugene": "Eugene",
+  "Vitali": "Vitali",
+  "Alisher": "Alisher",
+  "Done": "Done",
+  "Team": "Team"
+}

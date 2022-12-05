@@ -1,0 +1,92 @@
+@charset 'utf-8';
+
+@use './variables.scss' as var;
+@import './fonts.scss';
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  text-decoration: none;
+  list-style: none;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+* {
+  &::-webkit-scrollbar {
+    width: 0.6em;
+    height: 0.6em;
+    margin-block: 0.25em;
+  }
+
+  &::-webkit-scrollbar-track {
+    margin-block: 0.25em;
+    background-color: var.$column-background;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: var.$sky-blue;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: var.$blue;
+  }
+}
+
+body,
+h2,
+h3,
+h4,
+p,
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  outline: none;
+}
+
+body {
+  color: var.$black;
+  font-family: 'Work Sans', sans-serif;
+  font-weight: 500;
+  background-color: var.$white;
+  background: rgb(238,238,238);
+  background: linear-gradient(180deg, rgba(238,238,238,1) 18%, rgba(255,251,233,1) 48%, rgba(218,226,182,1) 81%, rgba(204,214,166,1) 99%);
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+}
+
+.modalDescription {
+  margin-bottom: 0.75em;
+  font-family: PTSansRegular, var.$default-fonts;
+  font-size: 1.75rem;
+  font-weight: 900;
+  color: var.$black;
+
+  user-select: none;
+
+  @media screen and (max-width: var.$screen-width-large) {
+    margin-bottom: 0.7em;
+  }
+  @media screen and (max-width: var.$screen-width-medium) {
+    margin-bottom: 0.5em;
+  }
+  @media screen and (max-width: var.$screen-width-small) {
+    margin-bottom: 0.3em;
+  }
+}

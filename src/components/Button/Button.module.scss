@@ -1,0 +1,126 @@
+@use '../../styles/variables.scss' as var;
+
+%admit {
+  background-color: var.$forest-green;
+}
+
+%deny {
+  background-color: var.$ruby-red;
+}
+
+%edit {
+  background-color: var.$blue-violet;
+}
+
+.btn {
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px 10px;
+  outline: 0;
+  border: 0;
+  border-radius: var.$btn-border-radius;
+  cursor: pointer;
+  transition: ease-in-out 0.3s;
+  user-select: none;
+
+  & > svg {
+    font-size: 1.5rem;
+  }
+}
+
+.nav {
+  color: var.$white;
+  background-color: var.$blue;
+  gap: 0.5rem;
+
+  &:hover {
+    background-color: var.$dark-blue;
+  }
+}
+
+.form {
+  width: 100%;
+  padding: 15px;
+  gap: 0.5rem;
+  color: var.$white;
+  text-transform: uppercase;
+  background: var.$blue;
+
+  &:hover {
+    background-color: var.$dark-blue;
+  }
+}
+
+.admitModalWindow,
+.denyModalWindow,
+.sendColumnTitle,
+.denyColumnTitle,
+.createTask,
+.closeBoard,
+.createColumn,
+.editTask,
+.cancelEditTask {
+  color: var.$white;
+
+  &:hover {
+    background-color: var.$deep-sky-blue;
+    transform: scale(1.05);
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
+.admitModalWindow,
+.denyModalWindow {
+  margin: 0 1em;
+  padding: 0.5em 1em;
+}
+
+.sendColumnTitle,
+.denyColumnTitle,
+.createTask,
+.closeBoard,
+.createColumn,
+.editTask,
+.cancelEditTask {
+  padding: 0.25em 0.75em;
+}
+
+.admitModalWindow,
+.sendColumnTitle,
+.createTask,
+.createColumn {
+  @extend %admit;
+}
+
+.denyModalWindow,
+.denyColumnTitle,
+.closeBoard,
+.cancelEditTask {
+  @extend %deny;
+}
+
+.closeBoard {
+  grid-area: close-board-button;
+}
+
+.createColumn {
+  grid-area: create-column-button;
+}
+
+.editTask {
+  @extend %edit;
+
+  position: absolute;
+  right: 0;
+  top: -0.5em;
+}
+
+.cancelEditTask {
+  align-self: flex-end;
+  margin-top: 0.5em;
+}
