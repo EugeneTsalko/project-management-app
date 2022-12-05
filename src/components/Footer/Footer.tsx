@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Footer.module.scss';
-import rsLogo from '../../assets/rsschool.svg';
+import { ReactComponent as RsLogo } from '../../assets/rsschool.svg';
 import { FaRegCopyright } from 'react-icons/fa';
 
 const links = [
@@ -22,7 +22,7 @@ export const Footer = () => {
   return (
     <footer className={styles.footer}>
       <a href="https://rs.school/react/" target="_blank" rel="nofollow noreferrer">
-        <img className={styles.footerLogo} src={rsLogo} alt="rs-school logo"></img>
+        <RsLogo className={styles.footerLogo} />
       </a>
       <div className={styles.footerGithub}>
         {links.map((link) => {

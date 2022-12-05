@@ -18,14 +18,11 @@
   align-items: center;
   justify-content: center;
   padding: 5px 10px;
-
   outline: 0;
   border: 0;
   border-radius: var.$btn-border-radius;
   cursor: pointer;
-
   transition: ease-in-out 0.3s;
-
   user-select: none;
 
   & > svg {
@@ -35,12 +32,11 @@
 
 .nav {
   color: var.$white;
-
-  background: transparent;
+  background-color: var.$blue;
   gap: 0.5rem;
 
   &:hover {
-    background-color: rgba(var.$black, 0.2);
+    background-color: var.$dark-blue;
   }
 }
 
@@ -48,14 +44,12 @@
   width: 100%;
   padding: 15px;
   gap: 0.5rem;
-
   color: var.$white;
   text-transform: uppercase;
-
   background: var.$blue;
 
   &:hover {
-    background-color: var.$deep-sky-blue;
+    background-color: var.$dark-blue;
   }
 }
 
@@ -72,7 +66,6 @@
 
   &:hover {
     background-color: var.$deep-sky-blue;
-
     transform: scale(1.05);
   }
 
