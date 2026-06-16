@@ -1,0 +1,83 @@
+@use '../../styles/variables.scss' as var;
+@use '../../styles/mixins.scss' as mix;
+
+.footer {
+  // background-color: #ccd6a6;
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+  margin-top: auto;
+
+  @include mix.large-mobile {
+    padding: 20px;
+    flex-direction: column;
+    gap: 0.5rem;
+    justify-content: center;
+  }
+
+  &Github {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+
+    @include mix.large-mobile {
+      gap: 10px;
+      padding: 0px;
+      justify-content: center;
+    }
+
+    a {
+      // color: var.$snow-white;
+      color: var.$black;
+      transition: var.$main-transition;
+      letter-spacing: 0.1rem;
+      position: relative;
+      padding: 10px;
+
+      @include mix.large-mobile {
+        letter-spacing: normal;
+        padding: 4px;
+      }
+    }
+
+    a:after {    
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: var.$black;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+
+    a:hover:after { 
+      width: 100%; 
+      left: 0; 
+    }
+  }
+}
+
+.footerLogo {
+  height: 30px;
+  cursor: pointer;
+  transition: var.$main-transition;
+}
+
+.footerLogo:hover {
+  filter: invert(1);
+}
+
+.copyright {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.3rem;
+  // color: var.$snow-white;
+  color: var.$black;
+}

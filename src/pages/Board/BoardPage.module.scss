@@ -1,0 +1,40 @@
+@use './../../styles/variables.scss' as var;
+
+.main {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  width: 100%;
+  padding-bottom: var.$scrollbar-indent;
+  background-blend-mode: screen;
+}
+
+.header {
+  display: grid;
+  grid-template-columns: auto auto 1fr auto;
+  grid-template-rows: auto;
+  grid-template-areas: 'board-title close-board-button . create-column-button';
+  gap: 1em;
+  padding: 2em 1em;
+
+  @media screen and (max-width: var.$screen-width-small) and (orientation: portrait) {
+    grid-template-columns: auto auto;
+    grid-template-areas:
+      'board-title board-title'
+      'close-board-button create-column-button';
+  }
+}
+
+.boardTitle {
+  grid-area: board-title;
+}
+
+.columnList {
+  display: flex;
+  flex: 1;
+  padding-bottom: 2 * var.$scrollbar-indent;
+  margin: 0 var.$scrollbar-indent var.$scrollbar-indent;
+  overflow-x: auto;
+  overflow-y: hidden;
+  list-style-type: none;
+}

@@ -1,0 +1,32 @@
+@use '../../styles/variables.scss' as var;
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(275px, 0));
+  grid-gap: 1.5rem;
+  justify-content: center;
+}
+
+.addBoardButton {
+  border: 1px dashed var.$grey;
+  border-radius: var.$modal-window-border-radius;
+  cursor: pointer;
+  transition: all 0.5s;
+  font-size: 1rem;
+  color: var.$grey;
+  min-height: 85px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  & > svg {
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+  }
+
+  &:hover {
+    color: var.$blue;
+    border-color: var.$blue;
+  }
+}

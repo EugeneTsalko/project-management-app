@@ -1,0 +1,44 @@
+@mixin logo($svg-path, $color) {
+  background-color: $color;
+  -webkit-mask: $svg-path no-repeat center;
+  mask: $svg-path no-repeat center;
+}
+
+@mixin button-svg($svg-path, $color) {
+  display: block;
+  width: 100%;
+  height: 100%;
+
+  @include logo($svg-path, $color);
+}
+
+// Screen sizes
+@mixin desktop {
+  @media screen and (max-width: 1200px) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media screen and (max-width: 1024px) {
+    @content;
+  }
+}
+
+@mixin mini-tablet {
+  @media screen and (max-width: 768px) {
+    @content;
+  }
+}
+
+@mixin large-mobile {
+  @media screen and (max-width: 624px) {
+    @content;
+  }
+}
+
+@mixin mobile {
+  @media screen and (max-width: 480px) {
+    @content;
+  }
+}

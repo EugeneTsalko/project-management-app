@@ -1,0 +1,46 @@
+@use '../../styles/variables.scss' as var;
+
+.wrapper {
+  width: 100%;
+  height: calc(100vh - 230px);
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  background-color: var.$snow-white;
+}
+
+.page404 {
+  padding: 50px 0;
+  
+  img {
+    width: 100%;
+  }
+}
+
+.page404Container {
+  max-width: 768px;
+  text-align: center;
+  margin: 0 auto;
+}
+
+.page404ContainerScene {
+  background-image: url(https://cdn.dribbble.com/users/285475/screenshots/2083086/dribbble_1.gif);
+  height: 400px;
+  background-position: center;
+
+  h1 {
+    font-size: 80px;
+  }
+}
+
+.page404ContainerDetails {
+  margin-top: -50px;
+
+  a {
+    color: var.$white;
+    padding: 10px 20px;
+    background: #39ac31;
+    margin: 20px 0;
+    display: inline-block;
+  }
+}

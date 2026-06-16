@@ -1,0 +1,24 @@
+@use '../../../styles/variables.scss' as var;
+
+.select {
+  background-color: #92B4EC;
+  color: var.$white;
+  border: none;
+  border-radius: var.$btn-border-radius;
+  padding: 3px;
+  cursor: pointer;
+  transition: all 0.3s;
+  background-color: var.$blue;
+
+  &:hover {
+    background-color: var.$dark-blue;
+  }
+
+  & > option {
+    background-color: var.$dark-blue;
+
+    &:hover {
+      background-color: rgba(var.$dark-blue, 0.2);
+    }
+  }
+}

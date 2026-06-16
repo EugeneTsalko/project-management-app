@@ -1,0 +1,106 @@
+@use '../../../../../styles/variables.scss' as var;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 40vw;
+
+  background-color: var.$white;
+  border-radius: var.$modal-window-border-radius;
+
+  @media screen and (max-width: var.$screen-width-large) {
+    width: 60vw;
+  }
+
+  @media screen and (max-width: var.$screen-width-medium) {
+    width: 70vw;
+  }
+
+  @media screen and (max-width: var.$screen-width-small) {
+    width: 75vw;
+  }
+}
+
+.inputField {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin: 1em 0;
+
+  user-select: none;
+
+  label {
+    font-weight: 900;
+  }
+
+  @media screen and (max-width: var.$screen-width-small) and (orientation: landscape) {
+    margin: 0.25em 0;
+  }
+}
+
+.columnTitle,
+.columnDescription {
+  margin-top: 0.5em;
+}
+
+.columnDescription {
+  margin-top: 0.5em;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  @media screen and (max-width: var.$screen-width-medium) and (orientation: landscape) {
+    max-height: 25vh;
+  }
+
+  @media screen and (max-width: var.$screen-width-small) {
+    max-height: 15vh;
+  }
+}
+
+.textareaTitle,
+.textareaDescription {
+  width: 100%;
+  padding: 0.5rem 1rem;
+
+  font-size: 1rem;
+
+  background: var.$white;
+  border: 2px solid var.$grey;
+  border-radius: var.$btn-border-radius;
+  resize: none;
+
+  &:focus {
+    border-color: var.$grey;
+  }
+}
+
+.textareaTitle {
+  height: 2.5rem;
+}
+
+.textareaDescription {
+  height: 8rem;
+
+  @media screen and (max-width: var.$screen-width-medium) and (orientation: landscape) {
+    height: 5rem;
+  }
+
+  @media screen and (max-width: var.$screen-width-small) and (orientation: landscape) {
+    height: 3rem;
+  }
+}
+
+.error {
+  align-self: flex-end;
+
+  color: var.$ruby-red;
+
+  border-color: var.$ruby-red;
+
+  user-select: none;
+}

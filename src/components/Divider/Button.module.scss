@@ -1,0 +1,5 @@
+@use '../../styles/variables.scss' as var;
+
+.divider {
+  border-left: 1px solid var.$white;
+}
